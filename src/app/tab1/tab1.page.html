@@ -7,11 +7,17 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <p (click)="dateModal()">
+    {{date | date: 'dd MMM yyyy':'UTC -0300':'pt-BR'}} às {{date | date: 'HH mm':'UTC -0300'}}
+  </p>
+  <ion-modal [isOpen]="isOpen" class="date-modal">
+    <ng-template>
+      <ion-datetime locale="pt-BR" mode="ios" (ionChange)="setDate($event)" [min]="dateNow" size="cover" [max]="maxDate"
+        presentation="date">
+      </ion-datetime>
+      <div class="close-container">
+        <button (click)="dateModal()">Fechar</button>
+      </div>
+    </ng-template>
+  </ion-modal>
 </ion-content>
