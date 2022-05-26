@@ -1,0 +1,41 @@
+.close-btn {
+  display: flex;
+  width: 32px;
+  height: 32px;
+  font-size: 28px;
+  align-items: center;
+  justify-content: center;
+  border: unset;
+  border-radius: 50%;
+  background: #bbb;
+  color: #222;
+  cursor: pointer;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+.modal {
+  position: relative;
+  padding: 16px;
+}
+
+ion-modal .ion-page {
+  position: relative;
+  contain: content;
+}
+
+ion-modal::part(backdrop) {
+  z-index: 100;
+}
+
+ion-modal::part(content) {
+  --height: auto;
+  --width: calc(100% - 32px);
+  --border-radius: 20px;
+  margin-top: auto;
+  margin-bottom: 16px;
+  overflow-y: auto;
+  --max-height: calc(100vh - 32px);
+  z-index: 101;
+}
