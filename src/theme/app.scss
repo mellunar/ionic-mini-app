@@ -3,10 +3,12 @@
 html,
 body {
   background: var(--color-bg);
+  font-family: 'Public Sans', sans-serif;
 }
 
 ion-content {
   --background: var(--color-bg);
   --overflow: visible;
   --color: #fff;
+  font-family: 'Public Sans', sans-serif;
 }
