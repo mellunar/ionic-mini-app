@@ -2,11 +2,11 @@ import { IonicModule } from '@ionic/angular';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { CommonModule, registerLocaleData } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Tab1Page } from './tab1.page';
 import localePt from '@angular/common/locales/pt';
 
-import { Tab1PageRoutingModule } from './tab1-routing.module';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { HomePage } from './pages/home/home.page';
+import { HomePageRoutingModule } from './home-routing.module';
+import { CoreModule } from 'src/app/core/core.module';
 
 registerLocaleData(localePt);
 @NgModule({
@@ -14,10 +14,10 @@ registerLocaleData(localePt);
     IonicModule,
     CommonModule,
     FormsModule,
-    Tab1PageRoutingModule,
-    SharedModule,
+    HomePageRoutingModule,
+    CoreModule,
   ],
-  declarations: [Tab1Page],
+  declarations: [HomePage],
   providers: [{provide: LOCALE_ID, useValue: 'pt-BR'}]
 })
-export class Tab1PageModule {}
+export class HomePageModule {}

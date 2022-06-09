@@ -6,6 +6,10 @@ body {
   font-family: 'Public Sans', sans-serif;
 }
 
+button {
+  all: unset;
+}
+
 ion-content {
   --background: var(--color-bg);
   --overflow: visible;

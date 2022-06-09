@@ -1,13 +1,5 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <p>
+  <p class="border">
     Tab 1 works
   </p>
   <p>
@@ -18,10 +10,10 @@
     cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
     non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   </p>
-  <app-button>botão</app-button>
+  <app-button (click)="infoToast()">botão</app-button>
   <app-button [disabled]="true">botão</app-button>
-  <app-button color="success">botão</app-button>
-  <app-button color="warning">botão</app-button>
-  <app-button color="error">botão</app-button>
+  <app-button (click)="successToast()" color="success">botão</app-button>
+  <app-button (click)="warningToast()" color="warning">botão</app-button>
+  <app-button (click)="errorToast()" color="error">botão</app-button>
   <app-button color="blue">botão</app-button>
 </ion-content>

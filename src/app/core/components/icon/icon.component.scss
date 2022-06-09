@@ -1,0 +1,14 @@
+:host,
+.e-icon {
+  display: inline-flex;
+}
+
+.e-icon {
+  &--no-events {
+    pointer-events: none;
+  }
+
+  &--inherit-size {
+    font-size: inherit !important;
+  }
+}
