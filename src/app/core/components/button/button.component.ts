@@ -9,6 +9,7 @@ export class ButtonComponent implements OnInit {
   @Input() color: '' | 'success' | 'warning' | 'error' | 'blue' = '';
   @Input() disabled = false;
   @Input() circle: number;
+  @Input() fontSize: number;
 
   @Output() action = new EventEmitter<any>();
 

@@ -1,6 +1,6 @@
 <button class="c-button" [disabled]="disabled" [class.c-button--disabled]="disabled" [class.c-button--rounded]="circle"
-  [style.--circle-size.px]="circle" [class.c-button--success]="color === 'success'"
-  [class.c-button--warning]="color === 'warning'" [class.c-button--error]="color === 'error'"
-  [class.c-button--blue]="color === 'blue'">
+  [class.c-button--custom-font-size]="fontSize" [style.--circle-size.px]="circle" [style.--font-size.px]="fontSize"
+  [class.c-button--success]="color === 'success'" [class.c-button--warning]="color === 'warning'"
+  [class.c-button--error]="color === 'error'" [class.c-button--blue]="color === 'blue'">
   <ng-content></ng-content>
 </button>

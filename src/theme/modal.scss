@@ -18,6 +18,8 @@
 .modal {
   position: relative;
   padding: 16px;
+  display: flex;
+  flex-direction: column;
 }
 
 ion-modal .ion-page {

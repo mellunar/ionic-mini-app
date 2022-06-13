@@ -1,9 +1,14 @@
-@import './variables.scss';
+@import 'variables.scss';
 
 html,
 body {
   background: var(--color-bg);
   font-family: 'Public Sans', sans-serif;
+}
+
+a {
+  color: var(--color-blue);
+  cursor: pointer;
 }
 
 button {
@@ -14,5 +19,5 @@ ion-content {
   --background: var(--color-bg);
   --overflow: visible;
   --color: #fff;
-  font-family: 'Public Sans', sans-serif;
+  font-family: inherit;
 }

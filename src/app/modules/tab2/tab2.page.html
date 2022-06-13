@@ -13,9 +13,9 @@
   <ion-modal class="imodal" [isOpen]="isOpen">
     <ng-template>
       <div class="modal">
-        <button class="close-btn" (click)="toggle()">
+        <app-button color="error" [circle]="40" [fontSize]="28" (click)="toggle()" class="u-margin-left--auto">
           <ion-icon name="close"></ion-icon>
-        </button>
+        </app-button>
         <p>some content</p>
         <p>some content</p>
         <p>some content</p>

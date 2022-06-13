@@ -1,11 +1,9 @@
 .c-button {
-  background: unset;
+  all: unset;
   color: var(--color-text);
   border: 2px solid var(--color-text);
   padding: 6px 14px;
   border-radius: 8px;
-  font-family: inherit;
-  font-size: inherit;
   font-weight: 500;
   cursor: pointer;
 
@@ -33,6 +31,10 @@
     height: var(--circle-size);
     padding: 0;
     border-radius: 50%;
+  }
+
+  &--custom-font-size {
+    font-size: var(--font-size);
   }
 
   &--success {
