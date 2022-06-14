@@ -5,19 +5,13 @@ import { FormsModule } from '@angular/forms';
 import localePt from '@angular/common/locales/pt';
 
 import { HomePage } from './pages/home/home.page';
-import { HomePageRoutingModule } from './home-routing.module';
+import { HomeRoutingModule } from './home-routing.module';
 import { CoreModule } from 'src/app/core/core.module';
 
 registerLocaleData(localePt);
 @NgModule({
-  imports: [
-    IonicModule,
-    CommonModule,
-    FormsModule,
-    HomePageRoutingModule,
-    CoreModule,
-  ],
+  imports: [IonicModule, CommonModule, FormsModule, HomeRoutingModule, CoreModule],
   declarations: [HomePage],
-  providers: [{provide: LOCALE_ID, useValue: 'pt-BR'}]
+  providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }],
 })
-export class HomePageModule {}
+export class HomeModule {}

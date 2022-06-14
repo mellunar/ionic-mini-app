@@ -18,6 +18,7 @@
     "@typescript-eslint/member-ordering": "error",
     "class-methods-use-this": "off",
     "@typescript-eslint/lines-between-class-members": "off",
+    "@typescript-eslint/no-empty-function": "off",
     "import/named": "off",
     "comma-dangle": [
       2,
@@ -29,5 +30,12 @@
         "functions": "ignore"
       }
     ]
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["."]
+      }
+    }
   }
 }

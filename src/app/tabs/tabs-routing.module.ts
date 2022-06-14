@@ -9,29 +9,29 @@ const routes: Routes = [
     children: [
       {
         path: 'home',
-        loadChildren: () => import('../modules/home/home.module').then(m => m.HomePageModule)
+        loadChildren: () => import('../modules/home/home.module').then((m) => m.HomeModule),
       },
       {
-        path: 'tab2',
-        loadChildren: () => import('../modules/tab2/tab2.module').then(m => m.Tab2PageModule)
+        path: 'games',
+        loadChildren: () => import('../modules/games/games.module').then((m) => m.GamesModule),
       },
       {
-        path: 'tab3',
-        loadChildren: () => import('../modules/tab3/tab3.module').then(m => m.Tab3PageModule)
+        path: 'platforms',
+        loadChildren: () => import('../modules/platforms/platforms.module').then((m) => m.PlatformsModule),
       },
       {
         path: '',
         redirectTo: '/tabs/home',
-        pathMatch: 'full'
-      }
-    ]
+        pathMatch: 'full',
+      },
+    ],
   },
   {
     path: '',
     redirectTo: '/tabs/home',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
-  {path: '**', redirectTo: 'home'},
+  { path: '**', redirectTo: 'home' },
 ];
 
 @NgModule({
