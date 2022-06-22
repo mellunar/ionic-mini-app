@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { ToastMessage, ToastType } from '../components/toast/toast.interface';
+import { ToastMessage, ToastType } from '../../components/toast/toast.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ToastService {
   message = new Subject<ToastMessage>();
@@ -27,6 +27,6 @@ export class ToastService {
   }
 
   createToast(message: string, type: ToastType) {
-    this.message.next({message, type});
+    this.message.next({ message, type });
   }
 }

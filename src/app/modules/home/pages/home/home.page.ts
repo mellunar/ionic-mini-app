@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastService } from 'src/app/core/services/toast.service';
+import { ToastService } from 'src/app/core/services/toast/toast.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss']
+  styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
   constructor(private toastService: ToastService) {}
