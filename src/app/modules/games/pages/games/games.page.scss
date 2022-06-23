@@ -1,3 +1,3 @@
-p {
+p:not(li p) {
   color: #000;
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Game, GamesStore } from '../../state/games.state';
 
 @Component({
   selector: 'app-games',
@@ -7,10 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GamesPage implements OnInit {
   isOpen = false;
+  games$: Observable<Game[]>;
+  count = 0;
 
-  constructor() {}
+  constructor(private gamesStore: GamesStore) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.games$ = this.gamesStore.games$;
+  }
+
+  add() {
+    this.count += 1;
+
+    this.gamesStore.addGames([{ id: this.count, title: `Teste ${this.count}` }]);
+  }
 
   toggle() {
     this.isOpen = !this.isOpen;

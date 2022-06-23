@@ -6,7 +6,7 @@
 
 <ion-content [fullscreen]="true">
   <p>Start editing to see some magic happen :)</p>
-  <button (click)="toggle()">open inline modal</button>
+  <button class="c-button" (click)="toggle()">open inline modal</button>
 
   <ion-modal class="imodal" [isOpen]="isOpen">
     <ng-template>
@@ -20,4 +20,12 @@
       </div>
     </ng-template>
   </ion-modal>
+
+  <button class="c-button" (click)="add()">add more</button>
+  <ul *ngIf="games$ | async as games">
+    <li *ngFor="let game of games">
+      <p>id: {{game.id}}</p>
+      <p>title: {{game.title}}</p>
+    </li>
+  </ul>
 </ion-content>
