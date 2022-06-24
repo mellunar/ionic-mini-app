@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Game, GamesStore } from '../../state/games.state';
+import { Game, GamesStore } from '../../state/games.store';
 
 @Component({
   selector: 'app-games',
