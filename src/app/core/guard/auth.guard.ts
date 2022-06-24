@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
+import { map } from 'rxjs';
 import { AuthStore } from 'src/app/modules/auth/state/auth.store';
 
 @Injectable({
@@ -8,16 +9,20 @@ import { AuthStore } from 'src/app/modules/auth/state/auth.store';
 export class AuthGuard implements CanActivate {
   constructor(public router: Router, public authStore: AuthStore) {}
 
-  canActivate(): boolean {
+  canActivate() {
     return this.hasToken();
   }
 
-  hasToken(): boolean {
-    if (!this.authStore.token) {
-      this.router.navigate(['/landing']);
-      return false;
-    }
-
-    return true;
+  hasToken() {
+    return this.authStore.token$.pipe(
+      map((token) => {
+        if (!token) {
+          this.router.navigate(['/landing']);
+          return false;
+        } else {
+          return true;
+        }
+      })
+    );
   }
 }
