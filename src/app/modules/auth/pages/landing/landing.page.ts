@@ -13,6 +13,8 @@ import { AuthStore } from '../../state/auth.store';
   styleUrls: ['./landing.page.scss'],
 })
 export class LandingPage implements OnInit {
+  hasToken = false;
+
   constructor(
     private toastService: ToastService,
     private igdbService: IgdbService,
@@ -22,13 +24,9 @@ export class LandingPage implements OnInit {
 
   ngOnInit() {
     const token = this.authStore.token;
-    this.tokenHandler(token);
-  }
 
-  private tokenHandler(token: IGDBToken) {
     if (token) {
-      //this.router.navigate(['tabs/home']);
-      console.log('token');
+      this.router.navigate(['tabs/home']);
     }
 
     if (!token || isAfter(Date.now(), token?.expires_in)) {
@@ -39,11 +37,12 @@ export class LandingPage implements OnInit {
             const data = res;
             data.expires_in = Number(format(addDays(Date.now(), 59), 'T'));
             this.authStore.updateToken(res);
-            //this.router.navigate(['tabs/home']);
-            console.log('token!');
+
+            this.hasToken = true;
+            this.router.navigate(['tabs/home']);
           }),
           catchError((err) => {
-            this.toastService.error(`${err.status} ${err.statusText}`);
+            this.toastService.error(err.message);
             throw err;
           })
         )

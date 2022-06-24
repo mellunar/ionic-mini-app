@@ -1,7 +1,11 @@
 <ion-content [fullscreen]="true">
   <section class="e-landing">
-    <div>
-      <img src="/assets/images/launch.svg" />
+    <div class="e-landing__container">
+      <img class="e-landing__illustration" alt="rocket launch illutration" src="/assets/images/launch-alt.svg" />
+      <p class="e-landing__text">Launching...</p>
+      <p class="e-landing__redirect" *ngIf="hasToken">
+        If you're not redirected automatically, please <a routerLink="tabs/home">Click Here</a>
+      </p>
     </div>
   </section>
 </ion-content>
