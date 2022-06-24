@@ -1,7 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { isAfter, format, addDays } from 'date-fns';
-import { tap, catchError, Subscription } from 'rxjs';
+import { tap, catchError } from 'rxjs';
 import { IGDBToken } from 'src/app/core/services/igdb/igdb.interface';
 import { IgdbService } from 'src/app/core/services/igdb/igdb.service';
 import { ToastService } from 'src/app/core/services/toast/toast.service';
@@ -12,9 +12,7 @@ import { AuthStore } from '../../state/auth.store';
   templateUrl: './landing.page.html',
   styleUrls: ['./landing.page.scss'],
 })
-export class LandingPage implements OnInit, OnDestroy {
-  private tokenSubscription$: Subscription;
-
+export class LandingPage implements OnInit {
   constructor(
     private toastService: ToastService,
     private igdbService: IgdbService,
@@ -23,13 +21,8 @@ export class LandingPage implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.tokenSubscription$ = this.authStore.token$.subscribe((token) => {
-      this.tokenHandler(token);
-    });
-  }
-
-  ngOnDestroy() {
-    this.tokenSubscription$.unsubscribe();
+    const token = this.authStore.token;
+    this.tokenHandler(token);
   }
 
   private tokenHandler(token: IGDBToken) {
@@ -44,7 +37,7 @@ export class LandingPage implements OnInit, OnDestroy {
         .pipe(
           tap((res: IGDBToken) => {
             const data = res;
-            data.expires_in = Number(format(addDays(Date.now(), 60), 'T'));
+            data.expires_in = Number(format(addDays(Date.now(), 59), 'T'));
             this.authStore.updateToken(res);
             //this.router.navigate(['tabs/home']);
             console.log('token!');

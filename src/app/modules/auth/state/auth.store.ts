@@ -17,6 +17,7 @@ export const persist = persistState(authStore, {
 @Injectable({ providedIn: 'root' })
 export class AuthStore {
   token$ = authStore.pipe(select((state) => state.token));
+  token = authStore.getValue().token;
 
   updateToken(token: IGDBToken) {
     authStore.update((state) => ({
