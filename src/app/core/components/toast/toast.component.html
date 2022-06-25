@@ -1,10 +1,7 @@
 <ng-container *ngIf="messages.length > 0">
   <button
     *ngFor="let message of messages; let i = index"
-    class="e-toast"
-    [class.u-bg--danger]="message.type === 'error'"
-    [class.u-bg--warning]="message.type === 'warning'"
-    [class.u-bg--success]="message.type === 'success'"
+    class="e-toast u-bg--{{ message.type }}"
     (click)="closeMessage(i)">
     {{ message.message }}
     <span class="e-toast__button">

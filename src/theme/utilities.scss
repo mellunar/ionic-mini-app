@@ -1,15 +1,40 @@
-.u-margin-left--auto {
-  margin-left: auto !important;
+$colors: (
+  'error': var(--color-danger),
+  'danger': var(--color-danger),
+  'warning': var(--color-warning),
+  'success': var(--color-success),
+  'neutral': var(--color-text),
+  'blue': var(--color-blue),
+);
+
+@each $color, $color-value in $colors {
+  .u-bg--#{$color} {
+    background: $color-value !important;
+  }
+
+  .u-color--#{$color} {
+    color: $color-value !important;
+  }
 }
 
-.u-bg--danger {
-  background: var(--color-danger) !important;
-}
+$directions: 'top', 'right', 'bottom', 'left';
+$sizes: (
+  'auto': auto,
+  'xs': 4px,
+  'sm': 8px,
+  'md': 16px,
+  'lg': 24px,
+  'xl': 32px,
+);
 
-.u-bg--warning {
-  background: var(--color-warning) !important;
-}
+@each $direction in $directions {
+  @each $size, $size-value in $sizes {
+    .u-margin-#{$direction}--#{$size} {
+      margin-#{$direction}: $size-value;
+    }
 
-.u-bg--success {
-  background: var(--color-success) !important;
+    .u-padding-#{$direction}--#{$size} {
+      padding-#{$direction}: $size-value;
+    }
+  }
 }

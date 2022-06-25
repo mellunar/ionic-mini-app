@@ -1,18 +1,18 @@
 <ion-tabs #ionTabs (ionTabsWillChange)="tabChanged($event)">
   <ion-tab-bar slot="bottom" mode="ios" translucent="true">
     <ion-tab-button tab="home">
-      <ion-icon class="c-tabs__icon" *ngIf="selectedTab !== 'home'" name="home-outline"></ion-icon>
-      <ion-icon class="c-tabs__icon" *ngIf="selectedTab === 'home'" name="home"></ion-icon>
+      <app-icon class="c-tabs__icon" *ngIf="selectedTab !== 'home'" name="home-outline"></app-icon>
+      <app-icon class="c-tabs__icon" *ngIf="selectedTab === 'home'" name="home"></app-icon>
     </ion-tab-button>
 
     <ion-tab-button tab="games">
-      <ion-icon class="c-tabs__icon" *ngIf="selectedTab !== 'games'" name="game-controller-outline"></ion-icon>
-      <ion-icon class="c-tabs__icon" *ngIf="selectedTab === 'games'" name="game-controller"></ion-icon>
+      <app-icon class="c-tabs__icon" *ngIf="selectedTab !== 'games'" name="game-controller-outline"></app-icon>
+      <app-icon class="c-tabs__icon" *ngIf="selectedTab === 'games'" name="game-controller"></app-icon>
     </ion-tab-button>
 
     <ion-tab-button tab="platforms">
-      <ion-icon class="c-tabs__icon" *ngIf="selectedTab !== 'platforms'" name="tv-outline"></ion-icon>
-      <ion-icon class="c-tabs__icon" *ngIf="selectedTab === 'platforms'" name="tv"></ion-icon>
+      <app-icon class="c-tabs__icon" *ngIf="selectedTab !== 'platforms'" name="tv-outline"></app-icon>
+      <app-icon class="c-tabs__icon" *ngIf="selectedTab === 'platforms'" name="tv"></app-icon>
       <!-- <ion-label>Tab 3</ion-label> -->
     </ion-tab-button>
   </ion-tab-bar>
