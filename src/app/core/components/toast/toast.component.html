@@ -1,8 +1,12 @@
 <ng-container *ngIf="messages.length > 0">
-  <button *ngFor="let message of messages; let i = index" class="e-toast"
-    [class.u-bg--danger]="message.type === 'error'" [class.u-bg--warning]="message.type === 'warning'"
-    [class.u-bg--success]="message.type === 'success'" (click)="closeMessage(i)">
-    {{message.message}}
+  <button
+    *ngFor="let message of messages; let i = index"
+    class="e-toast"
+    [class.u-bg--danger]="message.type === 'error'"
+    [class.u-bg--warning]="message.type === 'warning'"
+    [class.u-bg--success]="message.type === 'success'"
+    (click)="closeMessage(i)">
+    {{ message.message }}
     <span class="e-toast__button">
       <app-icon class="e-toast__button-icon" name="close"></app-icon>
     </span>
