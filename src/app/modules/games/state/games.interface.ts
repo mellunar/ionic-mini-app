@@ -13,7 +13,7 @@ export interface Company {
   description: string;
   developed?: Game[];
   id: number;
-  logo: Image;
+  logo: Partial<Image>;
   name: string;
   parent?: Company;
   published?: Game[];
@@ -21,6 +21,7 @@ export interface Company {
   start_date: string | number;
   start_date_category: number;
   websites: Website[];
+  local_update?: number; // local update for fetching each 24 hours
 }
 
 export interface Franchise {
@@ -34,10 +35,11 @@ export interface GameEngine {
   companies?: Company[];
   description: string;
   id: number;
-  logo: Image;
+  logo: Partial<Image>;
   name: string;
   platforms: Platform[];
   slug: string;
+  local_update?: number; // local update for fetching each 24 hours
 }
 
 export interface GenericInfo {
@@ -55,6 +57,14 @@ export interface Image {
   width: number;
 }
 
+export interface InvolvedCompany {
+  company: Partial<Company>;
+  developer: boolean;
+  porting?: boolean;
+  publisher?: boolean;
+  supporting?: boolean;
+}
+
 export interface Platform {
   abbreviation: string;
   alternative_name: string;
@@ -63,10 +73,22 @@ export interface Platform {
   id: number;
   name: number;
   platform_family?: GenericInfo;
-  logo: Image;
+  logo: Partial<Image>;
   slug: string;
   summary: string;
   websites: Website[];
+  local_update?: number; // local update for fetching each 24 hours
+}
+
+export interface ReleaseDate {
+  date: number;
+  platform: Platform;
+  region: number;
+}
+
+export interface Video {
+  name: string;
+  id: string;
 }
 
 export interface Website {
@@ -77,31 +99,49 @@ export interface Website {
 }
 
 export interface Game {
+  cover: Partial<Image>;
+  id: number;
+  name: string;
+  slug: string;
+}
+
+export interface GameFullInfo extends Game {
   age_ratings?: AgeRatings;
   aggregated_rating?: number;
   aggregated_rating_count?: number;
   artwork?: Image[];
   category: number;
   created_at: number;
-  cover: Image;
   dlcs?: Game[];
   expansions?: Game[];
   first_release_date: number;
   follows: number;
   franchise?: Franchise;
   franchises?: Franchise[];
-  game_engines?: GameEngine[];
+  game_engines?: Partial<GameEngine>[];
   game_modes: GenericInfo[];
   genres: GenericInfo[];
   hypes?: number;
-  id: number;
+  involved_companies: InvolvedCompany[];
   keywords?: GenericInfo[];
-  name: string;
   parent_game?: Game; // if dlc or expansion
   player_perspectives?: GenericInfo[];
   ports?: Game[];
   rating?: number;
   rating_count?: number;
-  slug: string;
+  release_dates: ReleaseDate[];
+  remakes?: Game[];
+  remasters?: Game[];
+  screenshots?: Image[];
+  similar_games?: Game[];
+  status: number; // is dlc or expansion? enum
+  storyline?: string;
   summary: string;
+  themes: GenericInfo[];
+  total_rating?: number;
+  total_rating_count: number;
+  version_parent?: Game;
+  version_title: string;
+  videos?: Video[];
+  local_update?: number; // local update for fetching each 24 hours
 }
