@@ -23,7 +23,6 @@ export class ApiInterceptor implements HttpInterceptor {
 
     let headers = request.headers;
 
-    headers = headers.set('Content-Type', 'application/json');
     headers = headers.set('Authorization', `${token.token_type} ${token.access_token}`);
 
     const intercepted = request.clone({ headers });
