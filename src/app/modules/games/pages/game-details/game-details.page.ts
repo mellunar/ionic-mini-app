@@ -15,7 +15,7 @@ export class GameDetailsPage implements OnInit {
 
   getGame() {
     this.gamesService
-      .getGame('14362')
+      .getGame('14362, 549, 11582, 25566, 27053, 141503')
       .pipe(
         tap((game) => {
           console.log(game);
