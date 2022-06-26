@@ -31,5 +31,5 @@ npm-debug.log*
 /plugins
 /www
 
-.vercel
 .env
+.vercel
