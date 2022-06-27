@@ -3,7 +3,8 @@
     *ngFor="let message of messages; let i = index"
     class="e-toast u-bg--{{ message.type }}"
     (click)="closeMessage(i)">
-    {{ message.message }}
+    <app-icon *ngIf="message.icon" class="e-toast__icon" [name]="message.icon" [src]="message.icon"></app-icon>
+    <span class="e-toast__text">{{ message.message }}</span>
     <span class="e-toast__button">
       <app-icon class="e-toast__button-icon" name="close"></app-icon>
     </span>

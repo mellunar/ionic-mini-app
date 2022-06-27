@@ -12,18 +12,18 @@ export class HomePage implements OnInit {
   ngOnInit() {}
 
   infoToast() {
-    this.toastService.info('test info message');
+    this.toastService.info('test info message', 'information-circle');
   }
 
   successToast() {
-    this.toastService.success('success info message');
+    this.toastService.success('success info message', '/assets/icons/patch-check-fill.svg');
   }
 
   warningToast() {
-    this.toastService.warning('warning info message');
+    this.toastService.warning('warning info message', 'warning');
   }
 
   errorToast() {
-    this.toastService.error('error info message');
+    this.toastService.error('error info message', 'cloud-offline');
   }
 }

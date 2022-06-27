@@ -10,23 +10,23 @@ export class ToastService {
 
   constructor() {}
 
-  info(message: string) {
-    this.createToast(message, 'neutral');
+  info(message: string, icon?: string) {
+    this.createToast(message, 'neutral', icon);
   }
 
-  success(message: string) {
-    this.createToast(message, 'success');
+  success(message: string, icon?: string) {
+    this.createToast(message, 'success', icon);
   }
 
-  warning(message: string) {
-    this.createToast(message, 'warning');
+  warning(message: string, icon?: string) {
+    this.createToast(message, 'warning', icon);
   }
 
-  error(message: string) {
-    this.createToast(message, 'error');
+  error(message: string, icon?: string) {
+    this.createToast(message, 'error', icon);
   }
 
-  createToast(message: string, type: ToastType) {
-    this.message.next({ message, type });
+  createToast(message: string, type: ToastType, icon?: string) {
+    this.message.next({ message, type, icon });
   }
 }

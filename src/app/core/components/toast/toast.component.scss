@@ -24,6 +24,7 @@
   box-shadow: 0 0 5px 0px rgba(0, 0, 0, 0.5);
   user-select: none;
   font-weight: 500;
+  font-family: inherit;
 
   &__button {
     margin-left: auto;
@@ -31,8 +32,17 @@
 
     &-icon {
       margin-left: 6px;
-      margin-top: 1px;
+      margin-top: 2px;
     }
+  }
+
+  &__text {
+    margin-top: 1px;
+  }
+
+  &__icon {
+    font-size: 20px;
+    margin-right: 8px;
   }
 
   @media screen and (max-width: 482px) {

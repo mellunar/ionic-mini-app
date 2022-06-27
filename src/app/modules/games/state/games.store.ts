@@ -31,13 +31,7 @@ export class GamesStore {
   }
 
   canRequestGame(id: number) {
-    const game = store.query(getEntity(id));
-
-    if (!game) {
-      return false;
-    }
-
-    const lastUpdate = game.local_update;
+    const lastUpdate = store.query(getEntity(id))?.local_update;
 
     if (!lastUpdate) {
       return false;
