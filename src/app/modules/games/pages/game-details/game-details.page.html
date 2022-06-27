@@ -5,15 +5,11 @@
 </ion-header>
 
 <ion-content>
-  <p>game-details works!</p>
-  <button class="c-button c-button--success" (click)="getGame()">get game</button>
-
-  <ion-list *ngIf="games" mode="ios">
-    <ion-item *ngFor="let game of games">
-      <ion-avatar>
-        <img [src]="game.cover.url" />
-      </ion-avatar>
-      <ion-label> {{game.name}} </ion-label>
-    </ion-item>
-  </ion-list>
+  <ng-container *ngIf="game$ | async as game; else loading">
+    <h3>{{game.name}}</h3>
+    <img [src]="game.cover.url | imageUrl: 'cover_small' : game.cover.alpha_channel" />
+  </ng-container>
+  <ng-template #loading>
+    <p>game-details works!</p>
+  </ng-template>
 </ion-content>

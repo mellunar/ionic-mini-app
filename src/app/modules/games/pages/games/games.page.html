@@ -6,26 +6,16 @@
 
 <ion-content [fullscreen]="true">
   <p>Start editing to see some magic happen :)</p>
-  <button class="c-button" (click)="toggle()">open inline modal</button>
+  <button class="c-button" (click)="getGames()">get games</button>
 
-  <ion-modal class="imodal" [isOpen]="isOpen">
-    <ng-template>
-      <div class="modal">
-        <app-button color="error" [circle]="40" [fontSize]="28" (click)="toggle()" class="u-margin-left--auto">
-          <ion-icon name="close"></ion-icon>
-        </app-button>
-        <p>some content</p>
-        <p>some content</p>
-        <p>some content</p>
-      </div>
-    </ng-template>
-  </ion-modal>
-
-  <button class="c-button" (click)="add()">add more</button>
-  <ul *ngIf="games$ | async as games">
-    <li *ngFor="let game of games">
-      <p>id: {{game.id}}</p>
-      <p>title: {{game.title}}</p>
-    </li>
-  </ul>
+  <ion-list *ngIf="games$ | async as games" mode="ios">
+    <ng-container *ngFor="let game of games">
+      <ion-item routerLink="/tabs/games/{{game.id}}">
+        <ion-avatar>
+          <img [src]="game.cover.url" />
+        </ion-avatar>
+        <ion-label> {{game.name}} </ion-label>
+      </ion-item></ng-container
+    >
+  </ion-list>
 </ion-content>

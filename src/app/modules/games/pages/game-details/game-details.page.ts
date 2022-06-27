@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { catchError, tap } from 'rxjs';
-import { ToastService } from 'src/app/core/services/toast/toast.service';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { GameFullInfo } from '../../state/games.interface';
 import { GamesService } from '../../state/games.service';
+import { GamesStore } from '../../state/games.store';
 
 @Component({
   selector: 'app-game-details',
@@ -10,25 +11,28 @@ import { GamesService } from '../../state/games.service';
   styleUrls: ['./game-details.page.scss'],
 })
 export class GameDetailsPage implements OnInit {
-  games: GameFullInfo[];
+  game$: Observable<GameFullInfo>;
 
-  constructor(private toastService: ToastService, private gamesService: GamesService) {}
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private gamesService: GamesService,
+    private gamesStore: GamesStore
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.activatedRoute.params.subscribe((params) => {
+      if (!params.id || params.id === '') {
+        return;
+      }
 
-  getGame() {
-    this.gamesService
-      .getGame('14362, 549, 11582, 25566, 27053, 141503, 1185, 499')
-      .pipe(
-        tap((game) => {
-          console.log(game);
-          this.games = game;
-        }),
-        catchError((err) => {
-          this.toastService.error(err.message);
-          throw err;
-        })
-      )
-      .subscribe();
+      const id = Number(params.id);
+
+      this.getGame(id);
+      this.game$ = this.gamesStore.getGameEntity(id);
+    });
+  }
+
+  getGame(id: number) {
+    this.gamesService.getGame(id).pipe().subscribe();
   }
 }

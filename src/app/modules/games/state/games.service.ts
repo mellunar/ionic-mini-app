@@ -1,5 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { catchError, map, tap } from 'rxjs';
+import { ToastService } from 'src/app/core/services/toast/toast.service';
+import { GamesListStore } from './games-list.store';
+import { Game, GameFullInfo } from './games.interface';
+import { GamesStore } from './games.store';
 
 @Injectable({
   providedIn: 'root',
@@ -14,11 +19,13 @@ export class GamesService {
     'franchises.*',
     'game_engines.id',
     'game_engines.name',
+    'game_engines.logo.alpha_channel',
     'game_engines.logo.url',
     'game_modes.*',
     'involved_companies.*',
     'involved_companies.company.id',
     'involved_companies.company.name',
+    'involved_companies.company.logo.alpha_channel',
     'involved_companies.company.logo.url',
     'keywords.*',
     'player_perspectives.*',
@@ -45,7 +52,12 @@ export class GamesService {
   private excludeFields =
     'alternative_names, bundles, checksum, expanded_games, external_games, forks, multiplayer_modes, standalone_expansions, tags, updated_at, url';
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private toastService: ToastService,
+    private gamesStore: GamesStore,
+    private gamesListStore: GamesListStore
+  ) {}
 
   formGameFields() {
     const fields = [];
@@ -59,8 +71,39 @@ export class GamesService {
     return `${this.gameFields.join(', ')}, ${fields.join(', ')}`;
   }
 
-  getGame(id: string | number) {
+  getGame(id: number) {
+    if (this.gamesStore.canRequestGame(id)) {
+      return this.gamesStore.getGameEntity(id).pipe(
+        map((game) => {
+          return [game];
+        })
+      );
+    }
+
     const query = `where id = (${id}); fields ${this.formGameFields()}; exclude ${this.excludeFields};`;
-    return this.http.post<any>('/api/game', query);
+    return this.http.post<GameFullInfo[]>('/api/game', query).pipe(
+      tap((game) => {
+        game[0].local_update = Date.now();
+        this.gamesStore.addGame(game);
+      }),
+      catchError((err) => {
+        this.toastService.error(err.message);
+        throw err;
+      })
+    );
+  }
+
+  getGames(id?: number[]) {
+    const query = `where id = (${id.join(',')}); fields cover.url, id, name, slug;`;
+    console.log(query);
+    return this.http.post<Game[]>('/api/game', query).pipe(
+      tap((games) => {
+        this.gamesListStore.addGames(games);
+      }),
+      catchError((err) => {
+        this.toastService.error(err.message);
+        throw err;
+      })
+    );
   }
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Game, GamesStore } from '../../state/games.store';
+import { Game } from '../../state/games.interface';
+import { GamesService } from '../../state/games.service';
+import { GamesListStore } from '../../state/games-list.store';
 
 @Component({
   selector: 'app-games',
@@ -12,16 +14,14 @@ export class GamesPage implements OnInit {
   games$: Observable<Game[]>;
   count = 0;
 
-  constructor(private gamesStore: GamesStore) {}
+  constructor(private gamesService: GamesService, private gamesListStore: GamesListStore) {}
 
   ngOnInit() {
-    this.games$ = this.gamesStore.games$;
+    this.games$ = this.gamesListStore.games$;
   }
 
-  add() {
-    this.count += 1;
-
-    this.gamesStore.addGames([{ id: this.count, title: `Teste ${this.count}` }]);
+  getGames() {
+    this.gamesService.getGames([14362, 549, 11582, 25566, 27053, 141503, 1185, 499]).pipe().subscribe();
   }
 
   toggle() {

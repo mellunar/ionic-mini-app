@@ -1,3 +1,16 @@
-p:not(li p) {
-  color: #000;
+ion-list {
+  margin-top: 20px;
+}
+ion-item {
+  cursor: pointer;
+  --background: var(--color-bg-alt);
+  --color: var(--color-text);
+  --border-color: var(--color-bg);
+
+  &:last-of-type {
+    --border-color: transparent;
+  }
+}
+ion-avatar {
+  margin-right: 16px;
 }

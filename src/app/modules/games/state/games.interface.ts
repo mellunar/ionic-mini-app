@@ -50,11 +50,11 @@ export interface GenericInfo {
 
 export interface Image {
   alpha_channel: boolean;
-  animated: boolean;
+  animated?: boolean;
   id?: number;
   url: string;
-  height: number;
-  width: number;
+  height?: number;
+  width?: number;
 }
 
 export interface InvolvedCompany {

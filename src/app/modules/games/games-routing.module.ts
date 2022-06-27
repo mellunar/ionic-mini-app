@@ -14,7 +14,7 @@ const routes: Routes = [
     component: GamesSearchPage,
   },
   {
-    path: 'game-details',
+    path: ':id',
     component: GameDetailsPage,
   },
 ];
