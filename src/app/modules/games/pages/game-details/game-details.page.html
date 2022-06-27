@@ -1,15 +1,56 @@
-<ion-header>
+<ion-header slot="fixed">
   <ion-toolbar>
     <ion-title>game-details</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ng-container *ngIf="game$ | async as game; else loading">
-    <h3>{{game.name}}</h3>
-    <img [src]="game.cover.url | imageUrl: 'cover_small' : game.cover.alpha_channel" />
-  </ng-container>
-  <ng-template #loading>
-    <p>game-details works!</p>
-  </ng-template>
+  <article class="e-game-details">
+    <!-- game content -->
+    <ng-container *ngIf="game$ | async as game; else loading">
+      <!-- header -->
+      <header>
+        <app-header-background
+          *ngIf="game.artworks?.length > 0"
+          [artworks]="game.artworks"></app-header-background>
+
+        <div class="e-game-details__header u-padding--md">
+          <img class="e-game-details__cover" [src]="game.cover?.url | imageUrl: 'cover_small' : true" />
+          <div class="e-game-details__info">
+            <!-- 53px is the max height for 2 lines of title -->
+            <h3 class="e-game-details__title" #gameTitle>
+              {{game.name}}
+
+              <ng-container *ngIf="gameTitle.scrollHeight > 53">
+                <app-icon name="chatbubble-ellipses" class="e-game-details__title-more"></app-icon>
+                <button class="e-game-details__title-button" id="display-game-name"></button>
+                <ion-popover trigger="display-game-name" triggerAction="click" mode="ios">
+                  <ng-template>
+                    <ion-content class="ion-padding">{{game.name}}</ion-content>
+                  </ng-template>
+                </ion-popover>
+              </ng-container>
+            </h3>
+            <app-tags [genres]="game?.genres" [themes]="game?.themes"></app-tags>
+          </div>
+        </div>
+      </header>
+
+      <!-- game content -->
+      <ng-container *ngIf="game.summary">
+        <div class="l-text">{{game.summary}}</div>
+        <hr class="l-break" />
+      </ng-container>
+
+      <ng-container *ngIf="game.involved_companies">
+        <app-involved-companies [companies]="game.involved_companies"></app-involved-companies>
+        <hr class="l-break" />
+      </ng-container>
+    </ng-container>
+
+    <!-- loading state -->
+    <ng-template #loading>
+      <p>game-details works!</p>
+    </ng-template>
+  </article>
 </ion-content>

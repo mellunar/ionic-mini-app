@@ -73,7 +73,7 @@ export interface Platform {
   id: number;
   name: number;
   platform_family?: GenericInfo;
-  logo: Partial<Image>;
+  platform_logo: Partial<Image>;
   slug: string;
   summary: string;
   websites: Website[];
@@ -109,7 +109,7 @@ export interface GameFullInfo extends Game {
   age_ratings?: AgeRatings;
   aggregated_rating?: number;
   aggregated_rating_count?: number;
-  artwork?: Image[];
+  artworks?: Image[];
   category: number;
   created_at: number;
   dlcs?: Game[];
@@ -126,6 +126,7 @@ export interface GameFullInfo extends Game {
   keywords?: GenericInfo[];
   parent_game?: Game; // if dlc or expansion
   player_perspectives?: GenericInfo[];
+  platforms?: Partial<Platform>[];
   ports?: Game[];
   rating?: number;
   rating_count?: number;

@@ -21,7 +21,10 @@ export class GamesPage implements OnInit {
   }
 
   getGames() {
-    this.gamesService.getGames([14362, 549, 11582, 25566, 27053, 141503, 1185, 499]).pipe().subscribe();
+    this.gamesService
+      .getGames([14362, 19560, 11582, 25566, 27053, 141503, 1185, 11156, 1877, 96437, 112874, 140839, 1905, 7100])
+      .pipe()
+      .subscribe();
   }
 
   toggle() {

@@ -12,7 +12,7 @@
     <ng-container *ngFor="let game of games">
       <ion-item routerLink="/tabs/games/{{game.id}}">
         <ion-avatar>
-          <img [src]="game.cover.url" />
+          <img [src]="game.cover.url | imageUrl : 'cover_small' : true" />
         </ion-avatar>
         <ion-label> {{game.name}} </ion-label>
       </ion-item></ng-container

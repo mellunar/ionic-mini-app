@@ -22,14 +22,6 @@ export class GamesStore {
     store.update(upsertEntities(games));
   }
 
-  getGameById(id: number) {
-    return store.query(getEntity(id));
-  }
-
-  getGameEntity(id: number) {
-    return store.pipe(selectEntity(id));
-  }
-
   canRequestGame(id: number) {
     const lastUpdate = store.query(getEntity(id))?.local_update;
 
@@ -42,5 +34,13 @@ export class GamesStore {
     }
 
     return false;
+  }
+
+  getGameById(id: number) {
+    return store.query(getEntity(id));
+  }
+
+  getGameEntity(id: number) {
+    return store.pipe(selectEntity(id));
   }
 }

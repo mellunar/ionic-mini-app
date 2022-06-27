@@ -8,9 +8,19 @@ import { CoreModule } from 'src/app/core/core.module';
 import { GamesSearchPage } from './pages/search/search.page';
 import { GamesPage } from './pages/games/games.page';
 import { GameDetailsPage } from './pages/game-details/game-details.page';
+import { HeaderBackgroundComponent } from './components/header-background/header-background.component';
+import { TagsComponent } from './components/tags/tags.component';
+import { InvolvedCompaniesComponent } from './components/involved-companies/involved-companies.component';
 
 @NgModule({
   imports: [IonicModule, CommonModule, FormsModule, GamesRoutingModule, CoreModule],
-  declarations: [GamesPage, GamesSearchPage, GameDetailsPage],
+  declarations: [
+    GamesPage,
+    GamesSearchPage,
+    GameDetailsPage,
+    HeaderBackgroundComponent,
+    TagsComponent,
+    InvolvedCompaniesComponent,
+  ],
 })
 export class GamesModule {}

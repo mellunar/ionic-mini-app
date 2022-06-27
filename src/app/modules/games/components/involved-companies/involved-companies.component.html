@@ -1,0 +1,24 @@
+<div class="e-involved-companies">
+  <div *ngIf="developers?.length > 0" class="e-involved-companies__category">
+    <p class="e-involved-companies__title">
+      <ng-container *ngIf="developers.length > 1; else dev">Developers</ng-container>
+      <ng-template #dev>Developer</ng-template>
+    </p>
+
+    <ng-container *ngFor="let dev of developers">
+      <a class="e-involved-companies__link">{{ dev.name }}</a>
+    </ng-container>
+  </div>
+
+  <div *ngIf="publishers?.length > 0" class="e-involved-companies__category">
+    <p class="e-involved-companies__title">
+      <ng-container *ngIf="publishers.length > 1; else pub">Publishers</ng-container>
+      <ng-template #pub>Publisher</ng-template>
+    </p>
+
+    <ng-container *ngFor="let publisher of publishers">
+      <a class="e-involved-companies__link">{{ publisher.name }}</a>
+    </ng-container>
+  </div>
+</div>
+<!-- to do: add link to companies -->

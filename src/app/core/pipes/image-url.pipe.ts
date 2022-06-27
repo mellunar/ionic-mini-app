@@ -5,7 +5,7 @@ import { IGDBImage } from '../services/igdb/igdb.interface';
   name: 'imageUrl',
 })
 export class ImageUrlPipe implements PipeTransform {
-  transform(value: string, size: IGDBImage, alpha = false, double = false): any {
+  transform(value: string, size: IGDBImage, png = false, double = false): any {
     if (!value) {
       return;
     }
@@ -22,7 +22,7 @@ export class ImageUrlPipe implements PipeTransform {
       str = str.replace('t_thumb', newSize);
     }
 
-    if (alpha) {
+    if (png) {
       str = str.replace('.jpg', '.png');
     }
 

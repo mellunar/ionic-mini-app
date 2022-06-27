@@ -1,5 +1,11 @@
 @import 'variables.scss';
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 html,
 body {
   background: var(--color-bg);
@@ -16,9 +22,26 @@ button {
   all: unset;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
 ion-content {
   --background: var(--color-bg);
   --overflow: visible;
   --color: #fff;
   font-family: inherit;
+}
+
+ion-popover {
+  --ion-background-color: var(--color-bg);
+
+  &:part(content) {
+    padding: var(--size-sm);
+  }
 }

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { GameFullInfo } from '../../state/games.interface';
 import { GamesService } from '../../state/games.service';
 import { GamesStore } from '../../state/games.store';
@@ -10,8 +10,9 @@ import { GamesStore } from '../../state/games.store';
   templateUrl: './game-details.page.html',
   styleUrls: ['./game-details.page.scss'],
 })
-export class GameDetailsPage implements OnInit {
+export class GameDetailsPage implements OnInit, OnDestroy {
   game$: Observable<GameFullInfo>;
+  paramSubscription$: Subscription;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -20,7 +21,7 @@ export class GameDetailsPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe((params) => {
+    this.paramSubscription$ = this.activatedRoute.params.subscribe((params) => {
       if (!params.id || params.id === '') {
         return;
       }
@@ -30,6 +31,10 @@ export class GameDetailsPage implements OnInit {
       this.getGame(id);
       this.game$ = this.gamesStore.getGameEntity(id);
     });
+  }
+
+  ngOnDestroy() {
+    this.paramSubscription$.unsubscribe();
   }
 
   getGame(id: number) {

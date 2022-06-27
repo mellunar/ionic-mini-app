@@ -1,3 +1,4 @@
+/* color */
 $colors: (
   'error': var(--color-danger),
   'danger': var(--color-danger),
@@ -17,20 +18,43 @@ $colors: (
   }
 }
 
+/* font-weight */
+$weights: (
+  '500': 500,
+  '600': 600,
+  '700': 700,
+  '800': 800,
+);
+
+@each $weight, $weight-value in $weights {
+  .u-font-weight--#{$weight} {
+    font-weight: $weight-value;
+  }
+}
+
+/* margin & padding */
 $directions: 'top', 'right', 'bottom', 'left';
 $sizes: (
   'auto': auto,
-  'xs': 4px,
-  'sm': 8px,
-  'md': 16px,
-  'lg': 24px,
-  'xl': 32px,
+  'xs': var(--size-xs),
+  'sm': var(--size-sm),
+  'md': var(--size-md),
+  'lg': var(--size-lg),
+  'xl': var(--size-xl),
 );
 
 @each $direction in $directions {
   @each $size, $size-value in $sizes {
+    .u-margin--#{$size} {
+      margin: $size-value;
+    }
+
     .u-margin-#{$direction}--#{$size} {
       margin-#{$direction}: $size-value;
+    }
+
+    .u-padding--#{$size} {
+      padding: $size-value;
     }
 
     .u-padding-#{$direction}--#{$size} {

@@ -22,6 +22,7 @@ export class GamesService {
     'game_engines.logo.alpha_channel',
     'game_engines.logo.url',
     'game_modes.*',
+    'genres.*',
     'involved_companies.*',
     'involved_companies.company.id',
     'involved_companies.company.name',
@@ -29,6 +30,9 @@ export class GamesService {
     'involved_companies.company.logo.url',
     'keywords.*',
     'player_perspectives.*',
+    'platforms.abbreviation',
+    'platforms.name',
+    'platforms.platform_logo.url',
     'screenshots.*',
     'themes.*',
     'videos.*',
@@ -75,14 +79,21 @@ export class GamesService {
     if (this.gamesStore.canRequestGame(id)) {
       return this.gamesStore.getGameEntity(id).pipe(
         map((game) => {
+          console.log(game);
           return [game];
         })
       );
     }
 
     const query = `where id = (${id}); fields ${this.formGameFields()}; exclude ${this.excludeFields};`;
+
     return this.http.post<GameFullInfo[]>('/api/game', query).pipe(
       tap((game) => {
+        if (!game.length) {
+          // redirect to 404
+          return;
+        }
+
         game[0].local_update = Date.now();
         this.gamesStore.addGame(game);
       }),
@@ -94,8 +105,8 @@ export class GamesService {
   }
 
   getGames(id?: number[]) {
-    const query = `where id = (${id.join(',')}); fields cover.url, id, name, slug;`;
-    console.log(query);
+    const query = `where id = (${id.join(',')}); fields cover.url, id, name, slug; limit 20;`;
+
     return this.http.post<Game[]>('/api/game', query).pipe(
       tap((games) => {
         this.gamesListStore.addGames(games);
