@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { PopoverController } from '@ionic/angular';
 import { Observable, Subscription } from 'rxjs';
+import { PopoverComponent } from 'src/app/core/components/popover/popover.component';
 import { GameFullInfo } from '../../state/games.interface';
 import { GamesService } from '../../state/games.service';
 import { GamesStore } from '../../state/games.store';
@@ -17,7 +19,8 @@ export class GameDetailsPage implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private gamesService: GamesService,
-    private gamesStore: GamesStore
+    private gamesStore: GamesStore,
+    private popoverController: PopoverController
   ) {}
 
   ngOnInit() {
@@ -39,5 +42,18 @@ export class GameDetailsPage implements OnInit, OnDestroy {
 
   getGame(id: number) {
     this.gamesService.getGame(id).pipe().subscribe();
+  }
+
+  async openNamePopover(event, name: string) {
+    const popover = await this.popoverController.create({
+      mode: 'ios',
+      component: PopoverComponent,
+      componentProps: {
+        text: name,
+      },
+      event,
+    });
+
+    await popover.present();
   }
 }

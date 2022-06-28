@@ -11,6 +11,7 @@ import { GameDetailsPage } from './pages/game-details/game-details.page';
 import { HeaderBackgroundComponent } from './components/header-background/header-background.component';
 import { TagsComponent } from './components/tags/tags.component';
 import { InvolvedCompaniesComponent } from './components/involved-companies/involved-companies.component';
+import { GameTagsComponent } from './modals/game-tags/game-tags.component';
 
 @NgModule({
   imports: [IonicModule, CommonModule, FormsModule, GamesRoutingModule, CoreModule],
@@ -21,6 +22,7 @@ import { InvolvedCompaniesComponent } from './components/involved-companies/invo
     HeaderBackgroundComponent,
     TagsComponent,
     InvolvedCompaniesComponent,
+    GameTagsComponent,
   ],
 })
 export class GamesModule {}

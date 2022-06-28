@@ -7,6 +7,8 @@ import { IconComponent } from './components/icon/icon.component';
 import { IonPreloadComponent } from './components/ion-preload/ion-preload.component';
 import { ImageUrlPipe } from './pipes/image-url.pipe';
 import { TagOptimizerPipe } from './pipes/tag-optimizer.pipe';
+import { PopoverComponent } from './components/popover/popover.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -16,8 +18,19 @@ import { TagOptimizerPipe } from './pipes/tag-optimizer.pipe';
     IonPreloadComponent,
     ImageUrlPipe,
     TagOptimizerPipe,
+    PopoverComponent,
+    ModalComponent,
   ],
   imports: [CommonModule, IonicModule],
-  exports: [ButtonComponent, ToastComponent, IconComponent, IonPreloadComponent, ImageUrlPipe, TagOptimizerPipe],
+  exports: [
+    ButtonComponent,
+    ToastComponent,
+    IconComponent,
+    IonPreloadComponent,
+    ImageUrlPipe,
+    TagOptimizerPipe,
+    PopoverComponent,
+    ModalComponent,
+  ],
 })
 export class CoreModule {}

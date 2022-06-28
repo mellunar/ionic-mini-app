@@ -1,6 +1,8 @@
-<ul class="e-tags" *ngIf="tags.length > 0">
-  <ng-container *ngFor="let tag of tags">
-    <li class="c-tag">{{ tag.name | tag }}</li>
-  </ng-container>
-  <li class="c-tag" *ngIf="more">+{{ more }}</li>
-</ul>
+<button *ngIf="tags.length > 0" (click)="openGameTags()">
+  <ul class="e-tags">
+    <ng-container *ngFor="let tag of tags">
+      <li class="c-tag">{{ tag.name | tag }}</li>
+    </ng-container>
+    <li class="c-tag" *ngIf="more">+{{ more }}</li>
+  </ul>
+</button>

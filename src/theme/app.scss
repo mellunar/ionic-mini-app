@@ -39,9 +39,26 @@ ion-content {
 }
 
 ion-popover {
-  --ion-background-color: var(--color-bg);
+  --ion-background-color: var(--color-bg-alt);
+}
 
-  &:part(content) {
-    padding: var(--size-sm);
-  }
+ion-modal .ion-page {
+  position: relative;
+  contain: content;
+}
+
+ion-modal::part(backdrop) {
+  z-index: 100;
+  --backdrop-opacity: 0.32;
+}
+
+ion-modal::part(content) {
+  --height: auto;
+  --width: calc(100% - 32px);
+  --border-radius: 20px;
+  margin-top: auto;
+  margin-bottom: 16px;
+  overflow-y: auto;
+  --max-height: calc(100vh - 32px);
+  z-index: 101;
 }

@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { GameTagsComponent } from '../../modals/game-tags/game-tags.component';
 import { GenericInfo } from '../../state/games.interface';
 
 @Component({
@@ -9,11 +11,16 @@ import { GenericInfo } from '../../state/games.interface';
 export class TagsComponent implements OnInit {
   @Input() genres: GenericInfo[];
   @Input() themes: GenericInfo[];
+  @Input() showModal = false;
 
+  // to show on interface
   tags: GenericInfo[] = [];
   more: number;
 
-  constructor() {}
+  // to show on modal
+  allTags: GenericInfo[] = [];
+
+  constructor(private modalController: ModalController) {}
 
   ngOnInit() {
     let allTags = [];
@@ -26,11 +33,29 @@ export class TagsComponent implements OnInit {
       allTags = allTags.concat(this.themes);
     }
 
+    this.allTags = allTags;
+
     if (allTags.length > 2) {
       this.tags = allTags.slice(0, 2);
       this.more = allTags.length - 2;
     } else {
       this.tags = allTags;
     }
+  }
+
+  async openGameTags() {
+    if (!this.showModal) {
+      return;
+    }
+
+    const modal = await this.modalController.create({
+      mode: 'ios',
+      component: GameTagsComponent,
+      componentProps: {
+        tags: this.allTags,
+      },
+    });
+
+    await modal.present();
   }
 }

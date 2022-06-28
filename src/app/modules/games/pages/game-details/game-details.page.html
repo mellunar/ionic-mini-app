@@ -22,16 +22,11 @@
               {{game.name}}
 
               <ng-container *ngIf="gameTitle.scrollHeight > 53">
-                <app-icon name="chatbubble-ellipses" class="e-game-details__title-more"></app-icon>
-                <button class="e-game-details__title-button" id="display-game-name"></button>
-                <ion-popover trigger="display-game-name" triggerAction="click" mode="ios">
-                  <ng-template>
-                    <ion-content class="ion-padding">{{game.name}}</ion-content>
-                  </ng-template>
-                </ion-popover>
+                <app-icon src="/assets/icons/chat-text-fill.svg" class="e-game-details__title-more"></app-icon>
+                <button class="e-game-details__title-button" (click)="openNamePopover($event, game.name)"></button>
               </ng-container>
             </h3>
-            <app-tags [genres]="game?.genres" [themes]="game?.themes"></app-tags>
+            <app-tags [genres]="game?.genres" [themes]="game?.themes" [showModal]="true"></app-tags>
           </div>
         </div>
       </header>
