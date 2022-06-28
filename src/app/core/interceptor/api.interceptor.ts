@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse } from '@angular/common/http';
 
 import { Observable, throwError } from 'rxjs';
-import { catchError, timeout } from 'rxjs/operators';
+import { catchError, finalize, timeout } from 'rxjs/operators';
 import { AuthStore } from 'src/app/modules/auth/state/auth.store';
 
 @Injectable()
@@ -19,7 +19,10 @@ export class ApiInterceptor implements HttpInterceptor {
       );
     }
 
-    const token = this.authStore.token;
+    let token;
+    const subscription = this.authStore.token$.subscribe((t) => {
+      token = t;
+    });
 
     let headers = request.headers;
 
@@ -31,6 +34,9 @@ export class ApiInterceptor implements HttpInterceptor {
       timeout(20000),
       catchError((error) => {
         return this.errorHandler(error);
+      }),
+      finalize(() => {
+        subscription.unsubscribe();
       })
     );
   }
