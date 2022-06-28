@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse } from '@angular/common/http';
 
 import { Observable, throwError } from 'rxjs';
-import { catchError, finalize, timeout } from 'rxjs/operators';
+import { catchError, timeout } from 'rxjs/operators';
 import { AuthStore } from 'src/app/modules/auth/state/auth.store';
 
 @Injectable()
@@ -10,33 +10,35 @@ export class ApiInterceptor implements HttpInterceptor {
   constructor(@Inject(AuthStore) private authStore: AuthStore) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    let req;
+
     if (request.body === 'token') {
-      return next.handle(request).pipe(
-        timeout(20000),
-        catchError((error) => {
-          return this.errorHandler(error);
-        })
-      );
+      req = next.handle(request);
+    } else {
+      let token;
+
+      this.authStore.token$.subscribe((t) => {
+        token = t;
+      });
+
+      if (!token) {
+        window.location.href = './landing';
+        return;
+      }
+
+      let headers = request.headers;
+
+      headers = headers.set('Authorization', `${token.token_type} ${token.access_token}`);
+
+      const intercepted = request.clone({ headers });
+
+      req = next.handle(intercepted);
     }
 
-    let token;
-    const subscription = this.authStore.token$.subscribe((t) => {
-      token = t;
-    });
-
-    let headers = request.headers;
-
-    headers = headers.set('Authorization', `${token.token_type} ${token.access_token}`);
-
-    const intercepted = request.clone({ headers });
-
-    return next.handle(intercepted).pipe(
+    return req.pipe(
       timeout(20000),
       catchError((error) => {
         return this.errorHandler(error);
-      }),
-      finalize(() => {
-        subscription.unsubscribe();
       })
     );
   }
@@ -46,6 +48,7 @@ export class ApiInterceptor implements HttpInterceptor {
 
     if (error.status === 401) {
       this.authStore.resetToken();
+      window.location.href = './landing';
     }
 
     if (error?.status === 0 && !window.navigator.onLine) {

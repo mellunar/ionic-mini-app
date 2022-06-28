@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastService } from 'src/app/core/services/toast/toast.service';
+import { AuthStore } from 'src/app/modules/auth/state/auth.store';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,7 @@ import { ToastService } from 'src/app/core/services/toast/toast.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-  constructor(private toastService: ToastService) {}
+  constructor(private toastService: ToastService, private authStore: AuthStore) {}
 
   ngOnInit() {}
 
@@ -25,5 +26,9 @@ export class HomePage implements OnInit {
 
   errorToast() {
     this.toastService.error('error info message', 'cloud-offline');
+  }
+
+  reset() {
+    this.authStore.resetToken();
   }
 }

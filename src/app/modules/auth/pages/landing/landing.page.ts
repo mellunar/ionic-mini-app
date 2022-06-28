@@ -23,7 +23,7 @@ export class LandingPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    const token = this.authStore.token;
+    const token = this.authStore.token();
 
     if (token) {
       this.router.navigate(['/tabs/home']);
