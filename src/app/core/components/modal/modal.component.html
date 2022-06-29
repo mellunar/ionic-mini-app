@@ -1,6 +1,14 @@
 <div class="e-modal">
-  <app-button class="e-modal__button" color="error" [fontSize]="26" [circle]="32" (click)="dismiss()">
+  <app-button
+    *ngIf="showClose"
+    class="e-modal__button"
+    color="error"
+    [fontSize]="26"
+    [circle]="32"
+    (click)="dismiss()">
     <app-icon name="close" title="close"></app-icon>
   </app-button>
-  <ng-content></ng-content>
+  <div [class.e-modal__content-margin]="showClose">
+    <ng-content></ng-content>
+  </div>
 </div>

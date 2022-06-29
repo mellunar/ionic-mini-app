@@ -1,7 +1,7 @@
 <app-modal>
-  <ul *ngIf="tags">
-    <li *ngFor="let tag of tags">
+  <ion-list *ngIf="tags">
+    <ion-item *ngFor="let tag of tags">
       {{ tag.name }}
-    </li>
-  </ul>
+    </ion-item>
+  </ion-list>
 </app-modal>

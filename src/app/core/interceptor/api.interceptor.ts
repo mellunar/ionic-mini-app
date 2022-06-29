@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse } from '@angular/common/http';
 
 import { Observable, throwError } from 'rxjs';
@@ -7,7 +7,7 @@ import { AuthStore } from 'src/app/modules/auth/state/auth.store';
 
 @Injectable()
 export class ApiInterceptor implements HttpInterceptor {
-  constructor(@Inject(AuthStore) private authStore: AuthStore) {}
+  constructor(private authStore: AuthStore) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let req;
@@ -15,11 +15,7 @@ export class ApiInterceptor implements HttpInterceptor {
     if (request.body === 'token') {
       req = next.handle(request);
     } else {
-      let token;
-
-      this.authStore.token$.subscribe((t) => {
-        token = t;
-      });
+      let token = this.authStore.token();
 
       if (!token) {
         window.location.href = './landing';

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
 @Component({
@@ -7,6 +7,8 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./modal.component.scss'],
 })
 export class ModalComponent implements OnInit {
+  @Input() showClose = true;
+
   constructor(private modalController: ModalController) {}
 
   ngOnInit() {}

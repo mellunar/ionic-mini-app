@@ -38,8 +38,9 @@ ion-content {
   font-family: inherit;
 }
 
-ion-popover {
-  --ion-background-color: var(--color-bg-alt);
+ion-popover,
+ion-modal {
+  --ion-background-color: var(--color-bg-alt) !important;
 }
 
 ion-modal .ion-page {

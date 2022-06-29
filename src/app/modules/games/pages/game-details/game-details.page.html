@@ -22,7 +22,6 @@
               {{game.name}}
 
               <ng-container *ngIf="gameTitle.scrollHeight > 53">
-                <app-icon src="/assets/icons/chat-text-fill.svg" class="e-game-details__title-more"></app-icon>
                 <button class="e-game-details__title-button" (click)="openNamePopover($event, game.name)"></button>
               </ng-container>
             </h3>

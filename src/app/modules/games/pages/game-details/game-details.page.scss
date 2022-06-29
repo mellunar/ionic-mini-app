@@ -24,13 +24,6 @@
     text-overflow: clip;
     position: relative;
 
-    &-more {
-      position: absolute;
-      bottom: 8px;
-      right: 0;
-      font-size: 20px;
-    }
-
     &-button {
       position: absolute;
       z-index: 2;
