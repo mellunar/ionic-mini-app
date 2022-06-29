@@ -1,6 +1,8 @@
-<ion-header slot="fixed">
+<ion-header class="c-header" slot="fixed" mode="ios">
   <ion-toolbar>
-    <ion-title>game-details</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button mode="md" defaultHref="tabs/games"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -44,7 +46,7 @@
 
     <!-- loading state -->
     <ng-template #loading>
-      <p>game-details works!</p>
+      <p>Loading...</p>
     </ng-template>
   </article>
 </ion-content>

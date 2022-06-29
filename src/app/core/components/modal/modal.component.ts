@@ -7,7 +7,8 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./modal.component.scss'],
 })
 export class ModalComponent implements OnInit {
-  @Input() showClose = true;
+  @Input() showClose = false;
+  @Input() headerTitle: string;
 
   constructor(private modalController: ModalController) {}
 

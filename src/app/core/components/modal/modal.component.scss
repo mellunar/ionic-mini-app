@@ -2,9 +2,22 @@
   position: relative;
   z-index: 1;
   background: var(--color-bg-alt);
-  padding: var(--size-md);
   display: flex;
   flex-direction: column;
+
+  ion-toolbar {
+    --border-color: transparent;
+    --background: var(--color-bg-alt);
+    --min-height: 50px;
+  }
+
+  ion-title {
+    font-size: 20px;
+  }
+
+  &__close {
+    --color: var(--color-danger);
+  }
 
   &__button {
     position: absolute;
@@ -12,7 +25,11 @@
     right: var(--size-md);
   }
 
-  &__content-margin {
-    margin-top: 50px;
+  &__content {
+    padding: var(--size-md);
+
+    &-margin {
+      margin-top: 50px;
+    }
   }
 }

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { GenericInfo } from '../../state/games.interface';
 
 @Component({
@@ -6,10 +7,14 @@ import { GenericInfo } from '../../state/games.interface';
   templateUrl: './game-tags.component.html',
   styleUrls: ['./game-tags.component.scss'],
 })
-export class GameTagsComponent implements OnInit {
+export class GameTagsModal implements OnInit {
   @Input() tags: GenericInfo[];
 
-  constructor() {}
+  constructor(private modalContoller: ModalController) {}
 
   ngOnInit() {}
+
+  dismiss() {
+    this.modalContoller.dismiss();
+  }
 }

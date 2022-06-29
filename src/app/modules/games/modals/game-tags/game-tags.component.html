@@ -1,7 +1,9 @@
-<app-modal>
+<app-modal class="e-game-tags" headerTitle="Categories">
   <ion-list *ngIf="tags">
-    <ion-item *ngFor="let tag of tags">
-      {{ tag.name }}
+    <ion-item *ngFor="let tag of tags" (click)="dismiss()">
+      {{ tag.name | tag }}
     </ion-item>
   </ion-list>
 </app-modal>
+
+<!-- to do add link to category page -->

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { GameTagsComponent } from '../../modals/game-tags/game-tags.component';
+import { GameTagsModal } from '../../modals/game-tags/game-tags.component';
 import { GenericInfo } from '../../state/games.interface';
 
 @Component({
@@ -50,7 +50,7 @@ export class TagsComponent implements OnInit {
 
     const modal = await this.modalController.create({
       mode: 'ios',
-      component: GameTagsComponent,
+      component: GameTagsModal,
       componentProps: {
         tags: this.allTags,
       },

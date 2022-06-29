@@ -1,0 +1,13 @@
+.e-game-tags {
+  ion-list,
+  ion-item {
+    --background: var(--color-bg-alt);
+    --border-color: var(--color-bg);
+    --padding-start: 0;
+    --inner-padding-end: 0;
+  }
+
+  ion-item:last-of-type {
+    --border-color: transparent;
+  }
+}
