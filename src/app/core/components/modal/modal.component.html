@@ -1,6 +1,6 @@
 <div class="e-modal">
   <app-button
-    *ngIf="showClose && !headerTitle"
+    *ngIf="showClose"
     class="e-modal__button"
     color="error"
     [fontSize]="26"
@@ -9,11 +9,13 @@
     <app-icon name="close" title="close"></app-icon>
   </app-button>
 
-  <ion-header *ngIf="headerTitle && !showClose" mode="ios">
+  <ion-header *ngIf="!showClose" mode="ios">
     <ion-toolbar>
-      <ion-title>{{ headerTitle }}</ion-title>
+      <ion-title *ngIf="headerTitle">{{ headerTitle }}</ion-title>
       <ion-buttons slot="end">
-        <ion-button class="e-modal__close" (click)="dismiss()"> Close </ion-button>
+        <ion-button class="e-modal__close" (click)="dismiss()">
+          <app-icon name="close" title="Close"></app-icon>
+        </ion-button>
       </ion-buttons>
     </ion-toolbar>
   </ion-header>

@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Game } from '../../state/games.interface';
 import { GamesService } from '../../state/games.service';
 import { GamesListStore } from '../../state/games-list.store';
+import { UIService } from 'src/app/core/services/ui/ui.service';
 
 @Component({
   selector: 'app-games',
@@ -14,10 +15,18 @@ export class GamesPage implements OnInit {
   games$: Observable<Game[]>;
   count = 0;
 
-  constructor(private gamesService: GamesService, private gamesListStore: GamesListStore) {}
+  constructor(
+    private gamesService: GamesService,
+    private gamesListStore: GamesListStore,
+    private uiService: UIService
+  ) {}
 
   ngOnInit() {
     this.games$ = this.gamesListStore.games$;
+  }
+
+  ionViewWillEnter() {
+    this.uiService.setTitle('Games');
   }
 
   getGames() {

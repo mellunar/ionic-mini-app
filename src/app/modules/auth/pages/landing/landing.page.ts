@@ -5,6 +5,7 @@ import { tap, catchError } from 'rxjs';
 import { IGDBToken } from 'src/app/core/services/igdb/igdb.interface';
 import { IgdbService } from 'src/app/core/services/igdb/igdb.service';
 import { ToastService } from 'src/app/core/services/toast/toast.service';
+import { UIService } from 'src/app/core/services/ui/ui.service';
 import { AuthStore } from '../../state/auth.store';
 
 @Component({
@@ -19,10 +20,13 @@ export class LandingPage implements OnInit {
     private toastService: ToastService,
     private igdbService: IgdbService,
     private authStore: AuthStore,
-    private router: Router
+    private router: Router,
+    private uiService: UIService
   ) {}
 
   ngOnInit() {
+    this.uiService.setTitle('Ionic Mini App | Mel Lunar');
+
     const token = this.authStore.token();
 
     if (token) {

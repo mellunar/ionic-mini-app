@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UIService } from 'src/app/core/services/ui/ui.service';
 
 @Component({
   selector: 'app-tab3',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['platforms.page.scss'],
 })
 export class PlatformsPage {
-  constructor() {}
+  constructor(private uiService: UIService) {}
+
+  ionViewWillEnter() {
+    this.uiService.setTitle('Platforms');
+  }
 }

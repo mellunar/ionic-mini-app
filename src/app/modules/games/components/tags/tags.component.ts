@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { GameTagsModal } from '../../modals/game-tags/game-tags.component';
+import { GameTagsModal } from '../../modals/game-tags/tags-modal.component';
 import { GenericInfo } from '../../state/games.interface';
 
 @Component({
@@ -10,6 +10,7 @@ import { GenericInfo } from '../../state/games.interface';
 })
 export class TagsComponent implements OnInit {
   @Input() genres: GenericInfo[];
+  @Input() perspective: GenericInfo[];
   @Input() themes: GenericInfo[];
   @Input() showModal = false;
 
@@ -31,6 +32,10 @@ export class TagsComponent implements OnInit {
 
     if (this.themes?.length > 0) {
       allTags = allTags.concat(this.themes);
+    }
+
+    if (this.perspective?.length > 0) {
+      allTags = allTags.concat(this.perspective);
     }
 
     this.allTags = allTags;

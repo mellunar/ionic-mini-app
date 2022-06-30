@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, tap } from 'rxjs';
+import { catchError, of, tap } from 'rxjs';
 import { ToastService } from 'src/app/core/services/toast/toast.service';
 import { GamesListStore } from './games-list.store';
 import { Game, GameFullInfo } from './games.interface';
@@ -77,12 +77,10 @@ export class GamesService {
 
   getGame(id: number) {
     if (this.gamesStore.canRequestGame(id)) {
-      return this.gamesStore.getGameEntity(id).pipe(
-        map((game) => {
-          console.log(game);
-          return [game];
-        })
-      );
+      // keep console until finish developing game details
+      console.log(this.gamesStore.getGameById(id));
+
+      return of([this.gamesStore.getGameById(id)]);
     }
 
     const query = `where id = (${id}); fields ${this.formGameFields()}; exclude ${this.excludeFields};`;

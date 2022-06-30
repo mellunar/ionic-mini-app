@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastService } from 'src/app/core/services/toast/toast.service';
+import { UIService } from 'src/app/core/services/ui/ui.service';
 import { AuthStore } from 'src/app/modules/auth/state/auth.store';
 
 @Component({
@@ -8,9 +9,13 @@ import { AuthStore } from 'src/app/modules/auth/state/auth.store';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-  constructor(private toastService: ToastService, private authStore: AuthStore) {}
+  constructor(private toastService: ToastService, private authStore: AuthStore, private uiService: UIService) {}
 
   ngOnInit() {}
+
+  ionViewWillEnter() {
+    this.uiService.setTitle('Home');
+  }
 
   infoToast() {
     this.toastService.info('test info message', 'information-circle');

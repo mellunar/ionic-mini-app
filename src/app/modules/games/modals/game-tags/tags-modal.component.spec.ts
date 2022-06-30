@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { GameTagsModal } from './game-tags.component';
+import { GameTagsModal } from './tags-modal.component';
 
 describe('GameTagsComponent', () => {
   let component: GameTagsModal;

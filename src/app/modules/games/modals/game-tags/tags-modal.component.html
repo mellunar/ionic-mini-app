@@ -1,4 +1,4 @@
-<app-modal class="e-game-tags" headerTitle="Categories">
+<app-modal class="e-tags-modal" headerTitle="Categories">
   <ion-list *ngIf="tags">
     <ion-item *ngFor="let tag of tags" (click)="dismiss()">
       {{ tag.name | tag }}

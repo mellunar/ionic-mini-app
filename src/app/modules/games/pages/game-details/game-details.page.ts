@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PopoverController } from '@ionic/angular';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, tap } from 'rxjs';
 import { PopoverComponent } from 'src/app/core/components/popover/popover.component';
+import { UIService } from 'src/app/core/services/ui/ui.service';
 import { GameFullInfo } from '../../state/games.interface';
 import { GamesService } from '../../state/games.service';
 import { GamesStore } from '../../state/games.store';
@@ -20,7 +21,8 @@ export class GameDetailsPage implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private gamesService: GamesService,
     private gamesStore: GamesStore,
-    private popoverController: PopoverController
+    private popoverController: PopoverController,
+    private uiService: UIService
   ) {}
 
   ngOnInit() {
@@ -31,8 +33,9 @@ export class GameDetailsPage implements OnInit, OnDestroy {
 
       const id = Number(params.id);
 
-      this.getGame(id);
       this.game$ = this.gamesStore.getGameEntity(id);
+
+      this.getGame(id);
     });
   }
 
@@ -41,7 +44,14 @@ export class GameDetailsPage implements OnInit, OnDestroy {
   }
 
   getGame(id: number) {
-    this.gamesService.getGame(id).pipe().subscribe();
+    this.gamesService
+      .getGame(id)
+      .pipe(
+        tap((game) => {
+          this.uiService.setTitle(game[0].name);
+        })
+      )
+      .subscribe();
   }
 
   async openNamePopover(event, name: string) {

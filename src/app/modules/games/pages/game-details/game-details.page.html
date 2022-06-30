@@ -27,7 +27,15 @@
                 <button class="e-game-details__title-button" (click)="openNamePopover($event, game.name)"></button>
               </ng-container>
             </h3>
-            <app-tags [genres]="game?.genres" [themes]="game?.themes" [showModal]="true"></app-tags>
+
+            <app-tags
+              [genres]="game?.genres"
+              [perspective]="game?.player_perspectives"
+              [themes]="game?.themes"
+              [showModal]="true">
+            </app-tags>
+
+            <div class="e-game-details__misc">fsafna</div>
           </div>
         </div>
       </header>
