@@ -1,7 +1,8 @@
 :root {
   // colors
-  --color-bg: #16171d;
-  --color-bg-alt: #21242d;
+  --color-bg-900: #16171d;
+  --color-bg-800: #21242d;
+  --color-bg-700: #353841;
   --color-text: white;
   --color-disabled: #5f6b71;
 
@@ -14,6 +15,15 @@
   --color-blue-900: #1f2935;
 
   --color-gray-600: #aaaaaa;
+
+  --color-rating-200: #ff664f;
+  --color-rating-300: #ff7f51;
+  --color-rating-400: #fe9853;
+  --color-rating-500: #feb155;
+  --color-rating-600: #feca57;
+  --color-rating-700: #cbd761;
+  --color-rating-800: #98e56b;
+  --color-rating-900: #65f274;
 
   // sizings
   --size-xs: 4px;

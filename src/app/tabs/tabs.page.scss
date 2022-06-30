@@ -1,6 +1,6 @@
 ion-tab-bar {
   --border: unset;
-  --background: var(--color-bg);
+  --background: var(--color-bg-900);
   height: 55px;
 }
 
@@ -8,7 +8,7 @@ ion-tab-button {
   --color: var(--color-blue-800);
   --color-selected: var(--color-text);
   --background-focused: var(--color-blue);
-  --color-focused: var(--color-bg);
+  --color-focused: var(--color-bg-900);
 }
 
 .c-tabs {

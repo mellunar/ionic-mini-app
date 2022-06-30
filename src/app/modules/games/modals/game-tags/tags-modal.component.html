@@ -1,6 +1,6 @@
 <app-modal class="e-tags-modal" headerTitle="Categories">
   <ion-list *ngIf="tags">
-    <ion-item *ngFor="let tag of tags" (click)="dismiss()">
+    <ion-item class="c-ion-item" *ngFor="let tag of tags" (click)="dismiss()">
       {{ tag.name | tag }}
     </ion-item>
   </ion-list>

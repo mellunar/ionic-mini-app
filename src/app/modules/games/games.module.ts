@@ -12,6 +12,9 @@ import { HeaderBackgroundComponent } from './components/header-background/header
 import { TagsComponent } from './components/tags/tags.component';
 import { InvolvedCompaniesComponent } from './components/involved-companies/involved-companies.component';
 import { GameTagsModal } from './modals/game-tags/tags-modal.component';
+import { RatingComponent } from './components/rating/rating.component';
+import { RatingsModal } from './modals/ratings-modal/ratings-modal.component';
+import { CircularProgressComponent } from './components/circular-progress/circular-progress.component';
 
 @NgModule({
   imports: [IonicModule, CommonModule, FormsModule, GamesRoutingModule, CoreModule],
@@ -23,6 +26,9 @@ import { GameTagsModal } from './modals/game-tags/tags-modal.component';
     TagsComponent,
     InvolvedCompaniesComponent,
     GameTagsModal,
+    RatingComponent,
+    RatingsModal,
+    CircularProgressComponent,
   ],
 })
 export class GamesModule {}

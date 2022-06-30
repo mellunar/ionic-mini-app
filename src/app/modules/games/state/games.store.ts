@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { createState, Store } from '@ngneat/elf';
 import { upsertEntities, selectAllEntities, withEntities, getEntity, selectEntity } from '@ngneat/elf-entities';
 import { localStorageStrategy, persistState } from '@ngneat/elf-persist-state';
-import { addDays, isAfter } from 'date-fns';
+import { addDays, isBefore } from 'date-fns';
 import { GameFullInfo } from './games.interface';
 
 const { state, config } = createState(withEntities<GameFullInfo>());
@@ -29,7 +29,7 @@ export class GamesStore {
       return false;
     }
 
-    if (isAfter(addDays(lastUpdate, 1), Date.now())) {
+    if (isBefore(new Date(), addDays(lastUpdate, 1))) {
       return true;
     }
 

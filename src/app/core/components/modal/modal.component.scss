@@ -1,13 +1,13 @@
 .e-modal {
   position: relative;
   z-index: 1;
-  background: var(--color-bg-alt);
+  background: var(--color-bg-800);
   display: flex;
   flex-direction: column;
 
   ion-toolbar {
     --border-color: transparent;
-    --background: var(--color-bg-alt);
+    --background: var(--color-bg-800);
     --min-height: 50px;
   }
 

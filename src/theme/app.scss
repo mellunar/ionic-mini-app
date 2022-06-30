@@ -8,7 +8,7 @@
 
 html,
 body {
-  background: var(--color-bg);
+  background: var(--color-bg-900);
   font-family: 'Public Sans', sans-serif;
   --ion-font-family: 'Public Sans', sans-serif;
 }
@@ -20,6 +20,7 @@ a {
 
 button {
   all: unset;
+  box-sizing: border-box;
 }
 
 h1,
@@ -32,7 +33,7 @@ h6 {
 }
 
 ion-content {
-  --background: var(--color-bg);
+  --background: var(--color-bg-900);
   --overflow: visible;
   --color: #fff;
   font-family: inherit;
@@ -40,7 +41,7 @@ ion-content {
 
 ion-popover,
 ion-modal {
-  --ion-background-color: var(--color-bg-alt) !important;
+  --ion-background-color: var(--color-bg-800) !important;
 }
 
 ion-modal .ion-page {

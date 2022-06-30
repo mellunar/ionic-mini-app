@@ -80,6 +80,15 @@ export interface Platform {
   local_update?: number; // local update for fetching each 24 hours
 }
 
+export interface Ratings {
+  critics?: number; // from media critics
+  criticsCount?: number;
+  users?: number; // from IGDB users
+  userCount?: number;
+  total?: number; // from both data
+  totalCount?: number;
+}
+
 export interface ReleaseDate {
   date: number;
   platform: Platform;

@@ -3,9 +3,9 @@ ion-list {
 }
 ion-item {
   cursor: pointer;
-  --background: var(--color-bg-alt);
+  --background: var(--color-bg-800);
   --color: var(--color-text);
-  --border-color: var(--color-bg);
+  --border-color: var(--color-bg-900);
 
   &:last-of-type {
     --border-color: transparent;

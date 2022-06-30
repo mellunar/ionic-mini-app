@@ -1,0 +1,17 @@
+.e-circular-progress {
+  position: relative;
+  display: inline-flex;
+
+  &__progress {
+    stroke: var(--rating-bg);
+    transition: stroke-dasharray 3s ease 0s;
+  }
+
+  &__rating {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: var(--size-xl);
+  }
+}

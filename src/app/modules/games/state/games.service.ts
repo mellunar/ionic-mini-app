@@ -76,11 +76,15 @@ export class GamesService {
   }
 
   getGame(id: number) {
-    if (this.gamesStore.canRequestGame(id)) {
+    const canRequest = this.gamesStore.canRequestGame(id);
+
+    if (canRequest) {
       // keep console until finish developing game details
       console.log(this.gamesStore.getGameById(id));
 
       return of([this.gamesStore.getGameById(id)]);
+    } else if (canRequest && this.gamesStore.getGameById(id)) {
+      this.toastService.info('Updating game data', 'cloud-download');
     }
 
     const query = `where id = (${id}); fields ${this.formGameFields()}; exclude ${this.excludeFields};`;

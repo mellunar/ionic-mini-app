@@ -1,0 +1,22 @@
+<div class="e-circular-progress" [style.--rating-bg]="rating | rating">
+  <svg viewBox="0 0 110 110" width="105px" height="105px">
+    <path
+      stroke-linecap="round"
+      stroke-width="7"
+      fill="none"
+      stroke-dasharray="251.2, 251.2"
+      d="M55 15 a 40 40 0 0 1 0 80 a 40 40 0 0 1 0 -80"
+      stroke="#364659"></path>
+
+    <path
+      class="e-circular-progress__progress"
+      stroke-linecap="round"
+      fill="none"
+      d="M55 15 a 40 40 0 0 1 0 80 a 40 40 0 0 1 0 -80"
+      style="stroke-dasharray: {{ value }}px, 251.2px;"
+      stroke-width="7.1"></path>
+  </svg>
+  <div class="e-circular-progress__rating">
+    {{ rating }}
+  </div>
+</div>

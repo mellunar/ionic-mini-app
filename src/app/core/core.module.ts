@@ -9,6 +9,7 @@ import { ImageUrlPipe } from './pipes/image-url.pipe';
 import { TagOptimizerPipe } from './pipes/tag-optimizer.pipe';
 import { PopoverComponent } from './components/popover/popover.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { RatingBackgroundPipe } from './pipes/rating-background.pipe';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ModalComponent } from './components/modal/modal.component';
     TagOptimizerPipe,
     PopoverComponent,
     ModalComponent,
+    RatingBackgroundPipe,
   ],
   imports: [CommonModule, IonicModule],
   exports: [
@@ -31,6 +33,7 @@ import { ModalComponent } from './components/modal/modal.component';
     TagOptimizerPipe,
     PopoverComponent,
     ModalComponent,
+    RatingBackgroundPipe,
   ],
 })
 export class CoreModule {}

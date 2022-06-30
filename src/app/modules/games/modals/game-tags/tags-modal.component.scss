@@ -1,10 +1,6 @@
 .e-tags-modal {
-  ion-list,
-  ion-item {
-    --background: var(--color-bg-alt);
-    --border-color: var(--color-bg);
-    --padding-start: 0;
-    --inner-padding-end: 0;
+  ion-list {
+    --background: var(--color-bg-800);
   }
 
   ion-item:last-of-type {
