@@ -26,14 +26,14 @@ export class GamesStore {
     const lastUpdate = store.query(getEntity(id))?.local_update;
 
     if (!lastUpdate) {
-      return false;
-    }
-
-    if (isBefore(new Date(), addDays(lastUpdate, 1))) {
       return true;
     }
 
-    return false;
+    if (isBefore(new Date(), addDays(lastUpdate, 1))) {
+      return false;
+    }
+
+    return true;
   }
 
   getGameById(id: number) {

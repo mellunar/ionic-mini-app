@@ -78,7 +78,7 @@ export class GamesService {
   getGame(id: number) {
     const canRequest = this.gamesStore.canRequestGame(id);
 
-    if (canRequest) {
+    if (!canRequest) {
       // keep console until finish developing game details
       console.log(this.gamesStore.getGameById(id));
 
