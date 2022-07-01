@@ -41,11 +41,13 @@
   }
 
   &__list {
-    --background: var(--color-bg-900);
-    margin-bottom: var(--size-md);
+    margin: 0 var(--size-md) var(--size-md);
+    --ion-item-background: var(--color-bg-900);
 
     &-item {
       --background: var(--color-bg-900);
+      --padding-start: 0;
+      --inner-padding-end: 0;
 
       &:last-of-type {
         --border-color: transparent;

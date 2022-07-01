@@ -9,3 +9,11 @@
   background: var(--color-bg-800);
   margin: 0 var(--size-md);
 }
+
+.l-title {
+  &--small {
+    font-size: 12px;
+    margin-bottom: var(--size-xs);
+    color: var(--color-gray-600);
+  }
+}

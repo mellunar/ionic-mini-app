@@ -42,26 +42,31 @@
         </div>
       </header>
 
-      <!-- franchise -->
-      <ion-list class="e-game-details__list" *ngIf="game.franchises?.length > 0">
-        <ion-item class="e-game-details__list-item" *ngFor="let franchise of game.franchises">
-          <div class="c-avatar">
-            <app-icon src="/assets/icons/diagram-2-fill.svg"></app-icon>
-          </div>
-          <ion-label>{{franchise.name}}</ion-label>
-          <app-icon class="e-game-details__list-icon" name="add"></app-icon>
-        </ion-item>
-      </ion-list>
-
-      <!-- game content -->
+      <!-- summary -->
       <ng-container *ngIf="game.summary">
         <div class="l-text u-padding-top--none">{{game.summary}}</div>
-        <hr class="l-break" />
       </ng-container>
 
+      <!-- companies -->
+      <hr class="l-break" />
       <ng-container *ngIf="game.involved_companies">
         <app-involved-companies [companies]="game.involved_companies"></app-involved-companies>
-        <hr class="l-break" />
+      </ng-container>
+
+      <!-- franchise -->
+      <ng-container *ngIf="game.franchises?.length > 0">
+        <hr class="l-break u-margin-bottom--md" />
+        <p class="l-title--small u-margin-left--md">
+          Frachise<ng-container *ngIf="game.franchises.length > 1">s</ng-container>
+        </p>
+        <ion-list class="e-game-details__list">
+          <ion-item class="e-game-details__list-item" *ngFor="let franchise of game.franchises">
+            <div class="c-avatar">
+              <app-icon src="/assets/icons/diagram-2-fill.svg"></app-icon>
+            </div>
+            <ion-label>{{franchise.name}}</ion-label>
+          </ion-item>
+        </ion-list>
       </ng-container>
     </ng-container>
 

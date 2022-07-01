@@ -8,11 +8,13 @@ import { Component, Input, OnInit } from '@angular/core';
 export class CircularProgressComponent implements OnInit {
   @Input() rating = 0;
 
-  value: number;
+  value = 0;
 
   constructor() {}
 
   ngOnInit() {
-    this.value = (this.rating * 251.2) / 100;
+    setTimeout(() => {
+      this.value = (this.rating * 251.2) / 100;
+    }, 150);
   }
 }
