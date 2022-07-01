@@ -42,9 +42,20 @@
         </div>
       </header>
 
+      <!-- franchise -->
+      <ion-list class="e-game-details__list" *ngIf="game.franchises?.length > 0">
+        <ion-item class="e-game-details__list-item" *ngFor="let franchise of game.franchises">
+          <div class="c-avatar">
+            <app-icon src="/assets/icons/diagram-2-fill.svg"></app-icon>
+          </div>
+          <ion-label>{{franchise.name}}</ion-label>
+          <app-icon class="e-game-details__list-icon" name="add"></app-icon>
+        </ion-item>
+      </ion-list>
+
       <!-- game content -->
       <ng-container *ngIf="game.summary">
-        <div class="l-text">{{game.summary}}</div>
+        <div class="l-text u-padding-top--none">{{game.summary}}</div>
         <hr class="l-break" />
       </ng-container>
 

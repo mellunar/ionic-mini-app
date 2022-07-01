@@ -15,7 +15,6 @@ export class GamesService {
     'age_ratings.*',
     'artworks.*',
     'cover.url',
-    'franchise.*',
     'franchises.*',
     'game_engines.id',
     'game_engines.name',

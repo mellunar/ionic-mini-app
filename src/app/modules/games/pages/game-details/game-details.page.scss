@@ -39,4 +39,22 @@
     margin-top: auto;
     margin-bottom: var(--size-sm);
   }
+
+  &__list {
+    --background: var(--color-bg-900);
+    margin-bottom: var(--size-md);
+
+    &-item {
+      --background: var(--color-bg-900);
+
+      &:last-of-type {
+        --border-color: transparent;
+      }
+    }
+
+    &-icon {
+      margin-left: auto;
+      font-size: var(--size-lg);
+    }
+  }
 }

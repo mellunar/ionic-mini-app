@@ -36,6 +36,7 @@ $weights: (
 $directions: 'top', 'right', 'bottom', 'left';
 $sizes: (
   'auto': auto,
+  'none': 0,
   'xs': var(--size-xs),
   'sm': var(--size-sm),
   'md': var(--size-md),

@@ -1,0 +1,12 @@
+.c-avatar {
+  width: var(--size-xl);
+  height: var(--size-xl);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--size-lg);
+  border-radius: 50%;
+  background: var(--color-text-alt);
+  color: var(--color-bg-900);
+  margin-right: var(--size-md);
+}

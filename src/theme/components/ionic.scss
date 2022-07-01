@@ -10,4 +10,8 @@
   --border-color: var(--color-bg-700);
   --padding-start: 0;
   --inner-padding-end: 0;
+
+  &--900 {
+    background: var(--color-bg-900);
+  }
 }
