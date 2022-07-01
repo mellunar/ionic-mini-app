@@ -153,5 +153,6 @@ export interface GameFullInfo extends Game {
   version_parent?: Game;
   version_title: string;
   videos?: Video[];
+  websites?: Website[];
   local_update?: number; // local update for fetching each 24 hours
 }

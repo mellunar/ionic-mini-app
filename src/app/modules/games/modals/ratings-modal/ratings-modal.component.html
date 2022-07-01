@@ -1,4 +1,21 @@
-<app-modal class="c-modal" headerTitle="Ratings">
-  <p>ratings-modal works!</p>
-  <app-circular-progress [rating]="87"></app-circular-progress>
+<app-modal class="c-modal e-ratings-modal" headerTitle="Ratings">
+  <div class="e-ratings-modal__container">
+    <div class="e-ratings-modal__rating" *ngIf="ratings.critics">
+      <app-circular-progress [rating]="ratings.critics"></app-circular-progress>
+      <p class="e-ratings-modal__count">{{ ratings.criticsCount }}</p>
+      <p class="u-margin-top--sm">Critics from media</p>
+    </div>
+
+    <div class="e-ratings-modal__rating" *ngIf="ratings.users">
+      <app-circular-progress [rating]="ratings.users"></app-circular-progress>
+      <p class="e-ratings-modal__count">{{ ratings.userCount }}</p>
+      <p class="u-margin-top--sm">Votes by IGDB users</p>
+    </div>
+
+    <div class="e-ratings-modal__rating" *ngIf="ratings.total">
+      <app-circular-progress [rating]="ratings.total"></app-circular-progress>
+      <p class="e-ratings-modal__count">{{ ratings.totalCount }}</p>
+      <p class="u-margin-top--sm">Total of critics</p>
+    </div>
+  </div>
 </app-modal>

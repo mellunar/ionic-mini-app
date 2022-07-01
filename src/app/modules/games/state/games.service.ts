@@ -36,6 +36,9 @@ export class GamesService {
     'screenshots.*',
     'themes.*',
     'videos.*',
+    'websites.category',
+    'websites.trusted',
+    'websites.url',
   ];
 
   private gameResumedFields = ['cover.url', 'id', 'name', 'slug'];
