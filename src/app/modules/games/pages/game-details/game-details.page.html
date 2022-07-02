@@ -37,6 +37,17 @@
 
             <div class="e-game-details__misc">
               <app-rating [game]="game"></app-rating>
+
+              <ng-container *ngIf="game.platforms?.length > 0">
+                <button class="c-label" (click)="openPlatformsModal(game.platforms)">
+                  <app-icon src="/assets/icons/joystick.svg"></app-icon>
+                  {{game.platforms.length}} {{'Platform' | plural : game.platforms.length : 's'}}
+                </button>
+              </ng-container>
+
+              <button class="c-label" *ngIf="game.first_release_date">
+                <app-icon name="calendar"></app-icon> {{game.first_release_date | unixTimestamp}}
+              </button>
             </div>
           </div>
         </div>
@@ -56,9 +67,9 @@
       <!-- franchise -->
       <ng-container *ngIf="game.franchises?.length > 0">
         <hr class="l-break u-margin-bottom--md" />
-        <p class="l-title--small u-margin-left--md">
-          Frachise<ng-container *ngIf="game.franchises.length > 1">s</ng-container>
-        </p>
+        <h5 class="u-margin-left--md u-margin-bottom--xs">
+          {{'Franchise' | plural : game.franchises.length : 's'}}
+        </h5>
         <ion-list class="e-game-details__list">
           <ion-item class="e-game-details__list-item" *ngFor="let franchise of game.franchises">
             <div class="c-avatar">

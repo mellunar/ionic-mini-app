@@ -1,4 +1,4 @@
-import { Component, Input} from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-icon',
@@ -6,10 +6,9 @@ import { Component, Input} from '@angular/core';
   styleUrls: ['./icon.component.scss'],
 })
 export class IconComponent {
-  @Input() name = '';
-  @Input() src = '';
-  @Input() title = '';
+  @Input() name: string;
+  @Input() src: string;
+  @Input() title: string;
   @Input() keepEvents = false;
-  @Input() noMargin = false;
   @Input() inheritSize = false;
 }

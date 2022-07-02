@@ -21,10 +21,20 @@
   --color-rating-300: #ff7f51;
   --color-rating-400: #fe9853;
   --color-rating-500: #feb155;
-  --color-rating-600: #feca57;
+  --color-rating-600: var(--color-warning);
   --color-rating-700: #cbd761;
   --color-rating-800: #98e56b;
   --color-rating-900: #65f274;
+
+  // brand colors
+  --color-playstation: #003087;
+  --color-xbox: #107c10;
+  --color-nintendo: #e60012;
+  --color-linux: #dd4814;
+  --color-windows: #01a6f0;
+  --color-apple: #666666;
+  --color-android: #3ddc84;
+  --color-stadia: linear-gradient(135deg, #fc4a1f, #ac0d57);
 
   // sizings
   --size-xs: 4px;

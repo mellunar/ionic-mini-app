@@ -5,3 +5,15 @@
   background: var(--color-blue-900);
   border-radius: 6px;
 }
+
+.c-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--size-xs);
+  padding: var(--size-xs);
+  font-size: 14px;
+  border-radius: 6px;
+  color: var(--color-text);
+  min-width: 24px;
+  text-align: center;
+}

@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { GameTagsModal } from './tags-modal.component';
+import { PlatformsModal } from './platforms-modal.component';
 
-describe('GameTagsComponent', () => {
-  let component: GameTagsModal;
-  let fixture: ComponentFixture<GameTagsModal>;
+describe('PlatformsModalComponent', () => {
+  let component: PlatformsModal;
+  let fixture: ComponentFixture<PlatformsModal>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [GameTagsModal],
+      declarations: [PlatformsModal],
       imports: [IonicModule.forRoot()],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(GameTagsModal);
+    fixture = TestBed.createComponent(PlatformsModal);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

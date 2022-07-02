@@ -1,11 +1,9 @@
+:host {
+  display: contents;
+}
+
 .e-rating {
-  display: inline-table;
-  padding: 4px;
-  font-size: 14px;
-  border-radius: 6px;
-  color: var(--color-bg-900);
-  min-width: 24px;
-  text-align: center;
   background: var(--rating-bg);
-  font-weight: 500;
+  color: var(--color-bg-900);
+  font-weight: 600;
 }

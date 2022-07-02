@@ -1,4 +1,5 @@
 // all objects inside types must be called with a *
+// 1 ESRB / 2 PEGI / 3 CERO / 4 USK / 5 GRAC / 6 BR / 7 ACB (AU)
 export interface AgeRatings {
   category: number;
   rating: number;
@@ -71,7 +72,7 @@ export interface Platform {
   category: number;
   generation?: number;
   id: number;
-  name: number;
+  name: string;
   platform_family?: GenericInfo;
   platform_logo: Partial<Image>;
   slug: string;
@@ -89,6 +90,7 @@ export interface Ratings {
   totalCount?: number;
 }
 
+// 1 EU / 2 NA / 3 AU / 4 NZ / 5 JP / 6 CN / 7 Asia / 8 Worldwide / 9 KR / 10 BR
 export interface ReleaseDate {
   date: number;
   platform: Platform;

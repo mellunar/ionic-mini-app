@@ -11,10 +11,11 @@ import { GameDetailsPage } from './pages/game-details/game-details.page';
 import { HeaderBackgroundComponent } from './components/header-background/header-background.component';
 import { TagsComponent } from './components/tags/tags.component';
 import { InvolvedCompaniesComponent } from './components/involved-companies/involved-companies.component';
-import { GameTagsModal } from './modals/game-tags/tags-modal.component';
+import { CategoriesModal } from './modals/categories-modal/categories-modal.component';
 import { RatingComponent } from './components/rating/rating.component';
 import { RatingsModal } from './modals/ratings-modal/ratings-modal.component';
 import { CircularProgressComponent } from './components/circular-progress/circular-progress.component';
+import { PlatformsModal } from './modals/platforms-modal/platforms-modal.component';
 
 @NgModule({
   imports: [IonicModule, CommonModule, FormsModule, GamesRoutingModule, CoreModule],
@@ -25,10 +26,11 @@ import { CircularProgressComponent } from './components/circular-progress/circul
     HeaderBackgroundComponent,
     TagsComponent,
     InvolvedCompaniesComponent,
-    GameTagsModal,
+    CategoriesModal,
     RatingComponent,
     RatingsModal,
     CircularProgressComponent,
+    PlatformsModal,
   ],
 })
 export class GamesModule {}

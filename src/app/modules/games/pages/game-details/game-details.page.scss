@@ -36,6 +36,9 @@
   }
 
   &__misc {
+    display: flex;
+    align-items: center;
+    gap: var(--size-sm);
     margin-top: auto;
     margin-bottom: var(--size-sm);
   }

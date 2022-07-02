@@ -1,6 +1,6 @@
 <div class="e-involved-companies">
   <div *ngIf="developers?.length > 0" class="e-involved-companies__category">
-    <p class="l-title--small">Developer<ng-container *ngIf="developers.length > 1">s</ng-container></p>
+    <p class="l-title--small">{{ 'Developer' | plural: developers.length:'s' }}</p>
 
     <ng-container *ngFor="let dev of developers">
       <a class="e-involved-companies__link">{{ dev.name }}</a>
@@ -8,7 +8,7 @@
   </div>
 
   <div *ngIf="publishers?.length > 0" class="e-involved-companies__category">
-    <p class="l-title--small">Publisher<ng-container *ngIf="publishers.length > 1">s</ng-container></p>
+    <p class="l-title--small">{{ 'Publisher' | plural: publishers.length:'s' }}</p>
 
     <ng-container *ngFor="let publisher of publishers">
       <a class="e-involved-companies__link">{{ publisher.name }}</a>

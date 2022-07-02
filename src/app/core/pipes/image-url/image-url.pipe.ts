@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { IGDBImage } from '../services/igdb/igdb.interface';
+import { IGDBImage } from '../../services/igdb/igdb.interface';
 
 @Pipe({
   name: 'imageUrl',

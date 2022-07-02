@@ -1,4 +1,8 @@
-<button class="e-rating" *ngIf="hasRating" (click)="openRatingsModal()" [style.--rating-bg]="rating | rating">
+<button
+  class="c-label e-rating"
+  *ngIf="hasRating"
+  (click)="openRatingsModal()"
+  [style.--rating-bg]="rating | rating">
   <ng-container *ngIf="rating">
     {{ ratings.critics }}
   </ng-container>

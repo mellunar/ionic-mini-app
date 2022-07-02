@@ -1,0 +1,9 @@
+<app-modal class="e-tags-modal" headerTitle="Platforms">
+  <ion-list *ngIf="platforms">
+    <ion-item class="c-ion-item" *ngFor="let platform of platforms" (click)="dismiss()">
+      <app-platform-icon [platform]="platform"></app-platform-icon> {{ platform.name }}
+    </ion-item>
+  </ion-list>
+</app-modal>
+
+<!-- to do add link to category page -->

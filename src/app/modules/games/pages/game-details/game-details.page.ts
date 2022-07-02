@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { PopoverController } from '@ionic/angular';
+import { ModalController, PopoverController } from '@ionic/angular';
 import { Observable, Subscription, tap } from 'rxjs';
 import { PopoverComponent } from 'src/app/core/components/popover/popover.component';
 import { UIService } from 'src/app/core/services/ui/ui.service';
-import { GameFullInfo } from '../../state/games.interface';
+import { PlatformsModal } from '../../modals/platforms-modal/platforms-modal.component';
+import { GameFullInfo, Platform } from '../../state/games.interface';
 import { GamesService } from '../../state/games.service';
 import { GamesStore } from '../../state/games.store';
 
@@ -22,6 +23,7 @@ export class GameDetailsPage implements OnInit, OnDestroy {
     private gamesService: GamesService,
     private gamesStore: GamesStore,
     private popoverController: PopoverController,
+    private modalController: ModalController,
     private uiService: UIService
   ) {}
 
@@ -65,5 +67,17 @@ export class GameDetailsPage implements OnInit, OnDestroy {
     });
 
     await popover.present();
+  }
+
+  async openPlatformsModal(platforms: Partial<Platform>[]) {
+    const modal = await this.modalController.create({
+      mode: 'ios',
+      component: PlatformsModal,
+      componentProps: {
+        platforms,
+      },
+    });
+
+    await modal.present();
   }
 }

@@ -1,6 +1,6 @@
 .e-tags {
   list-style: none;
   display: flex;
-  gap: 6px;
+  gap: var(--size-sm);
   user-select: none;
 }
