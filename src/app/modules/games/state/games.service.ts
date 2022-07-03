@@ -114,7 +114,7 @@ export class GamesService {
   }
 
   getGames(id?: number[]) {
-    const query = `where id = (${id.join(',')}); fields cover.url, id, name, slug; limit 20;`;
+    const query = `where id = (${id.join(',')}); fields cover.url, id, name, slug; limit 50;`;
 
     return this.http.post<Game[]>('/api/game', query).pipe(
       tap((games) => {
