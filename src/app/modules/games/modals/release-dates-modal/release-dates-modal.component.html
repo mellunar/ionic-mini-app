@@ -1,0 +1,11 @@
+<app-modal class="e-release-dates-modal" headerTitle="Release dates">
+  <ion-list *ngIf="dates">
+    <ion-item class="c-ion-item" *ngFor="let date of sortedDates">
+      <app-release-icon [date]="date"></app-release-icon>
+      <div class="e-release-dates-modal__info">
+        {{ date.date | unixTimestamp }}
+        <span class="l-title--small">{{ date.platform.name }}</span>
+      </div>
+    </ion-item>
+  </ion-list></app-modal
+>

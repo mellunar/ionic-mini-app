@@ -1,4 +1,11 @@
 .e-platform-icon {
   background: var(--platform-bg);
   color: var(--color-text);
+
+  &--mini {
+    width: 14px;
+    height: 14px;
+    font-size: 10px;
+    margin: 0;
+  }
 }

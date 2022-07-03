@@ -65,6 +65,19 @@ $sizes: (
 }
 
 /* display */
-.u-display--none {
-  display: none;
+$displays: (
+  'none': none,
+  'contents': contents,
+  'block': block,
+  'flex': flex,
+  'table': table,
+  'inline-block': inline-block,
+  'inline-flex': inline-flex,
+  'inline-table': inline-table,
+);
+
+@each $display, $display-value in $displays {
+  .u-display--#{$display} {
+    display: $display-value;
+  }
 }

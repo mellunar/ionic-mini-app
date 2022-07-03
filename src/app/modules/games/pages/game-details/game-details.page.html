@@ -45,9 +45,11 @@
                 </button>
               </ng-container>
 
-              <button class="c-label" *ngIf="game.first_release_date">
-                <app-icon name="calendar"></app-icon> {{game.first_release_date | unixTimestamp}}
-              </button>
+              <ng-container *ngIf="game.first_release_date">
+                <button class="c-label" (click)="openReleaseDatesModal(game.release_dates)">
+                  <app-icon name="calendar"></app-icon> {{game.first_release_date | unixTimestamp}}
+                </button>
+              </ng-container>
             </div>
           </div>
         </div>

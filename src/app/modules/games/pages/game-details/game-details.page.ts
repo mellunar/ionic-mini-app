@@ -5,7 +5,8 @@ import { Observable, Subscription, tap } from 'rxjs';
 import { PopoverComponent } from 'src/app/core/components/popover/popover.component';
 import { UIService } from 'src/app/core/services/ui/ui.service';
 import { PlatformsModal } from '../../modals/platforms-modal/platforms-modal.component';
-import { GameFullInfo, Platform } from '../../state/games.interface';
+import { ReleaseDatesModal } from '../../modals/release-dates-modal/release-dates-modal.component';
+import { GameFullInfo, Platform, ReleaseDate } from '../../state/games.interface';
 import { GamesService } from '../../state/games.service';
 import { GamesStore } from '../../state/games.store';
 
@@ -75,6 +76,18 @@ export class GameDetailsPage implements OnInit, OnDestroy {
       component: PlatformsModal,
       componentProps: {
         platforms,
+      },
+    });
+
+    await modal.present();
+  }
+
+  async openReleaseDatesModal(dates: ReleaseDate[]) {
+    const modal = await this.modalController.create({
+      mode: 'ios',
+      component: ReleaseDatesModal,
+      componentProps: {
+        dates,
       },
     });
 

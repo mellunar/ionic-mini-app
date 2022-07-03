@@ -16,6 +16,7 @@ import { RatingComponent } from './components/rating/rating.component';
 import { RatingsModal } from './modals/ratings-modal/ratings-modal.component';
 import { CircularProgressComponent } from './components/circular-progress/circular-progress.component';
 import { PlatformsModal } from './modals/platforms-modal/platforms-modal.component';
+import { ReleaseDatesModal } from './modals/release-dates-modal/release-dates-modal.component';
 
 @NgModule({
   imports: [IonicModule, CommonModule, FormsModule, GamesRoutingModule, CoreModule],
@@ -31,6 +32,7 @@ import { PlatformsModal } from './modals/platforms-modal/platforms-modal.compone
     RatingsModal,
     CircularProgressComponent,
     PlatformsModal,
+    ReleaseDatesModal,
   ],
 })
 export class GamesModule {}

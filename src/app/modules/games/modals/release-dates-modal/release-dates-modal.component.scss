@@ -1,0 +1,13 @@
+.e-release-dates-modal {
+  &__info {
+    display: inline-flex;
+    align-items: center;
+    margin-left: var(--size-sm);
+
+    span {
+      margin-top: 2px;
+      margin-left: var(--size-xs);
+      margin-bottom: 0;
+    }
+  }
+}

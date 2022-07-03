@@ -13,6 +13,8 @@ import { RatingBackgroundPipe } from './pipes/rating-background/rating-backgroun
 import { TagOptimizerPipe } from './pipes/tag-optimizer/tag-optimizer.pipe';
 import { UnixTimestampPipe } from './pipes/unix-timestamp/unix-timestamp.pipe';
 import { PlatformIconComponent } from './components/platform-icon/platform-icon.component';
+import { FlagIconComponent } from './components/flag-icon/flag-icon.component';
+import { ReleaseIconComponent } from './components/release-icon/release-icon.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { PlatformIconComponent } from './components/platform-icon/platform-icon.
     PluralPipe,
     UnixTimestampPipe,
     PlatformIconComponent,
+    FlagIconComponent,
+    ReleaseIconComponent,
   ],
   imports: [CommonModule, IonicModule],
   exports: [
@@ -43,6 +47,8 @@ import { PlatformIconComponent } from './components/platform-icon/platform-icon.
     PluralPipe,
     UnixTimestampPipe,
     PlatformIconComponent,
+    FlagIconComponent,
+    ReleaseIconComponent,
   ],
   providers: [DatePipe],
 })

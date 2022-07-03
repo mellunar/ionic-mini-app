@@ -8,6 +8,7 @@ import { Platform } from 'src/app/modules/games/state/games.interface';
 })
 export class PlatformIconComponent implements OnInit {
   @Input() platform: Partial<Platform>;
+  @Input() mini = false;
 
   name: string;
   src: string;

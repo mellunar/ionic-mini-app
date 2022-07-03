@@ -93,7 +93,7 @@ export interface Ratings {
 // 1 EU / 2 NA / 3 AU / 4 NZ / 5 JP / 6 CN / 7 Asia / 8 Worldwide / 9 KR / 10 BR
 export interface ReleaseDate {
   date: number;
-  platform: Platform;
+  platform: Partial<Platform>;
   region: number;
 }
 
