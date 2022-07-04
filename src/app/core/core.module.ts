@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { ToastComponent } from './components/toast/toast.component';
 import { IonicModule } from '@ionic/angular';
+import { SwiperModule } from 'swiper/angular';
 import { ButtonComponent } from './components/button/button.component';
 import { IconComponent } from './components/icon/icon.component';
 import { IonPreloadComponent } from './components/ion-preload/ion-preload.component';
@@ -15,6 +16,8 @@ import { UnixTimestampPipe } from './pipes/unix-timestamp/unix-timestamp.pipe';
 import { PlatformIconComponent } from './components/platform-icon/platform-icon.component';
 import { FlagIconComponent } from './components/flag-icon/flag-icon.component';
 import { ReleaseIconComponent } from './components/release-icon/release-icon.component';
+import { CollapsableTextComponent } from './components/collapsable-text/collapsable-text.component';
+import { PicSliderComponent } from './components/pic-slider/pic-slider.component';
 
 @NgModule({
   declarations: [
@@ -32,8 +35,10 @@ import { ReleaseIconComponent } from './components/release-icon/release-icon.com
     PlatformIconComponent,
     FlagIconComponent,
     ReleaseIconComponent,
+    CollapsableTextComponent,
+    PicSliderComponent,
   ],
-  imports: [CommonModule, IonicModule],
+  imports: [CommonModule, IonicModule, SwiperModule],
   exports: [
     ButtonComponent,
     ToastComponent,
@@ -49,6 +54,8 @@ import { ReleaseIconComponent } from './components/release-icon/release-icon.com
     PlatformIconComponent,
     FlagIconComponent,
     ReleaseIconComponent,
+    CollapsableTextComponent,
+    PicSliderComponent,
   ],
   providers: [DatePipe],
 })

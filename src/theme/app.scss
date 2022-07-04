@@ -14,13 +14,14 @@ body {
 }
 
 a {
-  color: var(--color-blue);
+  color: var(--color-purple);
   cursor: pointer;
 }
 
 button {
   all: unset;
   box-sizing: border-box;
+  cursor: pointer;
 }
 
 h1,

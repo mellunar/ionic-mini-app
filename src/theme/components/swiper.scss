@@ -1,0 +1,15 @@
+// manipulating slides needs to be global, but it needs to be kept in a scope
+.e-pic-slider {
+  .swiper-slide {
+    width: 150px;
+    aspect-ratio: 25/14;
+    position: relative;
+
+    &:first-of-type {
+      margin-left: var(--size-md);
+    }
+    &:last-of-type {
+      margin-right: var(--size-md);
+    }
+  }
+}

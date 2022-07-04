@@ -1,0 +1,18 @@
+<swiper class="e-pic-slider" [config]="config">
+  <ng-container *ngIf="type === 'image'">
+    <ng-template *ngFor="let picture of pictures; let i = index" swiperSlide>
+      <button>
+        <img class="e-pic-slider__img" [src]="picture.url | imageUrl: 'screenshot_med'" />
+      </button>
+    </ng-template>
+  </ng-container>
+
+  <ng-container *ngIf="type === 'video'">
+    <ng-template *ngFor="let video of videos; let i = index" swiperSlide>
+      <a href="https://www.youtube.com/watch?v={{ video.video_id }}">
+        <app-icon class="e-pic-slider__icon" name="play"></app-icon>
+        <img class="e-pic-slider__img" src="http://img.youtube.com/vi/{{ video.video_id }}/mqdefault.jpg" />
+      </a>
+    </ng-template>
+  </ng-container>
+</swiper>

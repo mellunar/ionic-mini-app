@@ -1,0 +1,19 @@
+.e-collapsable-text {
+  padding: var(--size-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.4;
+
+  &__text {
+    white-space: pre-line;
+
+    &--collapsed {
+      display: -webkit-box;
+      -webkit-line-clamp: 5;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}

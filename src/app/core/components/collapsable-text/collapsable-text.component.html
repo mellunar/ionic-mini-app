@@ -1,0 +1,14 @@
+<!-- 112px is the max height for 5 lines of text -->
+<div class="e-collapsable-text" [class.u-padding-top--none]="noPT" [class.u-padding-top--sm]="halfPT">
+  <p
+    class="e-collapsable-text__text"
+    [class.e-collapsable-text__text--collapsed]="!expanded"
+    #textContainer
+    (click)="expandText()">
+    {{ text }}
+  </p>
+  <a *ngIf="textContainer.scrollHeight > 112" (click)="toggleExpand()">
+    <ng-container *ngIf="!expanded">Expand</ng-container>
+    <ng-container *ngIf="expanded">Collapse</ng-container>
+  </a>
+</div>

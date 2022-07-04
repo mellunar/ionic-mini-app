@@ -47,19 +47,19 @@ $sizes: (
 @each $direction in $directions {
   @each $size, $size-value in $sizes {
     .u-margin--#{$size} {
-      margin: $size-value;
+      margin: $size-value !important;
     }
 
     .u-margin-#{$direction}--#{$size} {
-      margin-#{$direction}: $size-value;
+      margin-#{$direction}: $size-value !important;
     }
 
     .u-padding--#{$size} {
-      padding: $size-value;
+      padding: $size-value !important;
     }
 
     .u-padding-#{$direction}--#{$size} {
-      padding-#{$direction}: $size-value;
+      padding-#{$direction}: $size-value !important;
     }
   }
 }

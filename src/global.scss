@@ -22,8 +22,13 @@
 @import 'theme/utilities.scss';
 @import 'theme/variables.scss';
 
+// Swiper
+@import '~swiper/css';
+@import '~@ionic/angular/css/ionic-swiper';
+
 // Global components
 @import 'theme/components/avatar.scss';
 @import 'theme/components/button.scss';
 @import 'theme/components/ionic.scss';
+@import 'theme/components/swiper.scss';
 @import 'theme/components/tag.scss';

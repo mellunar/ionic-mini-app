@@ -100,6 +100,7 @@ export interface ReleaseDate {
 export interface Video {
   name: string;
   id: string;
+  video_id: string;
 }
 
 export interface Website {
