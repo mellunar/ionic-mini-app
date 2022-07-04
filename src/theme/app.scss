@@ -65,3 +65,7 @@ ion-modal::part(content) {
   --max-height: calc(100vh - 32px);
   z-index: 101;
 }
+
+ion-list {
+  --ion-item-background: var(--color-bg-900);
+}

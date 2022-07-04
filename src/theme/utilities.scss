@@ -50,12 +50,32 @@ $sizes: (
       margin: $size-value !important;
     }
 
+    .u-margin-x--#{$size} {
+      margin-left: $size-value !important;
+      margin-right: $size-value !important;
+    }
+
+    .u-margin-y--#{$size} {
+      margin-top: $size-value !important;
+      margin-bottom: $size-value !important;
+    }
+
     .u-margin-#{$direction}--#{$size} {
       margin-#{$direction}: $size-value !important;
     }
 
     .u-padding--#{$size} {
       padding: $size-value !important;
+    }
+
+    .u-padding-x--#{$size} {
+      padding-left: $size-value !important;
+      padding-right: $size-value !important;
+    }
+
+    .u-padding-y--#{$size} {
+      padding-top: $size-value !important;
+      padding-bottom: $size-value !important;
     }
 
     .u-padding-#{$direction}--#{$size} {
