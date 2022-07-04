@@ -60,10 +60,25 @@
         <app-collapsable-text [text]="game.summary" [noPT]="true"></app-collapsable-text>
       </ng-container>
 
-      <!-- companies -->
-      <hr class="l-break" />
-      <ng-container *ngIf="game.involved_companies">
-        <app-involved-companies [companies]="game.involved_companies"></app-involved-companies>
+      <!-- screenshots -->
+      <ng-container *ngIf="game.screenshots?.length > 0">
+        <hr class="l-break u-margin-bottom--md" />
+        <h5 class="u-margin-left--md">Screenshots</h5>
+        <app-pic-slider [pictures]="game.screenshots" type="image"></app-pic-slider>
+      </ng-container>
+
+      <!-- videos -->
+      <ng-container *ngIf="game.videos?.length > 0">
+        <hr class="l-break u-margin-bottom--md" />
+        <h5 class="u-margin-left--md">Videos</h5>
+        <app-pic-slider [videos]="game.videos" type="video"></app-pic-slider>
+      </ng-container>
+
+      <!-- storyline -->
+      <ng-container *ngIf="game.storyline">
+        <hr class="l-break u-margin-bottom--md" />
+        <h5 class="u-margin-left--md">Storyline</h5>
+        <app-collapsable-text [text]="game.storyline" [halfPT]="true"></app-collapsable-text>
       </ng-container>
 
       <!-- game modes -->
@@ -98,25 +113,10 @@
         </ion-list>
       </ng-container>
 
-      <!-- storyline -->
-      <ng-container *ngIf="game.storyline">
-        <hr class="l-break u-margin-bottom--md" />
-        <h5 class="u-margin-left--md">Storyline</h5>
-        <app-collapsable-text [text]="game.storyline" [halfPT]="true"></app-collapsable-text>
-      </ng-container>
-
-      <!-- screenshots -->
-      <ng-container *ngIf="game.screenshots?.length > 0">
-        <hr class="l-break u-margin-bottom--md" />
-        <h5 class="u-margin-left--md">Screenshots</h5>
-        <app-pic-slider [pictures]="game.screenshots" type="image"></app-pic-slider>
-      </ng-container>
-
-      <!-- videos -->
-      <ng-container *ngIf="game.videos?.length > 0">
-        <hr class="l-break u-margin-bottom--md" />
-        <h5 class="u-margin-left--md">Videos</h5>
-        <app-pic-slider [videos]="game.videos" type="video"></app-pic-slider>
+      <!-- companies -->
+      <hr class="l-break" />
+      <ng-container *ngIf="game.involved_companies">
+        <app-involved-companies [companies]="game.involved_companies"></app-involved-companies>
       </ng-container>
     </ng-container>
 
