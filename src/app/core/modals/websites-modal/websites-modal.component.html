@@ -1,3 +1,7 @@
-<p>
-  websites works!
-</p>
+<app-modal class="c-modal e-websites-modal" [headerTitle]="'External link' | plural: websites.length:'s'">
+  <ion-list>
+    <ng-container *ngFor="let website of sorted">
+      <app-website-item class="e-websites-modal__item" (click)="dismiss()" [website]="website"></app-website-item>
+    </ng-container>
+  </ion-list>
+</app-modal>

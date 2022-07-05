@@ -45,20 +45,19 @@
 
   &__list {
     margin: 0 var(--size-md) var(--size-md);
+    padding: 0;
     --ion-item-background: var(--color-bg-900);
+  }
+
+  &__item {
+    --padding-start: var(--size-md);
+    --inner-padding-end: var(--size-md);
+    --background: var(--color-bg-900);
+    --border-color: transparent;
 
     &-icon {
       margin-left: auto;
       font-size: var(--size-lg);
-    }
-
-    &-website {
-      display: block;
-      border-bottom: 1px solid var(--color-bg-800);
-
-      &:last-of-type {
-        border: unset;
-      }
     }
   }
 }

@@ -1,0 +1,10 @@
+.e-websites-modal {
+  &__item {
+    display: block;
+    border-bottom: 1px solid var(--color-bg-700);
+
+    &:last-of-type {
+      border: unset;
+    }
+  }
+}

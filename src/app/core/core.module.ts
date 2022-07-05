@@ -19,6 +19,7 @@ import { ReleaseIconComponent } from './components/release-icon/release-icon.com
 import { CollapsableTextComponent } from './components/collapsable-text/collapsable-text.component';
 import { PicSliderComponent } from './components/pic-slider/pic-slider.component';
 import { WebsiteItemComponent } from './components/website-item/website-item.component';
+import { WebsitesModal } from './modals/websites-modal/websites-modal.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { WebsiteItemComponent } from './components/website-item/website-item.com
     CollapsableTextComponent,
     PicSliderComponent,
     WebsiteItemComponent,
+    WebsitesModal,
   ],
   imports: [CommonModule, IonicModule, SwiperModule],
   exports: [
@@ -59,6 +61,7 @@ import { WebsiteItemComponent } from './components/website-item/website-item.com
     CollapsableTextComponent,
     PicSliderComponent,
     WebsiteItemComponent,
+    WebsitesModal,
   ],
   providers: [DatePipe],
 })

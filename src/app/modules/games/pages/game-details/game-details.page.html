@@ -122,12 +122,13 @@
       <!-- websited -->
       <ng-container *ngIf="game.websites?.length > 0">
         <hr class="l-break u-margin-bottom--md" />
-        <h5 class="u-margin-left--md u-margin-bottom--xs">{{'Website' | plural : game.websites.length : 's'}}</h5>
-        <ion-list class="e-game-details__list">
-          <ng-container *ngFor="let website of game.websites">
-            <app-website-item class="e-game-details__list-website" [website]="website"></app-website-item>
-          </ng-container>
-        </ion-list>
+        <ion-item class="e-game-details__item" (click)="openWebsitesModal(game.websites)">
+          <div class="c-avatar">
+            <app-icon name="globe-outline"></app-icon>
+          </div>
+          <ion-label>{{'External link' | plural : game.websites.length : 's'}}</ion-label>
+          <app-icon class="e-game-details__item-icon" name="chevron-forward-outline"></app-icon>
+        </ion-item>
       </ng-container>
     </ng-container>
 

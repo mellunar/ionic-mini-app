@@ -3,10 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 import { ModalController, PopoverController } from '@ionic/angular';
 import { Observable, Subscription, tap } from 'rxjs';
 import { PopoverComponent } from 'src/app/core/components/popover/popover.component';
+import { WebsitesModal } from 'src/app/core/modals/websites-modal/websites-modal.component';
 import { UIService } from 'src/app/core/services/ui/ui.service';
 import { PlatformsModal } from '../../modals/platforms-modal/platforms-modal.component';
 import { ReleaseDatesModal } from '../../modals/release-dates-modal/release-dates-modal.component';
-import { GameFullInfo, Platform, ReleaseDate } from '../../state/games.interface';
+import { GameFullInfo, Platform, ReleaseDate, Website } from '../../state/games.interface';
 import { GamesService } from '../../state/games.service';
 import { GamesStore } from '../../state/games.store';
 
@@ -88,6 +89,18 @@ export class GameDetailsPage implements OnInit, OnDestroy {
       component: ReleaseDatesModal,
       componentProps: {
         dates,
+      },
+    });
+
+    await modal.present();
+  }
+
+  async openWebsitesModal(websites: Website[]) {
+    const modal = await this.modalController.create({
+      mode: 'ios',
+      component: WebsitesModal,
+      componentProps: {
+        websites,
       },
     });
 
