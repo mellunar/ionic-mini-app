@@ -37,6 +37,24 @@
   --color-android: #3ddc84;
   --color-stadia: linear-gradient(135deg, #fc4a1f, #ac0d57);
 
+  --color-official: #128c7e;
+  --color-wikipedia: #636466;
+  --color-facebook: #1877f2;
+  --color-twitter: #1da1f2;
+  --color-twitch: #9146ff;
+  --color-instagram: radial-gradient(
+    circle at 30% 107%,
+    #fdf497 0%,
+    #fdf497 5%,
+    #fd5949 45%,
+    #d6249f 60%,
+    #285aeb 90%
+  );
+  --color-youtube: #ff0000;
+  --color-steam: linear-gradient(120deg, #00adee, #000000);
+  --color-reddit: #ff4500;
+  --color-discord: #7289da;
+
   // sizings
   --size-xs: 4px;
   --size-sm: 8px;

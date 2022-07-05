@@ -47,19 +47,18 @@
     margin: 0 var(--size-md) var(--size-md);
     --ion-item-background: var(--color-bg-900);
 
-    &-item {
-      --background: var(--color-bg-900);
-      --padding-start: 0;
-      --inner-padding-end: 0;
-
-      &:last-of-type {
-        --border-color: transparent;
-      }
-    }
-
     &-icon {
       margin-left: auto;
       font-size: var(--size-lg);
+    }
+
+    &-website {
+      display: block;
+      border-bottom: 1px solid var(--color-bg-800);
+
+      &:last-of-type {
+        border: unset;
+      }
     }
   }
 }

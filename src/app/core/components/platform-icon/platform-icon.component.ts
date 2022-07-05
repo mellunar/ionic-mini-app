@@ -10,8 +10,7 @@ export class PlatformIconComponent implements OnInit {
   @Input() platform: Partial<Platform>;
   @Input() mini = false;
 
-  name: string;
-  src: string;
+  icon: string;
   color: string;
 
   constructor() {}
@@ -53,12 +52,7 @@ export class PlatformIconComponent implements OnInit {
   }
 
   private valueToReturn(color: string, icon: string) {
-    if (icon.includes('/assets')) {
-      this.src = icon;
-    } else {
-      this.name = icon;
-    }
-
+    this.icon = icon;
     this.color = color;
   }
 }

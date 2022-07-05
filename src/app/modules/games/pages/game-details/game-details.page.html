@@ -84,10 +84,10 @@
       <!-- game modes -->
       <ng-container *ngIf="game.game_modes?.length > 0">
         <hr class="l-break u-margin-bottom--md" />
-        <h5 class="u-margin-left--md u-margin-bottom--sm">
+        <h5 class="u-margin-left--md u-margin-bottom--xs">
           {{'Game mode' | plural : game.game_modes.length : 's'}}
         </h5>
-        <ion-list class="c-ion-item--900 u-padding-x--md u-padding-bottom--md">
+        <ion-list class="e-game-details__list">
           <ion-item class="c-ion-item c-ion-item--900" *ngFor="let mode of game.game_modes">
             <div class="c-avatar">
               <app-icon name="game-controller"></app-icon>
@@ -104,7 +104,7 @@
           {{'Franchise' | plural : game.franchises.length : 's'}}
         </h5>
         <ion-list class="e-game-details__list">
-          <ion-item class="e-game-details__list-item" *ngFor="let franchise of game.franchises">
+          <ion-item class="c-ion-item c-ion-item--900" *ngFor="let franchise of game.franchises">
             <div class="c-avatar">
               <app-icon src="/assets/icons/diagram-2-fill.svg"></app-icon>
             </div>
@@ -114,9 +114,20 @@
       </ng-container>
 
       <!-- companies -->
-      <hr class="l-break" />
       <ng-container *ngIf="game.involved_companies">
+        <hr class="l-break" />
         <app-involved-companies [companies]="game.involved_companies"></app-involved-companies>
+      </ng-container>
+
+      <!-- websited -->
+      <ng-container *ngIf="game.websites?.length > 0">
+        <hr class="l-break u-margin-bottom--md" />
+        <h5 class="u-margin-left--md u-margin-bottom--xs">{{'Website' | plural : game.websites.length : 's'}}</h5>
+        <ion-list class="e-game-details__list">
+          <ng-container *ngFor="let website of game.websites">
+            <app-website-item class="e-game-details__list-website" [website]="website"></app-website-item>
+          </ng-container>
+        </ion-list>
       </ng-container>
     </ng-container>
 
