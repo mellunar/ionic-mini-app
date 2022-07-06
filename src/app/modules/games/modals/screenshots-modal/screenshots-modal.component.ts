@@ -28,6 +28,8 @@ export class ScreenshotsModal implements OnInit {
     hideOnClick: true,
   };
 
+  showClose = true;
+
   constructor(private modalController: ModalController) {}
 
   ngOnInit() {
@@ -39,5 +41,9 @@ export class ScreenshotsModal implements OnInit {
 
   dismiss() {
     this.modalController.dismiss();
+  }
+
+  toggleClose() {
+    this.showClose = !this.showClose;
   }
 }
