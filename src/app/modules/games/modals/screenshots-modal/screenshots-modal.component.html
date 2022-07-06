@@ -5,7 +5,6 @@
   <swiper class="e-screenshots-modal__slider" #slider [config]="config" [pagination]="pagination">
     <ng-template *ngFor="let image of screenshots" swiperSlide>
       <img [src]="image.url | imageUrl: '720p'" />
-      <button class="e-screenshots-modal__backdrop" (click)="dismiss()"></button>
     </ng-template>
   </swiper>
 </div>

@@ -25,6 +25,7 @@ export class ScreenshotsModal implements OnInit {
   pagination: PaginationOptions = {
     type: 'bullets',
     dynamicBullets: true,
+    hideOnClick: true,
   };
 
   constructor(private modalController: ModalController) {}

@@ -19,6 +19,7 @@ import { PlatformsModal } from './modals/platforms-modal/platforms-modal.compone
 import { ReleaseDatesModal } from './modals/release-dates-modal/release-dates-modal.component';
 import { ScreenshotsModal } from './modals/screenshots-modal/screenshots-modal.component';
 import { SwiperModule } from 'swiper/angular';
+import { YoutubeModal } from './modals/youtube-modal/youtube-modal.component';
 
 @NgModule({
   imports: [IonicModule, CommonModule, FormsModule, GamesRoutingModule, CoreModule, SwiperModule],
@@ -36,6 +37,7 @@ import { SwiperModule } from 'swiper/angular';
     PlatformsModal,
     ReleaseDatesModal,
     ScreenshotsModal,
+    YoutubeModal,
   ],
 })
 export class GamesModule {}

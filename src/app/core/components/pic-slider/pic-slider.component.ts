@@ -14,7 +14,8 @@ export class PicSliderComponent implements OnInit {
   @Input() videos: Video[];
   @Input() type: 'image' | 'video';
 
-  @Output() open = new EventEmitter<number>();
+  @Output() openImage = new EventEmitter<number>();
+  @Output() openVideo = new EventEmitter<string>();
 
   config: SwiperOptions = {
     freeMode: true,
@@ -28,6 +29,10 @@ export class PicSliderComponent implements OnInit {
   ngOnInit() {}
 
   openSlide(index: number) {
-    this.open.emit(index);
+    this.openImage.emit(index);
+  }
+
+  openVideoById(id: string) {
+    this.openVideo.emit(id);
   }
 }

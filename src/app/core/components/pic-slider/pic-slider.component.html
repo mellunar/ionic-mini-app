@@ -9,10 +9,10 @@
 
   <ng-container *ngIf="type === 'video'">
     <ng-template *ngFor="let video of videos; let i = index" swiperSlide>
-      <a href="https://www.youtube.com/watch?v={{ video.video_id }}">
+      <button (click)="openVideoById(video.video_id)">
         <app-icon class="e-pic-slider__icon" name="play"></app-icon>
         <img class="e-pic-slider__img" src="https://img.youtube.com/vi/{{ video.video_id }}/mqdefault.jpg" />
-      </a>
+      </button>
     </ng-template>
   </ng-container>
 </swiper>

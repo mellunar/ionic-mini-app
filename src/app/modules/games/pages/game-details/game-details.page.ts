@@ -8,6 +8,7 @@ import { UIService } from 'src/app/core/services/ui/ui.service';
 import { PlatformsModal } from '../../modals/platforms-modal/platforms-modal.component';
 import { ReleaseDatesModal } from '../../modals/release-dates-modal/release-dates-modal.component';
 import { ScreenshotsModal } from '../../modals/screenshots-modal/screenshots-modal.component';
+import { YoutubeModal } from '../../modals/youtube-modal/youtube-modal.component';
 import { GameFullInfo, Image, Platform, ReleaseDate, Website } from '../../state/games.interface';
 import { GamesService } from '../../state/games.service';
 import { GamesStore } from '../../state/games.store';
@@ -104,7 +105,7 @@ export class GameDetailsPage implements OnInit, OnDestroy {
         screenshots,
         index,
       },
-      cssClass: 'c-ion-modal c-ion-modal--prev',
+      cssClass: 'c-ion-modal c-ion-modal--prev c-ion-modal--img',
     });
 
     await modal.present();
@@ -117,6 +118,19 @@ export class GameDetailsPage implements OnInit, OnDestroy {
       componentProps: {
         websites,
       },
+    });
+
+    await modal.present();
+  }
+
+  async openYoutubeModal(video: string) {
+    const modal = await this.modalController.create({
+      mode: 'ios',
+      component: YoutubeModal,
+      componentProps: {
+        video,
+      },
+      cssClass: 'c-ion-modal c-ion-modal--prev c-ion-modal--video',
     });
 
     await modal.present();

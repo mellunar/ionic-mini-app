@@ -43,7 +43,15 @@ ion-modal::part(content) {
     &::part(content) {
       --height: auto;
       --max-height: 100vh;
-      --width: 100%;
+      aspect-ratio: 16/9;
     }
+  }
+
+  &--img::part(content) {
+    --width: auto;
+  }
+
+  &--video::part(content) {
+    --width: 100%;
   }
 }

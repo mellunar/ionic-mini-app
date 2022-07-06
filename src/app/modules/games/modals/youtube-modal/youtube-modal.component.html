@@ -1,0 +1,11 @@
+<div class="e-youtube-modal">
+  <button class="e-youtube-modal__close" (click)="dismiss()">
+    <app-icon name="close"></app-icon>
+  </button>
+
+  <div class="e-youtube-modal__loading" *ngIf="loading">Loading</div>
+
+  <div class="e-youtube-modal__video" [class.u-display--none]="loading">
+    <iframe type="text/html" [src]="url" frameborder="0" allowfullscreen (load)="loaded()"></iframe>
+  </div>
+</div>

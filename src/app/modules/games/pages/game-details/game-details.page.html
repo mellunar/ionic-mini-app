@@ -67,14 +67,17 @@
         <app-pic-slider
           [pictures]="game.screenshots"
           type="image"
-          (open)="openScreenshotsModal(game.screenshots, $event)"></app-pic-slider>
+          (openImage)="openScreenshotsModal(game.screenshots, $event)"></app-pic-slider>
       </ng-container>
 
       <!-- videos -->
       <ng-container *ngIf="game.videos?.length > 0">
         <hr class="l-break u-margin-bottom--md" />
         <h5 class="u-margin-left--md">Videos</h5>
-        <app-pic-slider [videos]="game.videos" type="video"></app-pic-slider>
+        <app-pic-slider
+          [videos]="game.videos"
+          type="video"
+          (openVideo)="openYoutubeModal($event)"></app-pic-slider>
       </ng-container>
 
       <!-- storyline -->
