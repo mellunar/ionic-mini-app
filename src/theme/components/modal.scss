@@ -1,0 +1,49 @@
+ion-modal .ion-page {
+  position: relative;
+  contain: content;
+}
+
+ion-modal::part(backdrop) {
+  z-index: 100;
+}
+
+ion-modal::part(content) {
+  --height: auto;
+  --width: calc(100% - 32px);
+  --border-radius: 20px;
+  margin-top: auto;
+  margin-bottom: 16px;
+  overflow-y: auto;
+  --max-height: calc(100vh - 32px);
+  z-index: 101;
+  --ion-background-color: var(--color-bg-800);
+}
+
+.c-ion-modal {
+  &::part(content) {
+    --border-radius: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    z-index: 101;
+  }
+
+  &--full::part(content) {
+    --width: 100vw;
+    --height: 100vh;
+    --max-height: 100vh;
+  }
+
+  &--prev {
+    --ion-background-color: transparent !important;
+
+    &::part(backdrop) {
+      --backdrop-opacity: 0.5;
+    }
+
+    &::part(content) {
+      --height: auto;
+      --max-height: 100vh;
+      --width: 100%;
+    }
+  }
+}

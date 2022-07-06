@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Image, Video } from 'src/app/modules/games/state/games.interface';
 import SwiperCore, { FreeMode, SwiperOptions } from 'swiper';
 
@@ -14,6 +14,8 @@ export class PicSliderComponent implements OnInit {
   @Input() videos: Video[];
   @Input() type: 'image' | 'video';
 
+  @Output() open = new EventEmitter<number>();
+
   config: SwiperOptions = {
     freeMode: true,
     slidesPerView: 'auto',
@@ -24,4 +26,8 @@ export class PicSliderComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  openSlide(index: number) {
+    this.open.emit(index);
+  }
 }

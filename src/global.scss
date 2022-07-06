@@ -18,17 +18,18 @@
 @import 'theme/app.scss';
 @import 'theme/fonts.scss';
 @import 'theme/layout.scss';
-@import 'theme/modal.scss';
 @import 'theme/utilities.scss';
 @import 'theme/variables.scss';
 
 // Swiper
 @import '~swiper/css';
+@import '~swiper/scss/pagination';
 @import '~@ionic/angular/css/ionic-swiper';
 
 // Global components
 @import 'theme/components/avatar.scss';
 @import 'theme/components/button.scss';
 @import 'theme/components/ionic.scss';
+@import 'theme/components/modal.scss';
 @import 'theme/components/swiper.scss';
 @import 'theme/components/tag.scss';

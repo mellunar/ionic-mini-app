@@ -17,9 +17,11 @@ import { RatingsModal } from './modals/ratings-modal/ratings-modal.component';
 import { CircularProgressComponent } from './components/circular-progress/circular-progress.component';
 import { PlatformsModal } from './modals/platforms-modal/platforms-modal.component';
 import { ReleaseDatesModal } from './modals/release-dates-modal/release-dates-modal.component';
+import { ScreenshotsModal } from './modals/screenshots-modal/screenshots-modal.component';
+import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
-  imports: [IonicModule, CommonModule, FormsModule, GamesRoutingModule, CoreModule],
+  imports: [IonicModule, CommonModule, FormsModule, GamesRoutingModule, CoreModule, SwiperModule],
   declarations: [
     GamesPage,
     GamesSearchPage,
@@ -33,6 +35,7 @@ import { ReleaseDatesModal } from './modals/release-dates-modal/release-dates-mo
     CircularProgressComponent,
     PlatformsModal,
     ReleaseDatesModal,
+    ScreenshotsModal,
   ],
 })
 export class GamesModule {}

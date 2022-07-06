@@ -7,7 +7,8 @@ import { WebsitesModal } from 'src/app/core/modals/websites-modal/websites-modal
 import { UIService } from 'src/app/core/services/ui/ui.service';
 import { PlatformsModal } from '../../modals/platforms-modal/platforms-modal.component';
 import { ReleaseDatesModal } from '../../modals/release-dates-modal/release-dates-modal.component';
-import { GameFullInfo, Platform, ReleaseDate, Website } from '../../state/games.interface';
+import { ScreenshotsModal } from '../../modals/screenshots-modal/screenshots-modal.component';
+import { GameFullInfo, Image, Platform, ReleaseDate, Website } from '../../state/games.interface';
 import { GamesService } from '../../state/games.service';
 import { GamesStore } from '../../state/games.store';
 
@@ -90,6 +91,20 @@ export class GameDetailsPage implements OnInit, OnDestroy {
       componentProps: {
         dates,
       },
+    });
+
+    await modal.present();
+  }
+
+  async openScreenshotsModal(screenshots: Image[], index: number) {
+    const modal = await this.modalController.create({
+      mode: 'ios',
+      component: ScreenshotsModal,
+      componentProps: {
+        screenshots,
+        index,
+      },
+      cssClass: 'c-ion-modal c-ion-modal--prev',
     });
 
     await modal.present();

@@ -40,30 +40,8 @@ ion-content {
   font-family: inherit;
 }
 
-ion-popover,
-ion-modal {
+ion-popover {
   --ion-background-color: var(--color-bg-800) !important;
-}
-
-ion-modal .ion-page {
-  position: relative;
-  contain: content;
-}
-
-ion-modal::part(backdrop) {
-  z-index: 100;
-  --backdrop-opacity: 0.32;
-}
-
-ion-modal::part(content) {
-  --height: auto;
-  --width: calc(100% - 32px);
-  --border-radius: 20px;
-  margin-top: auto;
-  margin-bottom: 16px;
-  overflow-y: auto;
-  --max-height: calc(100vh - 32px);
-  z-index: 101;
 }
 
 ion-list {

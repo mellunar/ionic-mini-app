@@ -64,7 +64,10 @@
       <ng-container *ngIf="game.screenshots?.length > 0">
         <hr class="l-break u-margin-bottom--md" />
         <h5 class="u-margin-left--md">Screenshots</h5>
-        <app-pic-slider [pictures]="game.screenshots" type="image"></app-pic-slider>
+        <app-pic-slider
+          [pictures]="game.screenshots"
+          type="image"
+          (open)="openScreenshotsModal(game.screenshots, $event)"></app-pic-slider>
       </ng-container>
 
       <!-- videos -->
@@ -119,10 +122,10 @@
         <app-involved-companies [companies]="game.involved_companies"></app-involved-companies>
       </ng-container>
 
-      <!-- websited -->
+      <!-- websites -->
       <ng-container *ngIf="game.websites?.length > 0">
         <hr class="l-break u-margin-bottom--md" />
-        <ion-item class="e-game-details__item" (click)="openWebsitesModal(game.websites)">
+        <ion-item class="e-game-details__item u-margin-bottom--md" (click)="openWebsitesModal(game.websites)">
           <div class="c-avatar">
             <app-icon name="globe-outline"></app-icon>
           </div>

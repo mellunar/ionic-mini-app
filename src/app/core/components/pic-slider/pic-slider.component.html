@@ -1,7 +1,7 @@
 <swiper class="e-pic-slider" [config]="config">
   <ng-container *ngIf="type === 'image'">
     <ng-template *ngFor="let picture of pictures; let i = index" swiperSlide>
-      <button>
+      <button (click)="openSlide(i)">
         <img class="e-pic-slider__img" [src]="picture.url | imageUrl: 'screenshot_med'" />
       </button>
     </ng-template>
