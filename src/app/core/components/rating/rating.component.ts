@@ -1,7 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { RatingsModal } from '../../modals/ratings-modal/ratings-modal.component';
-import { GameFullInfo, Ratings } from '../../state/games.interface';
+import { GameFullInfo, Ratings } from '../../../modules/games/state/games.interface';
 
 @Component({
   selector: 'app-rating',
@@ -10,6 +9,8 @@ import { GameFullInfo, Ratings } from '../../state/games.interface';
 })
 export class RatingComponent implements OnInit {
   @Input() game: GameFullInfo;
+
+  @Output() openRatings = new EventEmitter<Ratings>();
 
   rating: number;
   hasRating = false;
@@ -46,20 +47,12 @@ export class RatingComponent implements OnInit {
     this.setColor();
   }
 
-  async openRatingsModal() {
+  openRatingsModal() {
     if (!this.hasRating) {
       return;
     }
 
-    const modal = await this.modalController.create({
-      mode: 'ios',
-      component: RatingsModal,
-      componentProps: {
-        ratings: this.ratings,
-      },
-    });
-
-    await modal.present();
+    this.openRatings.emit(this.ratings);
   }
 
   private setColor() {

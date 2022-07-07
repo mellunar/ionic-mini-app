@@ -16,15 +16,15 @@
           *ngIf="game.artworks?.length > 0"
           [artworks]="game.artworks"></app-header-background>
 
-        <div class="e-game-details__header u-padding--md">
-          <img class="e-game-details__cover" [src]="game.cover?.url | imageUrl: 'cover_small' : true" />
-          <div class="e-game-details__info">
+        <div class="c-game-item u-padding--md">
+          <img class="c-game-item__cover" [src]="game.cover?.url | imageUrl: 'cover_small' : true" />
+          <div class="c-game-item__info">
             <!-- 53px is the max height for 2 lines of title -->
-            <h3 class="e-game-details__title" #gameTitle>
+            <h3 class="c-game-item__title" #gameTitle>
               {{game.name}}
 
               <ng-container *ngIf="gameTitle.scrollHeight > 53">
-                <button class="e-game-details__title-button" (click)="openNamePopover($event, game.name)"></button>
+                <button class="c-game-item__title-button" (click)="openNamePopover($event, game.name)"></button>
               </ng-container>
             </h3>
 
@@ -32,11 +32,12 @@
               [genres]="game?.genres"
               [perspective]="game?.player_perspectives"
               [themes]="game?.themes"
-              [showModal]="true">
+              [showModal]="true"
+              (openCategories)="openCategoriesModal($event)">
             </app-tags>
 
-            <div class="e-game-details__misc">
-              <app-rating [game]="game"></app-rating>
+            <div class="c-game-item__misc">
+              <app-rating [game]="game" (openRatings)="openRatingsModal($event)"></app-rating>
 
               <ng-container *ngIf="game.platforms?.length > 0">
                 <button class="c-label" (click)="openPlatformsModal(game.platforms)">

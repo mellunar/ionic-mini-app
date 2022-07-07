@@ -9,10 +9,8 @@ import { GamesSearchPage } from './pages/search/search.page';
 import { GamesPage } from './pages/games/games.page';
 import { GameDetailsPage } from './pages/game-details/game-details.page';
 import { HeaderBackgroundComponent } from './components/header-background/header-background.component';
-import { TagsComponent } from './components/tags/tags.component';
 import { InvolvedCompaniesComponent } from './components/involved-companies/involved-companies.component';
 import { CategoriesModal } from './modals/categories-modal/categories-modal.component';
-import { RatingComponent } from './components/rating/rating.component';
 import { RatingsModal } from './modals/ratings-modal/ratings-modal.component';
 import { CircularProgressComponent } from './components/circular-progress/circular-progress.component';
 import { PlatformsModal } from './modals/platforms-modal/platforms-modal.component';
@@ -28,10 +26,8 @@ import { YoutubeModal } from './modals/youtube-modal/youtube-modal.component';
     GamesSearchPage,
     GameDetailsPage,
     HeaderBackgroundComponent,
-    TagsComponent,
     InvolvedCompaniesComponent,
     CategoriesModal,
-    RatingComponent,
     RatingsModal,
     CircularProgressComponent,
     PlatformsModal,

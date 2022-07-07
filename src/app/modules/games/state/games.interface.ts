@@ -115,6 +115,7 @@ export interface Game {
   id: number;
   name: string;
   slug: string;
+  updated_at?: number;
 }
 
 export interface GameFullInfo extends Game {

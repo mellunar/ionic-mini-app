@@ -20,6 +20,8 @@ import { CollapsableTextComponent } from './components/collapsable-text/collapsa
 import { PicSliderComponent } from './components/pic-slider/pic-slider.component';
 import { WebsiteItemComponent } from './components/website-item/website-item.component';
 import { WebsitesModal } from './modals/websites-modal/websites-modal.component';
+import { RatingComponent } from './components/rating/rating.component';
+import { TagsComponent } from './components/tags/tags.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { WebsitesModal } from './modals/websites-modal/websites-modal.component'
     PicSliderComponent,
     WebsiteItemComponent,
     WebsitesModal,
+    RatingComponent,
+    TagsComponent,
   ],
   imports: [CommonModule, IonicModule, SwiperModule],
   exports: [
@@ -62,6 +66,8 @@ import { WebsitesModal } from './modals/websites-modal/websites-modal.component'
     PicSliderComponent,
     WebsiteItemComponent,
     WebsitesModal,
+    RatingComponent,
+    TagsComponent,
   ],
   providers: [DatePipe],
 })

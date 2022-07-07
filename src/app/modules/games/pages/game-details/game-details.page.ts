@@ -5,11 +5,21 @@ import { Observable, Subscription, tap } from 'rxjs';
 import { PopoverComponent } from 'src/app/core/components/popover/popover.component';
 import { WebsitesModal } from 'src/app/core/modals/websites-modal/websites-modal.component';
 import { UIService } from 'src/app/core/services/ui/ui.service';
+import { CategoriesModal } from '../../modals/categories-modal/categories-modal.component';
 import { PlatformsModal } from '../../modals/platforms-modal/platforms-modal.component';
+import { RatingsModal } from '../../modals/ratings-modal/ratings-modal.component';
 import { ReleaseDatesModal } from '../../modals/release-dates-modal/release-dates-modal.component';
 import { ScreenshotsModal } from '../../modals/screenshots-modal/screenshots-modal.component';
 import { YoutubeModal } from '../../modals/youtube-modal/youtube-modal.component';
-import { GameFullInfo, Image, Platform, ReleaseDate, Website } from '../../state/games.interface';
+import {
+  GameFullInfo,
+  GenericInfo,
+  Image,
+  Platform,
+  Ratings,
+  ReleaseDate,
+  Website,
+} from '../../state/games.interface';
 import { GamesService } from '../../state/games.service';
 import { GamesStore } from '../../state/games.store';
 
@@ -60,6 +70,18 @@ export class GameDetailsPage implements OnInit, OnDestroy {
       .subscribe();
   }
 
+  async openCategoriesModal(tags: GenericInfo[]) {
+    const modal = await this.modalController.create({
+      mode: 'ios',
+      component: CategoriesModal,
+      componentProps: {
+        tags,
+      },
+    });
+
+    await modal.present();
+  }
+
   async openNamePopover(event, name: string) {
     const popover = await this.popoverController.create({
       mode: 'ios',
@@ -79,6 +101,18 @@ export class GameDetailsPage implements OnInit, OnDestroy {
       component: PlatformsModal,
       componentProps: {
         platforms,
+      },
+    });
+
+    await modal.present();
+  }
+
+  async openRatingsModal(ratings: Ratings) {
+    const modal = await this.modalController.create({
+      mode: 'ios',
+      component: RatingsModal,
+      componentProps: {
+        ratings,
       },
     });
 

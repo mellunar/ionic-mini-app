@@ -1,7 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { CategoriesModal } from '../../modals/categories-modal/categories-modal.component';
-import { GenericInfo } from '../../state/games.interface';
+import { GenericInfo } from '../../../modules/games/state/games.interface';
 
 @Component({
   selector: 'app-tags',
@@ -13,6 +12,8 @@ export class TagsComponent implements OnInit {
   @Input() perspective: GenericInfo[];
   @Input() themes: GenericInfo[];
   @Input() showModal = false;
+
+  @Output() openCategories = new EventEmitter<GenericInfo[]>();
 
   // to show on interface
   tags: GenericInfo[] = [];
@@ -48,19 +49,11 @@ export class TagsComponent implements OnInit {
     }
   }
 
-  async openGameTags() {
+  openGameTags() {
     if (!this.showModal) {
       return;
     }
 
-    const modal = await this.modalController.create({
-      mode: 'ios',
-      component: CategoriesModal,
-      componentProps: {
-        tags: this.allTags,
-      },
-    });
-
-    await modal.present();
+    this.openCategories.emit(this.allTags);
   }
 }
