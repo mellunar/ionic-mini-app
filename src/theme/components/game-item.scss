@@ -13,6 +13,7 @@
     padding-left: var(--size-md);
     display: flex;
     flex-direction: column;
+    overflow: hidden;
   }
 
   &__title {

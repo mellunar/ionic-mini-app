@@ -30,7 +30,6 @@
 
             <app-tags
               [genres]="game?.genres"
-              [perspective]="game?.player_perspectives"
               [themes]="game?.themes"
               [showModal]="true"
               (openCategories)="openCategoriesModal($event)">
@@ -97,9 +96,28 @@
         <ion-list class="e-game-details__list">
           <ion-item class="c-ion-item c-ion-item--900" *ngFor="let mode of game.game_modes">
             <div class="c-avatar">
-              <app-icon name="game-controller"></app-icon>
+              <app-icon *ngIf="mode.name === 'Single player'; else multi" name="person"></app-icon>
+              <ng-template #multi>
+                <app-icon name="people"></app-icon>
+              </ng-template>
             </div>
             <ion-label>{{mode.name}}</ion-label>
+          </ion-item>
+        </ion-list>
+      </ng-container>
+
+      <!-- player perspectives -->
+      <ng-container *ngIf="game.player_perspectives?.length > 0">
+        <hr class="l-break u-margin-bottom--md" />
+        <h5 class="u-margin-left--md u-margin-bottom--xs">
+          {{'Player perspective' | plural : game.player_perspectives.length : 's'}}
+        </h5>
+        <ion-list class="e-game-details__list">
+          <ion-item class="c-ion-item c-ion-item--900" *ngFor="let perspective of game.player_perspectives">
+            <div class="c-avatar">
+              <app-icon name="camera"></app-icon>
+            </div>
+            <ion-label>{{perspective.name}}</ion-label>
           </ion-item>
         </ion-list>
       </ng-container>

@@ -33,7 +33,7 @@ ion-modal::part(content) {
     --max-height: 100vh;
   }
 
-  &--prev {
+  &--media {
     --ion-background-color: transparent !important;
 
     &::part(backdrop) {

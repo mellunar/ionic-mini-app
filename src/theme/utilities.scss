@@ -98,6 +98,6 @@ $displays: (
 
 @each $display, $display-value in $displays {
   .u-display--#{$display} {
-    display: $display-value;
+    display: $display-value !important;
   }
 }

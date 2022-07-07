@@ -64,7 +64,9 @@ export class GameDetailsPage implements OnInit, OnDestroy {
       .getGame(id)
       .pipe(
         tap((game) => {
-          this.uiService.setTitle(game[0].name);
+          if (game.length) {
+            this.uiService.setTitle(game[0].name);
+          }
         })
       )
       .subscribe();
@@ -139,7 +141,7 @@ export class GameDetailsPage implements OnInit, OnDestroy {
         screenshots,
         index,
       },
-      cssClass: 'c-ion-modal c-ion-modal--prev c-ion-modal--img',
+      cssClass: 'c-ion-modal c-ion-modal--media c-ion-modal--img',
     });
 
     await modal.present();
@@ -164,7 +166,7 @@ export class GameDetailsPage implements OnInit, OnDestroy {
       componentProps: {
         video,
       },
-      cssClass: 'c-ion-modal c-ion-modal--prev c-ion-modal--video',
+      cssClass: 'c-ion-modal c-ion-modal--media c-ion-modal--video',
     });
 
     await modal.present();
