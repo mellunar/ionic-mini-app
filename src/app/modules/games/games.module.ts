@@ -1,7 +1,7 @@
 import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { GamesRoutingModule } from './games-routing.module';
 import { CoreModule } from 'src/app/core/core.module';
@@ -20,7 +20,15 @@ import { SwiperModule } from 'swiper/angular';
 import { YoutubeModal } from './modals/youtube-modal/youtube-modal.component';
 
 @NgModule({
-  imports: [IonicModule, CommonModule, FormsModule, GamesRoutingModule, CoreModule, SwiperModule],
+  imports: [
+    IonicModule,
+    CommonModule,
+    FormsModule,
+    GamesRoutingModule,
+    CoreModule,
+    SwiperModule,
+    ReactiveFormsModule,
+  ],
   declarations: [
     GamesPage,
     GamesSearchPage,

@@ -111,38 +111,40 @@ export interface Website {
 }
 
 export interface Game {
+  aggregated_rating?: number;
+  aggregated_rating_count?: number;
+  category: number;
   cover: Partial<Image>;
+  first_release_date: number;
+  genres: GenericInfo[];
   id: number;
   name: string;
+  platforms?: Partial<Platform>[];
   slug: string;
+  rating?: number;
+  rating_count?: number;
+  themes: GenericInfo[];
+  total_rating?: number;
+  total_rating_count: number;
   updated_at?: number;
 }
 
 export interface GameFullInfo extends Game {
   age_ratings?: AgeRatings;
-  aggregated_rating?: number;
-  aggregated_rating_count?: number;
   artworks?: Image[];
-  category: number;
   created_at: number;
   dlcs?: Game[];
   expansions?: Game[];
-  first_release_date: number;
   follows: number;
   franchise?: Franchise;
   franchises?: Franchise[];
   game_engines?: Partial<GameEngine>[];
   game_modes: GenericInfo[];
-  genres: GenericInfo[];
   hypes?: number;
   involved_companies: InvolvedCompany[];
-  keywords?: GenericInfo[];
   parent_game?: Game; // if dlc or expansion
   player_perspectives?: GenericInfo[];
-  platforms?: Partial<Platform>[];
   ports?: Game[];
-  rating?: number;
-  rating_count?: number;
   release_dates: ReleaseDate[];
   remakes?: Game[];
   remasters?: Game[];
@@ -151,9 +153,6 @@ export interface GameFullInfo extends Game {
   status: number; // is dlc or expansion? enum
   storyline?: string;
   summary: string;
-  themes: GenericInfo[];
-  total_rating?: number;
-  total_rating_count: number;
   version_parent?: Game;
   version_title: string;
   videos?: Video[];

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { GameFullInfo, Ratings } from '../../../modules/games/state/games.interface';
+import { Game, GameFullInfo, Ratings } from '../../../modules/games/state/games.interface';
 
 @Component({
   selector: 'app-rating',
@@ -8,7 +8,7 @@ import { GameFullInfo, Ratings } from '../../../modules/games/state/games.interf
   styleUrls: ['./rating.component.scss'],
 })
 export class RatingComponent implements OnInit {
-  @Input() game: GameFullInfo;
+  @Input() game: Game | GameFullInfo;
 
   @Output() openRatings = new EventEmitter<Ratings>();
 

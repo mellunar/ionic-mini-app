@@ -1,3 +1,10 @@
+.c-games-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-md);
+  padding: var(--size-md);
+}
+
 .c-game-item {
   display: flex;
   width: 100%;

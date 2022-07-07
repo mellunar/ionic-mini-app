@@ -1,6 +1,10 @@
-<ion-header [translucent]="true">
+<ion-header class="c-header" slot="fixed" mode="ios">
   <ion-toolbar>
-    <ion-title> Tab 2 </ion-title>
+    <ion-buttons slot="end">
+      <ion-button class="c-header__button" routerLink="/tabs/games/search">
+        <app-icon name="search"></app-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -8,14 +12,9 @@
   <p>Start editing to see some magic happen :)</p>
   <button class="c-button" (click)="getGames()">get games</button>
 
-  <ion-list *ngIf="games$ | async as games" mode="ios">
+  <div class="c-games-list" *ngIf="games$ | async as games">
     <ng-container *ngFor="let game of games">
-      <ion-item routerLink="/tabs/games/{{game.id}}">
-        <ion-avatar>
-          <img [src]="game.cover.url | imageUrl : 'cover_small' : true" />
-        </ion-avatar>
-        <ion-label> {{game.name}} </ion-label>
-      </ion-item></ng-container
-    >
-  </ion-list>
+      <app-game-list-item [game]="game" titleSize="small"></app-game-list-item>
+    </ng-container>
+  </div>
 </ion-content>

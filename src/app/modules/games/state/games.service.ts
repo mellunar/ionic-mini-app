@@ -27,7 +27,6 @@ export class GamesService {
     'involved_companies.company.name',
     'involved_companies.company.logo.alpha_channel',
     'involved_companies.company.logo.url',
-    'keywords.*',
     'player_perspectives.*',
     'platforms.abbreviation',
     'platforms.platform_family.name',
@@ -62,6 +61,9 @@ export class GamesService {
 
   private excludeFields =
     'alternative_names, bundles, checksum, expanded_games, external_games, forks, multiplayer_modes, standalone_expansions, tags, updated_at, url';
+
+  private gameListFields =
+    'aggregated_rating, aggregated_rating_count, cover.url, first_release_date, genres.name, id, name, platforms, rating, rating_count, slug, themes.name, total_rating, total_rating_count, updated_at';
 
   constructor(
     private http: HttpClient,
@@ -114,12 +116,23 @@ export class GamesService {
   }
 
   getGames(id?: number[]) {
-    const query = `where id = (${id.join(',')}); fields cover.url, id, name, slug; limit 50;`;
+    const query = `where id = (${id.join(',')}); fields ${this.gameListFields}; limit 50;`;
 
     return this.http.post<Game[]>('/api/game', query).pipe(
       tap((games) => {
         this.gamesListStore.addGames(games);
       }),
+      catchError((err) => {
+        this.toastService.error(err.message);
+        throw err;
+      })
+    );
+  }
+
+  searchGameByName(term: string) {
+    const query = `where name ~ *"${term}"* & cover.url != null & cover.width > 80; fields ${this.gameListFields}; limit 20;`;
+
+    return this.http.post<Game[]>('/api/game', query).pipe(
       catchError((err) => {
         this.toastService.error(err.message);
         throw err;

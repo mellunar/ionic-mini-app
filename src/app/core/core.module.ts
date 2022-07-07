@@ -22,6 +22,8 @@ import { WebsiteItemComponent } from './components/website-item/website-item.com
 import { WebsitesModal } from './modals/websites-modal/websites-modal.component';
 import { RatingComponent } from './components/rating/rating.component';
 import { TagsComponent } from './components/tags/tags.component';
+import { GameListItemComponent } from './components/game-list-item/game-list-item.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -45,8 +47,9 @@ import { TagsComponent } from './components/tags/tags.component';
     WebsitesModal,
     RatingComponent,
     TagsComponent,
+    GameListItemComponent,
   ],
-  imports: [CommonModule, IonicModule, SwiperModule],
+  imports: [CommonModule, IonicModule, SwiperModule, RouterModule],
   exports: [
     ButtonComponent,
     ToastComponent,
@@ -68,6 +71,7 @@ import { TagsComponent } from './components/tags/tags.component';
     WebsitesModal,
     RatingComponent,
     TagsComponent,
+    GameListItemComponent,
   ],
   providers: [DatePipe],
 })

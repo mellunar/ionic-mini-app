@@ -1,0 +1,7 @@
+.c-header {
+  &__button {
+    height: 48px !important;
+    --color: var(--color-text);
+    font-size: var(--size-lg) !important;
+  }
+}
