@@ -123,6 +123,7 @@ export interface Game {
   slug: string;
   rating?: number;
   rating_count?: number;
+  status: number; // status of release
   themes: GenericInfo[];
   total_rating?: number;
   total_rating_count: number;
@@ -150,7 +151,6 @@ export interface GameFullInfo extends Game {
   remasters?: Game[];
   screenshots?: Image[];
   similar_games?: Game[];
-  status: number; // is dlc or expansion? enum
   storyline?: string;
   summary: string;
   version_parent?: Game;

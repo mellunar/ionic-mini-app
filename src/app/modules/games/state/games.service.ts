@@ -44,7 +44,19 @@ export class GamesService {
     'websites.url',
   ];
 
-  private gameResumedFields = ['cover.url', 'id', 'name', 'slug'];
+  private gameResumedFields = [
+    'aggregated_rating',
+    'aggregated_rating_count',
+    'category',
+    'cover.url',
+    'first_release_date',
+    'id',
+    'name',
+    'rating',
+    'rating_count',
+    'slug',
+    'status',
+  ];
 
   private gameKeys = [
     'dlcs',
@@ -60,10 +72,10 @@ export class GamesService {
   ];
 
   private excludeFields =
-    'alternative_names, bundles, checksum, expanded_games, external_games, forks, multiplayer_modes, standalone_expansions, tags, updated_at, url';
+    'alternative_names, bundles, checksum, expanded_games, external_games, forks, keywords, multiplayer_modes, standalone_expansions, tags, updated_at, url';
 
   private gameListFields =
-    'aggregated_rating, aggregated_rating_count, cover.url, first_release_date, genres.name, id, name, platforms, rating, rating_count, slug, themes.name, total_rating, total_rating_count, updated_at';
+    'aggregated_rating, aggregated_rating_count, cover.url, first_release_date, genres.name, id, name, platforms, rating, rating_count, slug, status, themes.name, total_rating, total_rating_count, updated_at';
 
   constructor(
     private http: HttpClient,

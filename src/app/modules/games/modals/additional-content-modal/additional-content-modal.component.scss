@@ -1,0 +1,11 @@
+.e-additional-content {
+  max-height: 100vh;
+  overflow-y: auto;
+  padding-top: 54px;
+
+  .c-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+}

@@ -1,0 +1,18 @@
+<div class="e-additional-content">
+  <ion-header class="c-header" slot="fixed" mode="ios">
+    <ion-toolbar>
+      <ion-title>Additional content</ion-title>
+      <ion-buttons slot="end">
+        <ion-button class="c-header__button u-color--danger" (click)="dismiss()">
+          <app-icon name="close"></app-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="c-games-list" *ngIf="games">
+    <ng-container *ngFor="let game of games">
+      <app-game-list-item [game]="game" titleSize="small" (click)="dismiss()"></app-game-list-item>
+    </ng-container>
+  </div>
+</div>

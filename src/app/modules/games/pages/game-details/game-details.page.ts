@@ -5,6 +5,7 @@ import { Observable, Subscription, tap } from 'rxjs';
 import { PopoverComponent } from 'src/app/core/components/popover/popover.component';
 import { WebsitesModal } from 'src/app/core/modals/websites-modal/websites-modal.component';
 import { UIService } from 'src/app/core/services/ui/ui.service';
+import { AdditionalContentModal } from '../../modals/additional-content-modal/additional-content-modal.component';
 import { CategoriesModal } from '../../modals/categories-modal/categories-modal.component';
 import { PlatformsModal } from '../../modals/platforms-modal/platforms-modal.component';
 import { RatingsModal } from '../../modals/ratings-modal/ratings-modal.component';
@@ -12,6 +13,7 @@ import { ReleaseDatesModal } from '../../modals/release-dates-modal/release-date
 import { ScreenshotsModal } from '../../modals/screenshots-modal/screenshots-modal.component';
 import { YoutubeModal } from '../../modals/youtube-modal/youtube-modal.component';
 import {
+  Game,
   GameFullInfo,
   GenericInfo,
   Image,
@@ -70,6 +72,20 @@ export class GameDetailsPage implements OnInit, OnDestroy {
         })
       )
       .subscribe();
+  }
+
+  async openAdditionalContentModal(dlcs: Game[], expansions: Game[]) {
+    const modal = await this.modalController.create({
+      mode: 'ios',
+      component: AdditionalContentModal,
+      componentProps: {
+        dlcs,
+        expansions,
+      },
+      cssClass: 'c-ion-modal c-ion-modal--full',
+    });
+
+    await modal.present();
   }
 
   async openCategoriesModal(tags: GenericInfo[]) {

@@ -14,14 +14,18 @@
 
 <ion-content [fullscreen]="true">
   <form [formGroup]="form">
-    <ion-searchbar (ionClear)="clearResults()" formControlName="search"></ion-searchbar>
+    <ion-searchbar
+      formControlName="search"
+      clearIcon="close"
+      mode="ios"
+      (ionClear)="clearResults()"></ion-searchbar>
   </form>
   <div *ngIf="loading; else searchResults">Loading</div>
 
   <ng-template #searchResults>
     <div class="c-games-list" *ngIf="results?.length > 0">
       <ng-container *ngFor="let game of results">
-        <app-game-list-item [game]="game"></app-game-list-item>
+        <app-game-list-item [game]="game" titleSize="small"></app-game-list-item>
       </ng-container>
     </div>
   </ng-template>

@@ -5,9 +5,13 @@ import { IGDBImage } from '../../services/igdb/igdb.interface';
   name: 'imageUrl',
 })
 export class ImageUrlPipe implements PipeTransform {
-  transform(value: string, size: IGDBImage, png = false, double = false): any {
-    if (!value) {
+  transform(value: string, size: IGDBImage, png = false, double = false, cover = false): any {
+    if (!value && !cover) {
       return;
+    }
+
+    if (!value && cover) {
+      return '/assets/images/placeholder-cover.png';
     }
 
     let str = value;

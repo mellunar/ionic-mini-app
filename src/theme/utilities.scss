@@ -15,6 +15,7 @@ $colors: (
 
   .u-color--#{$color} {
     color: $color-value !important;
+    --color: $color-value !important;
   }
 }
 

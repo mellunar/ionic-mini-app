@@ -27,10 +27,15 @@ ion-modal::part(content) {
     z-index: 101;
   }
 
-  &--full::part(content) {
-    --width: 100vw;
-    --height: 100vh;
+  &--full {
+    --ion-background-color: var(--color-bg-900) !important;
     --max-height: 100vh;
+
+    &::part(content) {
+      --width: 100vw;
+      --height: 100vh;
+      --max-height: 100vh;
+    }
   }
 
   &--media {

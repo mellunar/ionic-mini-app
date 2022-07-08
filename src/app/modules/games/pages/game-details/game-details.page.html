@@ -3,6 +3,13 @@
     <ion-buttons slot="start">
       <ion-back-button mode="md" defaultHref="tabs/games"></ion-back-button>
     </ion-buttons>
+    <ion-buttons slot="end" *ngIf="game$ | async as game">
+      <ng-container *ngIf="game.dlcs?.length > 0 || game.expansions?.length > 0">
+        <ion-button class="c-header__button" (click)="openAdditionalContentModal(game.dlcs, game.expansions)">
+          <app-icon name="add" title="Additional content"></app-icon>
+        </ion-button>
+      </ng-container>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -17,41 +24,15 @@
           [artworks]="game.artworks"></app-header-background>
 
         <div class="c-game-item u-padding--md">
-          <img class="c-game-item__cover" [src]="game.cover?.url | imageUrl: 'cover_small' : true" />
-          <div class="c-game-item__info">
-            <!-- 53px is the max height for 2 lines of title -->
-            <h3 class="c-game-item__title" #gameTitle>
-              {{game.name}}
-
-              <ng-container *ngIf="gameTitle.scrollHeight > 53">
-                <button class="c-game-item__title-button" (click)="openNamePopover($event, game.name)"></button>
-              </ng-container>
-            </h3>
-
-            <app-tags
-              [genres]="game?.genres"
-              [themes]="game?.themes"
-              [showModal]="true"
-              (openCategories)="openCategoriesModal($event)">
-            </app-tags>
-
-            <div class="c-game-item__misc">
-              <app-rating [game]="game" (openRatings)="openRatingsModal($event)"></app-rating>
-
-              <ng-container *ngIf="game.platforms?.length > 0">
-                <button class="c-label" (click)="openPlatformsModal(game.platforms)">
-                  <app-icon src="/assets/icons/joystick.svg"></app-icon>
-                  {{game.platforms.length}} {{'Platform' | plural : game.platforms.length : 's'}}
-                </button>
-              </ng-container>
-
-              <ng-container *ngIf="game.first_release_date">
-                <button class="c-label" (click)="openReleaseDatesModal(game.release_dates)">
-                  <app-icon name="calendar"></app-icon> {{game.first_release_date | unixTimestamp}}
-                </button>
-              </ng-container>
-            </div>
-          </div>
+          <app-game-list-item
+            [game]="game"
+            titleSize="normal"
+            [enableOutput]="true"
+            (openDates)="openReleaseDatesModal(game.release_dates)"
+            (openCategories)="openCategoriesModal($event)"
+            (openPlatforms)="openPlatformsModal(game.platforms)"
+            (openRatings)="openRatingsModal($event)">
+          </app-game-list-item>
         </div>
       </header>
 
@@ -145,15 +126,32 @@
       </ng-container>
 
       <!-- websites -->
-      <ng-container *ngIf="game.websites?.length > 0">
+      <ng-container *ngIf="game.websites?.length > 0 || game.similar_games?.length > 0">
         <hr class="l-break u-margin-bottom--md" />
-        <ion-item class="e-game-details__item u-margin-bottom--md" (click)="openWebsitesModal(game.websites)">
-          <div class="c-avatar">
-            <app-icon name="globe-outline"></app-icon>
-          </div>
-          <ion-label>{{'External link' | plural : game.websites.length : 's'}}</ion-label>
-          <app-icon class="e-game-details__item-icon" name="chevron-forward-outline"></app-icon>
-        </ion-item>
+        <ion-list class="e-game-details__list">
+          <ng-container
+            *ngIf="game.category === 0 || game.category === 8 || game.category === 9 || game.category === 11">
+            <ng-container *ngIf="game.similar_games?.length > 0">
+              <ion-item class="c-ion-item c-ion-item--900" (click)="openWebsitesModal(game.websites)">
+                <div class="c-avatar">
+                  <app-icon name="layers"></app-icon>
+                </div>
+                <ion-label>{{'Similar game' | plural : game.websites.length : 's'}}</ion-label>
+                <app-icon class="e-game-details__item-icon" name="chevron-forward-outline"></app-icon>
+              </ion-item>
+            </ng-container>
+          </ng-container>
+
+          <ng-container *ngIf="game.websites?.length > 0">
+            <ion-item class="c-ion-item c-ion-item--900" (click)="openWebsitesModal(game.websites)">
+              <div class="c-avatar">
+                <app-icon name="globe-outline"></app-icon>
+              </div>
+              <ion-label>{{'External link' | plural : game.websites.length : 's'}}</ion-label>
+              <app-icon class="e-game-details__item-icon" name="chevron-forward-outline"></app-icon>
+            </ion-item>
+          </ng-container>
+        </ion-list>
       </ng-container>
     </ng-container>
 

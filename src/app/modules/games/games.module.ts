@@ -18,6 +18,7 @@ import { ReleaseDatesModal } from './modals/release-dates-modal/release-dates-mo
 import { ScreenshotsModal } from './modals/screenshots-modal/screenshots-modal.component';
 import { SwiperModule } from 'swiper/angular';
 import { YoutubeModal } from './modals/youtube-modal/youtube-modal.component';
+import { AdditionalContentModal } from './modals/additional-content-modal/additional-content-modal.component';
 
 @NgModule({
   imports: [
@@ -42,6 +43,7 @@ import { YoutubeModal } from './modals/youtube-modal/youtube-modal.component';
     ReleaseDatesModal,
     ScreenshotsModal,
     YoutubeModal,
+    AdditionalContentModal,
   ],
 })
 export class GamesModule {}

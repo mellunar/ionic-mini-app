@@ -9,6 +9,7 @@ import { Game, GameFullInfo, Ratings } from '../../../modules/games/state/games.
 })
 export class RatingComponent implements OnInit {
   @Input() game: Game | GameFullInfo;
+  @Input() showModal: boolean;
 
   @Output() openRatings = new EventEmitter<Ratings>();
 
@@ -48,7 +49,7 @@ export class RatingComponent implements OnInit {
   }
 
   openRatingsModal() {
-    if (!this.hasRating) {
+    if (!this.hasRating || !this.showModal) {
       return;
     }
 

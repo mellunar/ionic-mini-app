@@ -1,27 +1,35 @@
-<a class="c-game-item e-game-list-item" routerLink="/tabs/games/{{ game.id }}">
-  <img class="c-game-item__cover" [src]="game.cover?.url | imageUrl: 'cover_small':true" />
+<div class="c-game-item e-game-list-item">
+  <img class="c-game-item__cover" [src]="game.cover?.url | imageUrl: 'cover_small':true:false:true" />
+
   <div class="c-game-item__info">
     <h3 class="c-game-item__title" [class.e-game-list-item__title-small]="titleSize === 'small'" #gameTitle>
       {{ game.name }}
     </h3>
 
-    <app-tags [genres]="game?.genres" [themes]="game?.themes" [showModal]="true"> </app-tags>
+    <app-tags
+      [genres]="game?.genres"
+      [themes]="game?.themes"
+      [showModal]="enableOutput"
+      (openCategories)="openCategoriesModal($event)">
+    </app-tags>
 
     <div class="c-game-item__misc">
-      <app-rating [game]="game"></app-rating>
+      <app-rating [game]="game" [showModal]="enableOutput" (openRatings)="openRatingsModal($event)"></app-rating>
 
       <ng-container *ngIf="game.platforms?.length > 0">
-        <button class="c-label">
+        <button class="c-label" (click)="openPlatformsModal()">
           <app-icon src="/assets/icons/joystick.svg"></app-icon>
           {{ game.platforms.length }} {{ 'Platform' | plural: game.platforms.length:'s' }}
         </button>
       </ng-container>
 
       <ng-container *ngIf="game.first_release_date">
-        <button class="c-label">
+        <button class="c-label" (click)="openDatesModal()">
           <app-icon name="calendar"></app-icon> {{ game.first_release_date | unixTimestamp }}
         </button>
       </ng-container>
     </div>
   </div>
-</a>
+
+  <a *ngIf="!enableOutput" class="c-game-item__link" routerLink="/tabs/games/{{ game.id }}"></a>
+</div>
