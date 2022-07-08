@@ -3,13 +3,16 @@ import { ModalController } from '@ionic/angular';
 import { Game } from '../../state/games.interface';
 
 @Component({
-  selector: 'app-additional-content-modal',
-  templateUrl: './additional-content-modal.component.html',
-  styleUrls: ['./additional-content-modal.component.scss'],
+  selector: 'app-related-games-modal',
+  templateUrl: './related-games-modal.component.html',
+  styleUrls: ['./related-games-modal.component.scss'],
 })
-export class AdditionalContentModal implements OnInit {
+export class RelatedGamesModal implements OnInit {
   @Input() dlcs: Game[];
   @Input() expansions: Game[];
+  @Input() genericList: Game[];
+
+  @Input() headerTitle: string;
 
   games: Game[];
 
@@ -26,7 +29,11 @@ export class AdditionalContentModal implements OnInit {
       games = games.concat(this.expansions);
     }
 
-    this.sortByDate(games);
+    if (!this.genericList) {
+      this.sortByDate(games);
+    } else {
+      this.games = this.genericList;
+    }
   }
 
   dismiss() {

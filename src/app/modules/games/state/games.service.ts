@@ -50,12 +50,15 @@ export class GamesService {
     'category',
     'cover.url',
     'first_release_date',
+    'genres.name',
     'id',
     'name',
+    'platforms',
     'rating',
     'rating_count',
     'slug',
     'status',
+    'themes.name',
   ];
 
   private gameKeys = [

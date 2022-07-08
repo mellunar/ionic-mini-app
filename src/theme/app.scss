@@ -33,6 +33,10 @@ h6 {
   margin: 0;
 }
 
+ion-app {
+  max-height: 100vh;
+}
+
 ion-content {
   --background: var(--color-bg-900);
   --overflow: visible;

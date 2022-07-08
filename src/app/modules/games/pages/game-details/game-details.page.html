@@ -123,12 +123,17 @@
           {{'Franchise' | plural : game.franchises.length : 's'}}
         </h5>
         <ion-list class="e-game-details__list">
-          <ion-item class="c-ion-item c-ion-item--900" *ngFor="let franchise of game.franchises">
-            <div class="c-avatar">
-              <app-icon src="/assets/icons/diagram-2-fill.svg"></app-icon>
-            </div>
-            <ion-label>{{franchise.name}}</ion-label>
-          </ion-item>
+          <ng-container *ngFor="let franchise of game.franchises">
+            <ion-item
+              class="c-ion-item c-ion-item--900"
+              (click)="openRelatedGamesModal(franchise.games, franchise.name)">
+              <div class="c-avatar">
+                <app-icon src="/assets/icons/diagram-2-fill.svg"></app-icon>
+              </div>
+              <ion-label>{{franchise.name}}</ion-label>
+              <app-icon class="e-game-details__item-icon" name="chevron-forward-outline"></app-icon>
+            </ion-item>
+          </ng-container>
         </ion-list>
       </ng-container>
 
@@ -145,7 +150,9 @@
           <ng-container
             *ngIf="game.category === 0 || game.category === 8 || game.category === 9 || game.category === 11">
             <ng-container *ngIf="game.similar_games?.length > 0">
-              <ion-item class="c-ion-item c-ion-item--900" (click)="openWebsitesModal(game.websites)">
+              <ion-item
+                class="c-ion-item c-ion-item--900"
+                (click)="openRelatedGamesModal(game.similar_games, 'Similar games')">
                 <div class="c-avatar">
                   <app-icon name="layers"></app-icon>
                 </div>

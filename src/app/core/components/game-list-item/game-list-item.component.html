@@ -2,7 +2,14 @@
   <div class="c-game-item__cover">
     <img alt="Cover" [src]="game.cover?.url | imageUrl: 'cover_small':true:false:true" />
     <ng-container *ngIf="game.status">
-      <span *ngIf="game.status !== 1" class="c-game-item__status"> {{ game.status | status }} </span>
+      <span
+        *ngIf="game.status !== 1"
+        class="c-game-item__status"
+        [class.u-bg--success]="game.status === 4"
+        [class.u-bg--warning]="game.status === 2 || game.status === 3"
+        [class.u-bg--danger]="game.status === 5 || game.status === 6 || game.status === 7 || game.status === 8">
+        {{ game.status | status }}
+      </span>
     </ng-container>
   </div>
 

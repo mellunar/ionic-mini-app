@@ -5,7 +5,7 @@ import { Observable, Subscription, tap } from 'rxjs';
 import { PopoverComponent } from 'src/app/core/components/popover/popover.component';
 import { WebsitesModal } from 'src/app/core/modals/websites-modal/websites-modal.component';
 import { UIService } from 'src/app/core/services/ui/ui.service';
-import { AdditionalContentModal } from '../../modals/additional-content-modal/additional-content-modal.component';
+import { RelatedGamesModal } from '../../modals/related-games-modal/related-games-modal.component';
 import { CategoriesModal } from '../../modals/categories-modal/categories-modal.component';
 import { PlatformsModal } from '../../modals/platforms-modal/platforms-modal.component';
 import { RatingsModal } from '../../modals/ratings-modal/ratings-modal.component';
@@ -77,7 +77,7 @@ export class GameDetailsPage implements OnInit, OnDestroy {
   async openAdditionalContentModal(dlcs: Game[], expansions: Game[]) {
     const modal = await this.modalController.create({
       mode: 'ios',
-      component: AdditionalContentModal,
+      component: RelatedGamesModal,
       componentProps: {
         dlcs,
         expansions,
@@ -132,6 +132,20 @@ export class GameDetailsPage implements OnInit, OnDestroy {
       componentProps: {
         ratings,
       },
+    });
+
+    await modal.present();
+  }
+
+  async openRelatedGamesModal(genericList: Game[], headerTitle?: string) {
+    const modal = await this.modalController.create({
+      mode: 'ios',
+      component: RelatedGamesModal,
+      componentProps: {
+        genericList,
+        headerTitle,
+      },
+      cssClass: 'c-ion-modal c-ion-modal--full',
     });
 
     await modal.present();

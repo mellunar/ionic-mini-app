@@ -18,7 +18,7 @@ import { ReleaseDatesModal } from './modals/release-dates-modal/release-dates-mo
 import { ScreenshotsModal } from './modals/screenshots-modal/screenshots-modal.component';
 import { SwiperModule } from 'swiper/angular';
 import { YoutubeModal } from './modals/youtube-modal/youtube-modal.component';
-import { AdditionalContentModal } from './modals/additional-content-modal/additional-content-modal.component';
+import { RelatedGamesModal } from './modals/related-games-modal/related-games-modal.component';
 
 @NgModule({
   imports: [
@@ -43,7 +43,7 @@ import { AdditionalContentModal } from './modals/additional-content-modal/additi
     ReleaseDatesModal,
     ScreenshotsModal,
     YoutubeModal,
-    AdditionalContentModal,
+    RelatedGamesModal,
   ],
 })
 export class GamesModule {}

@@ -21,6 +21,10 @@ export class TagOptimizerPipe implements PipeTransform {
       return 'RPG';
     }
 
+    if (value === 'Turn-based strategy (TBS)') {
+      return 'Turn-based strategy';
+    }
+
     return value;
   }
 }

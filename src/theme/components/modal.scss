@@ -29,6 +29,7 @@ ion-modal::part(content) {
 
   &--full {
     --ion-background-color: var(--color-bg-900) !important;
+    --height: 100vh;
     --max-height: 100vh;
 
     &::part(content) {
