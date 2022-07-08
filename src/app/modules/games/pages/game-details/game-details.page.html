@@ -41,6 +41,19 @@
         <app-collapsable-text [text]="game.summary" [noPT]="true"></app-collapsable-text>
       </ng-container>
 
+      <!-- parent game -->
+      <ng-container *ngIf="game.parent_game">
+        <h5 class="u-margin-left--md u-margin-bottom--xs">Main Game</h5>
+        <ion-list class="e-game-details__list">
+          <ion-item class="c-ion-item c-ion-item--900" routerLink="/tabs/games/{{game.parent_game.id}}">
+            <div class="c-avatar">
+              <app-icon src="/assets/icons/diagram-2-fill.svg"></app-icon>
+            </div>
+            <ion-label>{{game.parent_game.name}}</ion-label>
+          </ion-item>
+        </ion-list>
+      </ng-container>
+
       <!-- screenshots -->
       <ng-container *ngIf="game.screenshots?.length > 0">
         <hr class="l-break u-margin-bottom--md" />
@@ -104,7 +117,7 @@
       </ng-container>
 
       <!-- franchise -->
-      <ng-container *ngIf="game.franchises?.length > 0">
+      <ng-container *ngIf="game.franchises?.length > 0 && !game.parent_game">
         <hr class="l-break u-margin-bottom--md" />
         <h5 class="u-margin-left--md u-margin-bottom--xs">
           {{'Franchise' | plural : game.franchises.length : 's'}}

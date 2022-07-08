@@ -1,5 +1,10 @@
 <div class="c-game-item e-game-list-item">
-  <img class="c-game-item__cover" [src]="game.cover?.url | imageUrl: 'cover_small':true:false:true" />
+  <div class="c-game-item__cover">
+    <img alt="Cover" [src]="game.cover?.url | imageUrl: 'cover_small':true:false:true" />
+    <ng-container *ngIf="game.status">
+      <span *ngIf="game.status !== 1" class="c-game-item__status"> {{ game.status | status }} </span>
+    </ng-container>
+  </div>
 
   <div class="c-game-item__info">
     <h3 class="c-game-item__title" [class.e-game-list-item__title-small]="titleSize === 'small'" #gameTitle>

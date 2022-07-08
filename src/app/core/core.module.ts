@@ -24,6 +24,7 @@ import { RatingComponent } from './components/rating/rating.component';
 import { TagsComponent } from './components/tags/tags.component';
 import { GameListItemComponent } from './components/game-list-item/game-list-item.component';
 import { RouterModule } from '@angular/router';
+import { GameStatusPipe } from './pipes/game-status/game-status.pipe';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { RouterModule } from '@angular/router';
     RatingComponent,
     TagsComponent,
     GameListItemComponent,
+    GameStatusPipe,
   ],
   imports: [CommonModule, IonicModule, SwiperModule, RouterModule],
   exports: [
@@ -72,6 +74,7 @@ import { RouterModule } from '@angular/router';
     RatingComponent,
     TagsComponent,
     GameListItemComponent,
+    GameStatusPipe,
   ],
   providers: [DatePipe],
 })
