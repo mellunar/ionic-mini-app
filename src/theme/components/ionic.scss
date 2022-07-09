@@ -5,11 +5,32 @@
   }
 }
 
+.c-ion-list {
+  &--900 {
+    margin: 0 var(--size-md) var(--size-md);
+    padding: 0;
+    --ion-item-background: var(--color-bg-900);
+  }
+}
+
 .c-ion-item {
   --background: var(--color-bg-800);
   --border-color: var(--color-bg-700);
   --padding-start: 0;
   --inner-padding-end: 0;
+
+  &--alt {
+    --padding-start: var(--size-md);
+    --inner-padding-end: var(--size-md);
+    --background: var(--color-bg-900);
+    --border-color: transparent;
+
+    &-icon {
+      margin-left: auto;
+      font-size: 20px;
+      color: #505156;
+    }
+  }
 
   &--900 {
     --background: var(--color-bg-900);

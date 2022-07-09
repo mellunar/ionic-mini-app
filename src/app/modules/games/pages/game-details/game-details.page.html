@@ -44,7 +44,7 @@
       <!-- parent game -->
       <ng-container *ngIf="game.parent_game">
         <h5 class="u-margin-left--md u-margin-bottom--xs">Main Game</h5>
-        <ion-list class="e-game-details__list">
+        <ion-list class="c-ion-list--900">
           <ion-item class="c-ion-item c-ion-item--900" routerLink="/tabs/games/{{game.parent_game.id}}">
             <div class="c-avatar">
               <app-icon src="/assets/icons/diagram-2-fill.svg"></app-icon>
@@ -87,7 +87,7 @@
         <h5 class="u-margin-left--md u-margin-bottom--xs">
           {{'Game mode' | plural : game.game_modes.length : 's'}}
         </h5>
-        <ion-list class="e-game-details__list">
+        <ion-list class="c-ion-list--900">
           <ion-item class="c-ion-item c-ion-item--900" *ngFor="let mode of game.game_modes">
             <div class="c-avatar">
               <app-icon *ngIf="mode.name === 'Single player'; else multi" name="person"></app-icon>
@@ -106,7 +106,7 @@
         <h5 class="u-margin-left--md u-margin-bottom--xs">
           {{'Player perspective' | plural : game.player_perspectives.length : 's'}}
         </h5>
-        <ion-list class="e-game-details__list">
+        <ion-list class="c-ion-list--900">
           <ion-item class="c-ion-item c-ion-item--900" *ngFor="let perspective of game.player_perspectives">
             <div class="c-avatar">
               <app-icon name="camera"></app-icon>
@@ -122,16 +122,16 @@
         <h5 class="u-margin-left--md u-margin-bottom--xs">
           {{'Franchise' | plural : game.franchises.length : 's'}}
         </h5>
-        <ion-list class="e-game-details__list">
+        <ion-list class="c-ion-list--900">
           <ng-container *ngFor="let franchise of game.franchises">
             <ion-item
               class="c-ion-item c-ion-item--900"
+              [detail]="true"
               (click)="openRelatedGamesModal(franchise.games, franchise.name)">
               <div class="c-avatar">
                 <app-icon src="/assets/icons/diagram-2-fill.svg"></app-icon>
               </div>
               <ion-label>{{franchise.name}}</ion-label>
-              <app-icon class="e-game-details__item-icon" name="chevron-forward-outline"></app-icon>
             </ion-item>
           </ng-container>
         </ion-list>
@@ -143,36 +143,13 @@
         <app-involved-companies [companies]="game.involved_companies"></app-involved-companies>
       </ng-container>
 
-      <!-- websites -->
-      <ng-container *ngIf="game.websites?.length > 0 || game.similar_games?.length > 0">
-        <hr class="l-break u-margin-bottom--md" />
-        <ion-list class="e-game-details__list">
-          <ng-container
-            *ngIf="game.category === 0 || game.category === 8 || game.category === 9 || game.category === 11">
-            <ng-container *ngIf="game.similar_games?.length > 0">
-              <ion-item
-                class="c-ion-item c-ion-item--900"
-                (click)="openRelatedGamesModal(game.similar_games, 'Similar games')">
-                <div class="c-avatar">
-                  <app-icon name="layers"></app-icon>
-                </div>
-                <ion-label>{{'Similar game' | plural : game.websites.length : 's'}}</ion-label>
-                <app-icon class="e-game-details__item-icon" name="chevron-forward-outline"></app-icon>
-              </ion-item>
-            </ng-container>
-          </ng-container>
-
-          <ng-container *ngIf="game.websites?.length > 0">
-            <ion-item class="c-ion-item c-ion-item--900" (click)="openWebsitesModal(game.websites)">
-              <div class="c-avatar">
-                <app-icon name="globe-outline"></app-icon>
-              </div>
-              <ion-label>{{'External link' | plural : game.websites.length : 's'}}</ion-label>
-              <app-icon class="e-game-details__item-icon" name="chevron-forward-outline"></app-icon>
-            </ion-item>
-          </ng-container>
-        </ion-list>
-      </ng-container>
+      <!-- footer -->
+      <app-details-footer
+        [category]="game.category"
+        [similar]="game.similar_games"
+        [websites]="game.websites"
+        (openSimilar)="openRelatedGamesModal(game.similar_games, 'Similar games')"
+        (openWebsites)="openWebsitesModal(game.websites)"></app-details-footer>
     </ng-container>
 
     <!-- loading state -->

@@ -1,0 +1,25 @@
+<footer *ngIf="similar || websites">
+  <hr class="l-break u-margin-bottom--md" />
+
+  <ion-list class="c-ion-list--900">
+    <ng-container *ngIf="category === 0 || category === 3 || category === 8 || category === 9 || category === 11">
+      <ng-container *ngIf="similar?.length > 0">
+        <ion-item class="c-ion-item c-ion-item--900" [detail]="true" (click)="openSimilarGamesModal()">
+          <div class="c-avatar">
+            <app-icon name="layers"></app-icon>
+          </div>
+          <ion-label>{{ 'Similar game' | plural: similar.length:'s' }}</ion-label>
+        </ion-item>
+      </ng-container>
+    </ng-container>
+
+    <ng-container *ngIf="websites?.length > 0">
+      <ion-item class="c-ion-item c-ion-item--900" [detail]="true" (click)="openWebsitesModal()">
+        <div class="c-avatar">
+          <app-icon name="globe-outline"></app-icon>
+        </div>
+        <ion-label>{{ 'External link' | plural: websites.length:'s' }}</ion-label>
+      </ion-item>
+    </ng-container>
+  </ion-list>
+</footer>

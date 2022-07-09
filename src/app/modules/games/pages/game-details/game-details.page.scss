@@ -1,20 +1,2 @@
 .e-game-details {
-  &__list {
-    margin: 0 var(--size-md) var(--size-md);
-    padding: 0;
-    --ion-item-background: var(--color-bg-900);
-  }
-
-  &__item {
-    --padding-start: var(--size-md);
-    --inner-padding-end: var(--size-md);
-    --background: var(--color-bg-900);
-    --border-color: transparent;
-
-    &-icon {
-      margin-left: auto;
-      font-size: 20px;
-      color: #505156;
-    }
-  }
 }

@@ -19,6 +19,7 @@ import { ScreenshotsModal } from './modals/screenshots-modal/screenshots-modal.c
 import { SwiperModule } from 'swiper/angular';
 import { YoutubeModal } from './modals/youtube-modal/youtube-modal.component';
 import { RelatedGamesModal } from './modals/related-games-modal/related-games-modal.component';
+import { DetailsFooterComponent } from './components/details-footer/details-footer.component';
 
 @NgModule({
   imports: [
@@ -44,6 +45,7 @@ import { RelatedGamesModal } from './modals/related-games-modal/related-games-mo
     ScreenshotsModal,
     YoutubeModal,
     RelatedGamesModal,
+    DetailsFooterComponent,
   ],
 })
 export class GamesModule {}
