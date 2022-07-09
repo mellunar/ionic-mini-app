@@ -43,7 +43,14 @@
 
       <!-- parent game -->
       <ng-container *ngIf="game.parent_game">
-        <h5 class="u-margin-left--md u-margin-bottom--xs">Main Game</h5>
+        <h5 class="u-margin-left--md u-margin-bottom--xs" [ngSwitch]="game.category">
+          <ng-container *ngSwitchCase="1">DLC of</ng-container>
+          <ng-container *ngSwitchCase="2">Expansion of</ng-container>
+          <ng-container *ngSwitchCase="8">Remake of</ng-container>
+          <ng-container *ngSwitchCase="9">Remaster of</ng-container>
+          <ng-container *ngSwitchCase="11">Port of</ng-container>
+          <ng-container *ngSwitchDefault>Main game</ng-container>
+        </h5>
         <ion-list class="c-ion-list--900">
           <ion-item class="c-ion-item c-ion-item--900" routerLink="/tabs/games/{{game.parent_game.id}}">
             <div class="c-avatar">
@@ -160,8 +167,9 @@
         <div class="e-game-details__age-ratings">
           <ng-container *ngFor="let rating of game.age_ratings">
             <app-age-rating-icon [rating]="rating.rating"></app-age-rating-icon>
-          </ng-container></div
-      ></ng-container>
+          </ng-container>
+        </div>
+      </ng-container>
     </ng-container>
 
     <!-- loading state -->
