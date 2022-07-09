@@ -131,7 +131,7 @@ export interface Game {
 }
 
 export interface GameFullInfo extends Game {
-  age_ratings?: AgeRatings;
+  age_ratings?: AgeRatings[];
   artworks?: Image[];
   created_at: number;
   dlcs?: Game[];

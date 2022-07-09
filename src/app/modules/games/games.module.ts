@@ -20,6 +20,7 @@ import { SwiperModule } from 'swiper/angular';
 import { YoutubeModal } from './modals/youtube-modal/youtube-modal.component';
 import { RelatedGamesModal } from './modals/related-games-modal/related-games-modal.component';
 import { DetailsFooterComponent } from './components/details-footer/details-footer.component';
+import { AgeRatingIconComponent } from './components/age-rating-icon/age-rating-icon.component';
 
 @NgModule({
   imports: [
@@ -46,6 +47,7 @@ import { DetailsFooterComponent } from './components/details-footer/details-foot
     YoutubeModal,
     RelatedGamesModal,
     DetailsFooterComponent,
+    AgeRatingIconComponent,
   ],
 })
 export class GamesModule {}

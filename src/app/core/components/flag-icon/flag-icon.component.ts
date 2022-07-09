@@ -7,31 +7,37 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class FlagIconComponent implements OnInit {
   @Input() region: number;
+  @Input() iso: string;
+  @Input() mini = false;
 
   flag: string;
 
   constructor() {}
 
   ngOnInit() {
-    switch (this.region) {
-      case 1:
-        return (this.flag = 'EU');
-      case 2:
-        return (this.flag = 'US');
-      case 3:
-        return (this.flag = 'AU');
-      case 4:
-        return (this.flag = 'NZ');
-      case 5:
-        return (this.flag = 'JP');
-      case 6:
-        return (this.flag = 'CN');
-      case 9:
-        return (this.flag = 'KR');
-      case 10:
-        return (this.flag = 'BR');
-      default:
-        return (this.flag = 'Worldwide');
+    if (this.region) {
+      switch (this.region) {
+        case 1:
+          return (this.flag = 'EU');
+        case 2:
+          return (this.flag = 'US');
+        case 3:
+          return (this.flag = 'AU');
+        case 4:
+          return (this.flag = 'NZ');
+        case 5:
+          return (this.flag = 'JP');
+        case 6:
+          return (this.flag = 'CN');
+        case 9:
+          return (this.flag = 'KR');
+        case 10:
+          return (this.flag = 'BR');
+        default:
+          return (this.flag = 'Worldwide');
+      }
+    } else {
+      this.flag = this.iso;
     }
   }
 }

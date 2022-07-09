@@ -46,6 +46,10 @@ ion-content {
 
 ion-popover {
   --ion-background-color: var(--color-bg-800) !important;
+
+  &::part(backdrop) {
+    --backdrop-opacity: 0.4;
+  }
 }
 
 ion-list {

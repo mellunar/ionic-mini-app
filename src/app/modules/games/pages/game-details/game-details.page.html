@@ -149,7 +149,20 @@
         [similar]="game.similar_games"
         [websites]="game.websites"
         (openSimilar)="openRelatedGamesModal(game.similar_games, 'Similar games')"
-        (openWebsites)="openWebsitesModal(game.websites)"></app-details-footer>
+        (openWebsites)="openWebsitesModal(game.websites)">
+      </app-details-footer>
+
+      <!-- age ratings -->
+      <ng-container *ngIf="game.age_ratings">
+        <hr class="l-break u-margin-bottom--md" />
+        <h5 class="u-margin-left--md u-margin-bottom--xs">
+          {{'Age rating' | plural : game.age_ratings.length : 's'}}
+        </h5>
+        <div class="e-game-details__age-ratings">
+          <ng-container *ngFor="let rating of game.age_ratings">
+            <app-age-rating-icon [rating]="rating.rating"></app-age-rating-icon>
+          </ng-container></div
+      ></ng-container>
     </ng-container>
 
     <!-- loading state -->
