@@ -5,6 +5,16 @@
   }
 }
 
+.c-ion-alert {
+  --backdrop-opacity: 0.35;
+  --background: var(--color-bg-800);
+
+  .alert-button {
+    border-color: var(--color-bg-700);
+    color: var(--color-text);
+  }
+}
+
 .c-ion-list {
   &--900 {
     margin: 0 var(--size-md) var(--size-md);

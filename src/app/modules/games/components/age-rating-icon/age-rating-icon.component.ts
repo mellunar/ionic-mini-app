@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { PopoverController } from '@ionic/angular';
-import { PopoverComponent } from 'src/app/core/components/popover/popover.component';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-age-rating-icon',
@@ -13,7 +12,7 @@ export class AgeRatingIconComponent implements OnInit {
   flag: string;
   organization: string;
 
-  constructor(private popoverController: PopoverController) {}
+  constructor(private alertController: AlertController) {}
 
   ngOnInit() {
     if (this.rating < 6) {
@@ -49,22 +48,24 @@ export class AgeRatingIconComponent implements OnInit {
     }
   }
 
-  async showOrganization(event) {
+  async showOrganization() {
     if (!this.organization) {
       return;
     }
 
-    const popover = await this.popoverController.create({
+    const alert = await this.alertController.create({
       mode: 'ios',
-      component: PopoverComponent,
-      componentProps: {
-        text: this.organization,
-      },
-      event,
-      side: 'top',
-      cssClass: 'u-text-align--center',
+      header: this.organization,
+      message: `<img src='/assets/ratings/${this.rating}f.png' />`,
+      buttons: [
+        {
+          text: 'OK',
+          role: 'cancel',
+        },
+      ],
+      cssClass: 'c-ion-alert',
     });
 
-    await popover.present();
+    await alert.present();
   }
 }

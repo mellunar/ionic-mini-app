@@ -1,0 +1,27 @@
+.c-popover {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  color: var(--color-text);
+  background: var(--color-bg-800);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 3px;
+  border-radius: 6px;
+  filter: drop-shadow(0px 0px 3px black);
+  display: none;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 23px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-top: 5px solid black;
+    border-top-color: var(--color-bg-800);
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+  }
+}

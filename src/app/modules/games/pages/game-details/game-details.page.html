@@ -154,10 +154,9 @@
 
       <!-- age ratings -->
       <ng-container *ngIf="game.age_ratings">
-        <hr class="l-break u-margin-bottom--md" />
-        <h5 class="u-margin-left--md u-margin-bottom--xs">
+        <p class="l-title--small u-text-align--center u-margin-left--md u-margin-bottom--md">
           {{'Age rating' | plural : game.age_ratings.length : 's'}}
-        </h5>
+        </p>
         <div class="e-game-details__age-ratings">
           <ng-container *ngFor="let rating of game.age_ratings">
             <app-age-rating-icon [rating]="rating.rating"></app-age-rating-icon>

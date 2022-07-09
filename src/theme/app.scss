@@ -6,7 +6,9 @@
   padding: 0;
 }
 
-html,
+html {
+}
+
 body {
   background: var(--color-bg-900);
   font-family: 'Public Sans', sans-serif;
@@ -42,13 +44,14 @@ ion-content {
   --overflow: visible;
   --color: #fff;
   font-family: inherit;
+  --offset-top: 0px !important;
 }
 
 ion-popover {
   --ion-background-color: var(--color-bg-800) !important;
 
   &::part(backdrop) {
-    --backdrop-opacity: 0.4;
+    --backdrop-opacity: 0.35;
   }
 }
 
