@@ -53,6 +53,6 @@ export class ApiInterceptor implements HttpInterceptor {
       errorMessage = `${error.status} ${error.statusText}`;
     }
 
-    return throwError(() => ({ message: errorMessage, original: error }));
+    return throwError(() => ({ message: errorMessage, status: error.status, original: error }));
   }
 }

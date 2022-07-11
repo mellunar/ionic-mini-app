@@ -95,15 +95,20 @@
           {{'Game mode' | plural : game.game_modes.length : 's'}}
         </h5>
         <ion-list class="c-ion-list--900">
-          <ion-item class="c-ion-item c-ion-item--900" *ngFor="let mode of game.game_modes">
-            <div class="c-avatar">
-              <app-icon *ngIf="mode.name === 'Single player'; else multi" name="person"></app-icon>
-              <ng-template #multi>
-                <app-icon name="people"></app-icon>
-              </ng-template>
-            </div>
-            <ion-label>{{mode.name}}</ion-label>
-          </ion-item>
+          <ng-container *ngFor="let mode of game.game_modes">
+            <ion-item
+              class="c-ion-item c-ion-item--900"
+              routerLink="/tabs/games/search"
+              [queryParams]="{game_modes: mode.name}">
+              <div class="c-avatar">
+                <app-icon *ngIf="mode.name === 'Single player'; else multi" name="person"></app-icon>
+                <ng-template #multi>
+                  <app-icon name="people"></app-icon>
+                </ng-template>
+              </div>
+              <ion-label>{{mode.name}}</ion-label>
+            </ion-item>
+          </ng-container>
         </ion-list>
       </ng-container>
 
@@ -114,12 +119,17 @@
           {{'Player perspective' | plural : game.player_perspectives.length : 's'}}
         </h5>
         <ion-list class="c-ion-list--900">
-          <ion-item class="c-ion-item c-ion-item--900" *ngFor="let perspective of game.player_perspectives">
-            <div class="c-avatar">
-              <app-icon name="camera"></app-icon>
-            </div>
-            <ion-label>{{perspective.name}}</ion-label>
-          </ion-item>
+          <ng-container *ngFor="let perspective of game.player_perspectives">
+            <ion-item
+              class="c-ion-item c-ion-item--900"
+              routerLink="/tabs/games/search"
+              [queryParams]="{player_perspectives: perspective.name}">
+              <div class="c-avatar">
+                <app-icon name="camera"></app-icon>
+              </div>
+              <ion-label>{{perspective.name}}</ion-label>
+            </ion-item>
+          </ng-container>
         </ion-list>
       </ng-container>
 

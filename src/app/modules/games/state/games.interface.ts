@@ -47,6 +47,7 @@ export interface GenericInfo {
   id?: number;
   name: string;
   slug: string;
+  url?: string;
 }
 
 export interface Image {

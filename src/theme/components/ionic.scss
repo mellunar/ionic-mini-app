@@ -51,3 +51,23 @@
     --border-color: transparent;
   }
 }
+
+.c-ion-searchbar {
+  .searchbar-left-aligned {
+    padding-inline-start: var(--size-xl);
+  }
+
+  .searchbar-input {
+    border: 1px solid transparent;
+
+    &:focus {
+      border-color: var(--color-bg-600);
+    }
+  }
+
+  // icon is sized by width
+  .searchbar-clear-icon {
+    pointer-events: none;
+    width: var(--size-lg);
+  }
+}

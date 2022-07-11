@@ -10,6 +10,8 @@ import { GamesStore } from './games.store';
   providedIn: 'root',
 })
 export class GamesService {
+  searchItemsLimit = 20;
+
   private gameFields = [
     '*',
     'age_ratings.*',
@@ -145,11 +147,39 @@ export class GamesService {
   }
 
   searchGameByName(term: string) {
-    const query = `where name ~ *"${term}"* & cover.url != null & cover.width > 80; fields ${this.gameListFields}; limit 20;`;
+    const query = `where name ~ *"${term}"* & cover.url != null & cover.width > 80; fields ${this.gameListFields}; limit ${this.searchItemsLimit};`;
 
     return this.http.post<Game[]>('/api/game', query).pipe(
       catchError((err) => {
         this.toastService.error(err.message);
+        throw err;
+      })
+    );
+  }
+
+  searchByTerm(term: string, param?: string, offset?: number) {
+    let paramToSearch;
+    let initialOffset = null;
+
+    if (param && param !== 'name') {
+      paramToSearch = `${param}.name`;
+    } else {
+      paramToSearch = 'name';
+    }
+
+    if (offset && offset > 2) {
+      initialOffset = ` offset ${offset};`;
+    }
+
+    const query = `where ${paramToSearch} ~ *"${term}"*; fields ${this.gameListFields}; limit 20;${initialOffset}`;
+
+    return this.http.post<Game[]>('/api/game', query).pipe(
+      catchError((err) => {
+        if (err.status === 400) {
+          this.toastService.error('Invalid search parameters');
+        } else {
+          this.toastService.error(err.message);
+        }
         throw err;
       })
     );

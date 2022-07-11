@@ -15,6 +15,7 @@
 <ion-content [fullscreen]="true">
   <form [formGroup]="form">
     <ion-searchbar
+      class="c-ion-searchbar"
       formControlName="search"
       clearIcon="close"
       mode="ios"
@@ -22,14 +23,20 @@
   </form>
 
   <ng-container *ngIf="loading; else searchResults">
+    <p class="u-padding-x--md">Searching for "{{ form.value.search }}"</p>
     <app-game-list-item-loading></app-game-list-item-loading>
   </ng-container>
 
   <ng-template #searchResults>
-    <div class="c-games-list u-padding-top--xs" *ngIf="results?.length > 0">
+    <div class="c-games-list" *ngIf="results?.length > 0">
       <ng-container *ngFor="let game of results">
         <app-game-list-item [game]="game" titleSize="small"></app-game-list-item>
       </ng-container>
     </div>
+
+    <ion-infinite-scroll threshold="0px" [disabled]="infiniteScrollDisabled" (ionInfinite)="nextPage($event)">
+      <ion-infinite-scroll-content loadingSpinner="crescent" loadingText="Loading more data...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
   </ng-template>
 </ion-content>
