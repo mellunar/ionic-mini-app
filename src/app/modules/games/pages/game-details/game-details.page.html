@@ -123,8 +123,26 @@
         </ion-list>
       </ng-container>
 
+      <!-- engine -->
+      <ng-container *ngIf="game.game_engines?.length > 0">
+        <hr class="l-break u-margin-bottom--md" />
+        <h5 class="u-margin-left--md u-margin-bottom--xs">
+          {{'Engine' | plural : game.game_engines.length : 's'}}
+        </h5>
+        <ion-list class="c-ion-list--900">
+          <ng-container *ngFor="let engine of game.game_engines">
+            <ion-item class="c-ion-item c-ion-item--900">
+              <div class="c-avatar">
+                <app-icon name="cog"></app-icon>
+              </div>
+              <ion-label>{{engine.name}}</ion-label>
+            </ion-item>
+          </ng-container>
+        </ion-list>
+      </ng-container>
+
       <!-- franchise -->
-      <ng-container *ngIf="game.franchises?.length > 0 && !game.parent_game">
+      <ng-container *ngIf="game.franchises?.length > 0">
         <hr class="l-break u-margin-bottom--md" />
         <h5 class="u-margin-left--md u-margin-bottom--xs">
           {{'Franchise' | plural : game.franchises.length : 's'}}
@@ -174,7 +192,10 @@
 
     <!-- loading state -->
     <ng-template #loading>
-      <p>Loading...</p>
+      <ion-skeleton-text class="e-game-details__header-loading" animated></ion-skeleton-text>
+      <app-game-list-item-loading></app-game-list-item-loading>
+      <ion-skeleton-text class="e-game-details__text-loading u-width--80" animated></ion-skeleton-text>
+      <ion-skeleton-text class="e-game-details__text-loading u-width--50" animated></ion-skeleton-text>
     </ng-template>
   </article>
 </ion-content>

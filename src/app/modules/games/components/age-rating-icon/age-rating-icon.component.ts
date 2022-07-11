@@ -56,10 +56,10 @@ export class AgeRatingIconComponent implements OnInit {
     const alert = await this.alertController.create({
       mode: 'ios',
       header: this.organization,
-      message: `<img src='/assets/ratings/${this.rating}.png' />`,
+      message: `<img class='u-margin-top--sm' src='/assets/ratings/${this.rating}.png' />`,
       buttons: [
         {
-          text: 'OK',
+          text: 'Close',
           role: 'cancel',
         },
       ],

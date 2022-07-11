@@ -1,0 +1,31 @@
+.e-game-item-loading {
+  padding: var(--size-md);
+
+  .c-game-item__cover {
+    background: unset;
+  }
+
+  .c-game-item__info {
+    align-items: flex-start;
+  }
+
+  &__cover {
+    height: 100%;
+  }
+
+  &__title {
+    width: 150px;
+    height: 24px;
+  }
+
+  &__tag {
+    margin-top: var(--size-xs);
+    width: 60px;
+    height: 22px;
+  }
+
+  &__misc {
+    width: 93px;
+    height: 16px;
+  }
+}

@@ -20,10 +20,13 @@
       mode="ios"
       (ionClear)="clearResults()"></ion-searchbar>
   </form>
-  <div *ngIf="loading; else searchResults">Loading</div>
+
+  <ng-container *ngIf="loading; else searchResults">
+    <app-game-list-item-loading></app-game-list-item-loading>
+  </ng-container>
 
   <ng-template #searchResults>
-    <div class="c-games-list" *ngIf="results?.length > 0">
+    <div class="c-games-list u-padding-top--xs" *ngIf="results?.length > 0">
       <ng-container *ngFor="let game of results">
         <app-game-list-item [game]="game" titleSize="small"></app-game-list-item>
       </ng-container>

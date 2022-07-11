@@ -6,4 +6,18 @@
     gap: 10px;
     padding: 0 var(--size-md) var(--size-md);
   }
+
+  &__header-loading {
+    aspect-ratio: 16/8;
+    width: 100%;
+  }
+
+  &__text-loading {
+    height: 19px;
+    margin: 0 var(--size-md);
+
+    &:not(:first-of-type) {
+      margin-top: 6px;
+    }
+  }
 }

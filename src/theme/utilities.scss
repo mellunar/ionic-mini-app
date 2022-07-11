@@ -27,6 +27,26 @@ $weights: (
   '800': 800,
 );
 
+/* width */
+$widths: (
+  '100': 100%,
+  '80': 80%,
+  '75': 75%,
+  '66': 66.6%,
+  '60': 60%,
+  '50': 50%,
+  '40': 40%,
+  '33': 33.3%,
+  '25': 25%,
+  '20': 20%,
+);
+
+@each $width, $width-value in $widths {
+  .u-width--#{$width} {
+    width: $width-value;
+  }
+}
+
 @each $weight, $weight-value in $weights {
   .u-font-weight--#{$weight} {
     font-weight: $weight-value;
