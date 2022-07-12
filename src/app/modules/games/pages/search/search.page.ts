@@ -40,8 +40,10 @@ export class GamesSearchPage implements OnInit, OnDestroy {
         return;
       }
 
-      this.paramSearch = keys[0];
-      this.form.get('search').setValue(params[keys[0]]);
+      if (this.paramSearch !== keys[0]) {
+        this.paramSearch = keys[0];
+        this.form.get('search').setValue(params[keys[0]]);
+      }
     });
   }
 
@@ -98,11 +100,7 @@ export class GamesSearchPage implements OnInit, OnDestroy {
           this.results = res;
           this.loading = false;
 
-          if (
-            this.paramSearch &&
-            res.length >= this.gamesService.searchItemsLimit &&
-            this.infiniteScrollDisabled
-          ) {
+          if (res.length >= this.gamesService.searchItemsLimit && this.infiniteScrollDisabled) {
             this.infiniteScrollDisabled = false;
           }
         })
@@ -114,9 +112,9 @@ export class GamesSearchPage implements OnInit, OnDestroy {
     const offset = this.results.length + 1;
 
     if (this.paramSearch) {
-      return this.gamesService.searchByTerm(val, this.paramSearch, offset).pipe();
+      return this.gamesService.searchByTerm(val, this.paramSearch, offset);
     } else {
-      return this.gamesService.searchGameByName(val);
+      return this.gamesService.searchByTerm(val, 'name', offset);
     }
   }
 }

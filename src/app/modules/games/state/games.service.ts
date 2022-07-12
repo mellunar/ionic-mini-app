@@ -146,17 +146,6 @@ export class GamesService {
     );
   }
 
-  searchGameByName(term: string) {
-    const query = `where name ~ *"${term}"* & cover.url != null & cover.width > 80; fields ${this.gameListFields}; limit ${this.searchItemsLimit};`;
-
-    return this.http.post<Game[]>('/api/game', query).pipe(
-      catchError((err) => {
-        this.toastService.error(err.message);
-        throw err;
-      })
-    );
-  }
-
   searchByTerm(term: string, param?: string, offset?: number) {
     let paramToSearch;
     let initialOffset = null;

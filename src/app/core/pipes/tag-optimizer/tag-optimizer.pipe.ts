@@ -25,6 +25,10 @@ export class TagOptimizerPipe implements PipeTransform {
       return 'Turn-based strategy';
     }
 
+    if (value === '4X (explore, expand, exploit, and exterminate)') {
+      return 'Do anything';
+    }
+
     return value;
   }
 }
