@@ -5,12 +5,19 @@
       <ion-back-button mode="md" defaultHref="tabs/games"></ion-back-button>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-button class="c-header__button">
+      <ion-button class="c-header__button" (click)="toggleFilter(true)">
         <app-icon name="filter"></app-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
+
+<app-search-filter
+  [showFilter]="showFilter"
+  [options]="searchOptions"
+  (close)="toggleFilter(false)"
+  (update)="updateSearchPreferences($event)">
+</app-search-filter>
 
 <ion-content [fullscreen]="true">
   <form [formGroup]="form">

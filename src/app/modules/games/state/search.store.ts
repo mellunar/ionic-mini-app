@@ -1,28 +1,46 @@
 import { Injectable } from '@angular/core';
 import { createStore, withProps } from '@ngneat/elf';
+import { persistState, localStorageStrategy } from '@ngneat/elf-persist-state';
 
-interface SearchPreferences {
-  sortOrder: 'asc' | 'desc';
-  sortBy: string; // wich parameter - name, rating, release date, hypes
+export interface SearchPreferences {
+  sortOrder: 'asc' | 'desc' | 'none';
+  sortBy: 'name' | 'total_rating' | 'hypes' | 'none';
   rating: number[];
   parameter: string;
-  platform: number;
+  platforms: number[];
   ignore: {
-    categories: string[];
+    themes: number[];
+    genres: number[];
   };
+  themes: number[];
+  genres: number[];
+  modes: number[];
+  perspectives: number[];
 }
 
 const searchStore = createStore(
   { name: 'search-preferences' },
   withProps<SearchPreferences>({
-    sortOrder: null,
-    sortBy: null,
+    sortOrder: 'none',
+    sortBy: 'none',
     rating: [0, 100],
     parameter: 'name',
-    platform: null,
-    ignore: null,
+    platforms: null,
+    ignore: {
+      themes: null,
+      genres: null,
+    },
+    themes: null,
+    genres: null,
+    modes: null,
+    perspectives: null,
   })
 );
+
+export const persist = persistState(searchStore, {
+  key: 'search-preferences',
+  storage: localStorageStrategy,
+});
 
 @Injectable({ providedIn: 'root' })
 export class SearchStore {
@@ -31,9 +49,6 @@ export class SearchStore {
   }
 
   setSearchPreferences(preferences: SearchPreferences) {
-    searchStore.update((state) => ({
-      ...state,
-      preferences,
-    }));
+    searchStore.update(() => preferences);
   }
 }

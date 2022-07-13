@@ -1,0 +1,57 @@
+<div class="e-search-filter" [class.e-search-filter--opened]="showFilter">
+  <ion-header class="c-header" slot="fixed" mode="ios">
+    <ion-toolbar>
+      <ion-title>Filter search</ion-title>
+      <ion-buttons slot="end">
+        <ion-button class="c-header__button u-color--danger" (click)="closeFilter()">
+          <app-icon name="close"></app-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ng-container *ngIf="unsavedOptions">
+    <div class="u-padding--md u-width--100">
+      <ion-radio-group
+        class="c-ion-list"
+        mode="ios"
+        [value]="unsavedOptions.sortOrder"
+        (ionChange)="changeOption('sortOrder', $event)">
+        <ion-item class="c-ion-item c-ion-item--900">
+          <ion-radio value="asc"></ion-radio>
+          <ion-label>Ascending</ion-label>
+        </ion-item>
+
+        <ion-item class="c-ion-item c-ion-item--900">
+          <ion-radio value="desc"></ion-radio>
+          <ion-label>Descending</ion-label>
+        </ion-item>
+
+        <ion-item class="c-ion-item c-ion-item--900">
+          <ion-radio value="none"></ion-radio>
+          <ion-label>None</ion-label>
+        </ion-item>
+      </ion-radio-group>
+
+      <ion-item class="c-ion-item c-ion-item--900">
+        <ion-label>Platforms</ion-label>
+        <ion-select
+          class="c-ion-select"
+          placeholder="Select a platform"
+          mode="ios"
+          [multiple]="true"
+          [value]="unsavedOptions.platforms"
+          [interfaceOptions]="platformsAlert"
+          (ionChange)="changeOption('platforms', $event)">
+          <ng-container *ngFor="let platform of platforms">
+            <ion-select-option [value]="platform.id">{{ platform.name }}</ion-select-option>
+          </ng-container>
+        </ion-select>
+      </ion-item>
+    </div>
+
+    <div class="u-margin-top--auto u-padding--md u-width--100">
+      <ion-button class="c-ion-button" expand="block" mode="ios" (click)="updatePreferences()">Save</ion-button>
+    </div>
+  </ng-container>
+</div>

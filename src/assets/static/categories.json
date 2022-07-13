@@ -2,183 +2,228 @@
   "data": [
     {
       "id": 1,
-      "name": "Action"
+      "name": "Action",
+      "endpoint": "themes"
     },
     {
       "id": 2,
-      "name": "Point-and-click"
+      "name": "Point-and-click",
+      "endpoint": "genres"
     },
     {
       "id": 4,
-      "name": "Fighting"
+      "name": "Fighting",
+      "endpoint": "genres"
     },
     {
       "id": 5,
-      "name": "Shooter"
+      "name": "Shooter",
+      "endpoint": "genres"
     },
     {
       "id": 7,
-      "name": "Music"
+      "name": "Music",
+      "endpoint": "genres"
     },
     {
       "id": 8,
-      "name": "Platform"
+      "name": "Platform",
+      "endpoint": "genres"
     },
     {
       "id": 9,
-      "name": "Puzzle"
+      "name": "Puzzle",
+      "endpoint": "genres"
     },
     {
       "id": 10,
-      "name": "Racing"
+      "name": "Racing",
+      "endpoint": "genres"
     },
     {
       "id": 11,
-      "name": "Real Time Strategy (RTS)"
+      "name": "Real Time Strategy (RTS)",
+      "endpoint": "genres"
     },
     {
       "id": 12,
-      "name": "Role-playing (RPG)"
+      "name": "Role-playing (RPG)",
+      "endpoint": "genres"
     },
     {
       "id": 13,
-      "name": "Simulator"
+      "name": "Simulator",
+      "endpoint": "genres"
     },
     {
       "id": 14,
-      "name": "Sport"
+      "name": "Sport",
+      "endpoint": "genres"
     },
     {
       "id": 15,
-      "name": "Strategy"
+      "name": "Strategy",
+      "endpoint": "genres"
     },
     {
       "id": 16,
-      "name": "Turn-based strategy (TBS)"
+      "name": "Turn-based strategy (TBS)",
+      "endpoint": "genres"
     },
     {
       "id": 17,
-      "name": "Fantasy"
+      "name": "Fantasy",
+      "endpoint": "themes"
     },
     {
       "id": 18,
-      "name": "Science fiction"
+      "name": "Science fiction",
+      "endpoint": "themes"
     },
     {
       "id": 19,
-      "name": "Horror"
+      "name": "Horror",
+      "endpoint": "themes"
     },
     {
       "id": 20,
-      "name": "Thriller"
+      "name": "Thriller",
+      "endpoint": "themes"
     },
     {
       "id": 21,
-      "name": "Survival"
+      "name": "Survival",
+      "endpoint": "themes"
     },
     {
       "id": 22,
-      "name": "Historical"
+      "name": "Historical",
+      "endpoint": "themes"
     },
     {
       "id": 23,
-      "name": "Stealth"
+      "name": "Stealth",
+      "endpoint": "themes"
     },
     {
       "id": 24,
-      "name": "Tactical"
+      "name": "Tactical",
+      "endpoint": "genres"
     },
     {
       "id": 25,
-      "name": "Hack and slash/Beat 'em up"
+      "name": "Hack and slash/Beat 'em up",
+      "endpoint": "genres"
     },
     {
       "id": 26,
-      "name": "Quiz/Trivia"
+      "name": "Quiz/Trivia",
+      "endpoint": "genres"
     },
     {
       "id": 27,
-      "name": "Comedy"
+      "name": "Comedy",
+      "endpoint": "themes"
     },
     {
       "id": 28,
-      "name": "Business"
+      "name": "Business",
+      "endpoint": "themes"
     },
     {
       "id": 30,
-      "name": "Pinball"
+      "name": "Pinball",
+      "endpoint": "genres"
     },
     {
       "id": 31,
-      "name": "Adventure"
+      "name": "Adventure",
+      "endpoint": "genres"
     },
     {
       "id": 31,
-      "name": "Drama"
+      "name": "Drama",
+      "endpoint": "themes"
     },
     {
       "id": 32,
-      "name": "Indie"
+      "name": "Indie",
+      "endpoint": "genres"
     },
     {
       "id": 32,
-      "name": "Non-fiction"
+      "name": "Non-fiction",
+      "endpoint": "themes"
     },
     {
       "id": 33,
-      "name": "Arcade"
+      "name": "Arcade",
+      "endpoint": "genres"
     },
     {
       "id": 33,
-      "name": "Sandbox"
+      "name": "Sandbox",
+      "endpoint": "themes"
     },
     {
       "id": 34,
-      "name": "Visual Novel"
+      "name": "Visual Novel",
+      "endpoint": "genres"
     },
     {
       "id": 34,
-      "name": "Educational"
+      "name": "Educational",
+      "endpoint": "themes"
     },
     {
       "id": 35,
-      "name": "Card & Board Game"
+      "name": "Card & Board Game",
+      "endpoint": "genres"
     },
     {
       "id": 35,
-      "name": "Kids"
+      "name": "Kids",
+      "endpoint": "themes"
     },
     {
       "id": 36,
-      "name": "MOBA"
+      "name": "MOBA",
+      "endpoint": "genres"
     },
     {
       "id": 38,
-      "name": "Open world"
+      "name": "Open world",
+      "endpoint": "themes"
     },
     {
       "id": 39,
-      "name": "Warfare"
+      "name": "Warfare",
+      "endpoint": "themes"
     },
     {
       "id": 40,
-      "name": "Party"
+      "name": "Party",
+      "endpoint": "themes"
     },
     {
       "id": 41,
-      "name": "4X (explore, expand, exploit, and exterminate)"
+      "name": "4X (explore, expand, exploit, and exterminate)",
+      "endpoint": "themes"
     },
     {
       "id": 42,
-      "name": "Erotic"
+      "name": "Erotic",
+      "endpoint": "themes"
     },
     {
       "id": 43,
-      "name": "Mystery"
+      "name": "Mystery",
+      "endpoint": "themes"
     },
     {
       "id": 44,
-      "name": "Romance"
+      "name": "Romance",
+      "endpoint": "themes"
     }
   ]
 }

@@ -98,6 +98,7 @@
           <ng-container *ngFor="let mode of game.game_modes">
             <ion-item
               class="c-ion-item c-ion-item--900"
+              [detail]="true"
               routerLink="/tabs/games/search"
               [queryParams]="{game_modes: mode.name}">
               <div class="c-avatar">
@@ -122,6 +123,7 @@
           <ng-container *ngFor="let perspective of game.player_perspectives">
             <ion-item
               class="c-ion-item c-ion-item--900"
+              [detail]="true"
               routerLink="/tabs/games/search"
               [queryParams]="{player_perspectives: perspective.name}">
               <div class="c-avatar">

@@ -5,6 +5,7 @@ import { debounceTime, filter, finalize, Subscription, switchMap, tap } from 'rx
 import { UIService } from 'src/app/core/services/ui/ui.service';
 import { Game } from '../../state/games.interface';
 import { GamesService } from '../../state/games.service';
+import { SearchPreferences, SearchStore } from '../../state/search.store';
 
 @Component({
   selector: 'app-games-search',
@@ -18,6 +19,8 @@ export class GamesSearchPage implements OnInit, OnDestroy {
 
   loading = false;
   results: Game[] = [];
+  showFilter = false;
+  searchOptions: SearchPreferences;
   infiniteScrollDisabled = true;
 
   searchSubscription$: Subscription;
@@ -28,7 +31,8 @@ export class GamesSearchPage implements OnInit, OnDestroy {
   constructor(
     private gamesService: GamesService,
     private uiService: UIService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private searchStore: SearchStore
   ) {}
 
   ngOnInit() {
@@ -53,6 +57,11 @@ export class GamesSearchPage implements OnInit, OnDestroy {
 
   ionViewWillEnter() {
     this.uiService.setTitle('Search');
+    this.searchOptions = this.searchStore.getSearchPreferences();
+  }
+
+  ionViewWillLeave() {
+    this.showFilter = false;
   }
 
   clearResults() {
@@ -106,6 +115,15 @@ export class GamesSearchPage implements OnInit, OnDestroy {
         })
       )
       .subscribe();
+  }
+
+  toggleFilter(val: boolean) {
+    this.showFilter = val;
+  }
+
+  updateSearchPreferences(preferences: SearchPreferences) {
+    this.searchOptions = preferences;
+    this.searchStore.setSearchPreferences(preferences);
   }
 
   private searchGames(val) {

@@ -1,3 +1,18 @@
+.c-ion-button {
+  --background: var(--color-bg-900);
+  --color: var(--color-text);
+  --border-color: var(--color-text);
+  --border-style: solid;
+  --border-width: 2px;
+
+  --background-activated: var(--color-text);
+  --background-focused: var(--color-text);
+  --background-hover: var(--color-text);
+  --color-activated: var(--color-bg-900);
+  --color-focused: var(--color-bg-900);
+  --color-hover: var(--color-bg-900);
+}
+
 .c-button {
   all: unset;
   color: var(--color-text);

@@ -21,6 +21,7 @@ import { YoutubeModal } from './modals/youtube-modal/youtube-modal.component';
 import { RelatedGamesModal } from './modals/related-games-modal/related-games-modal.component';
 import { DetailsFooterComponent } from './components/details-footer/details-footer.component';
 import { AgeRatingIconComponent } from './components/age-rating-icon/age-rating-icon.component';
+import { SearchFilterComponent } from './components/search-filter/search-filter.component';
 
 @NgModule({
   imports: [
@@ -48,6 +49,7 @@ import { AgeRatingIconComponent } from './components/age-rating-icon/age-rating-
     RelatedGamesModal,
     DetailsFooterComponent,
     AgeRatingIconComponent,
+    SearchFilterComponent,
   ],
 })
 export class GamesModule {}
