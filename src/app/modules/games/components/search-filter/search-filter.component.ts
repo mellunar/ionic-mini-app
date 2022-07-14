@@ -51,36 +51,26 @@ export class SearchFilterComponent implements OnInit, OnChanges {
     this.close.emit();
   }
 
-  changeOption(key: string, event) {
+  changeOption(key: string, values) {
     this.unsavedOptions = {
       ...this.unsavedOptions,
-      [key]: event.detail.value,
+      [key]: values,
     };
   }
 
-  changeCategory(exclude: boolean, event) {
-    const { value } = event.detail;
-    const updated = {
-      genres: [],
-      themes: [],
-    };
-
-    if (value?.length > 0) {
-      value.forEach((item) => {
-        updated[item.endpoint].push(item.id);
-      });
-    }
+  changeCategory(exclude: boolean, values) {
+    const { genres, themes } = values;
 
     if (exclude) {
       this.unsavedOptions = {
         ...this.unsavedOptions,
-        ignore: { genres: updated.genres, themes: updated.themes },
+        ignore: { genres, themes },
       };
     } else {
       this.unsavedOptions = {
         ...this.unsavedOptions,
-        genres: updated.genres,
-        themes: updated.themes,
+        genres,
+        themes,
       };
     }
   }

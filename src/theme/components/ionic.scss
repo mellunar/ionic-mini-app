@@ -52,6 +52,12 @@
   &:last-of-type {
     --border-color: transparent;
   }
+
+  ion-select::part(icon) {
+    margin-right: 2px;
+    color: var(--color-text);
+    opacity: 0.5;
+  }
 }
 
 .c-ion-searchbar {
@@ -76,5 +82,5 @@
 
 .c-ion-select {
   --placeholder-color: var(--color-text);
-  --placeholder-opacity: 100;
+  --placeholder-opacity: 1;
 }

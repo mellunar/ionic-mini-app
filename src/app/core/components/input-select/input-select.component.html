@@ -1,0 +1,15 @@
+<ion-item class="c-ion-item c-ion-item--900">
+  <ion-label *ngIf="label">{{ label }}</ion-label>
+  <ion-select
+    class="c-ion-select"
+    placeholder="Select"
+    mode="ios"
+    [multiple]="true"
+    [value]="isCategory ? concatenedItems : value"
+    [interfaceOptions]="alertInterface"
+    (ionChange)="changeOption($event)">
+    <ng-container *ngFor="let option of options">
+      <ion-select-option [value]="option.id">{{ option.name }}</ion-select-option>
+    </ng-container>
+  </ion-select>
+</ion-item>

@@ -33,21 +33,29 @@
         </ion-item>
       </ion-radio-group>
 
-      <ion-item class="c-ion-item c-ion-item--900">
-        <ion-label>Platforms</ion-label>
-        <ion-select
-          class="c-ion-select"
-          placeholder="Select a platform"
-          mode="ios"
-          [multiple]="true"
-          [value]="unsavedOptions.platforms"
-          [interfaceOptions]="platformsAlert"
-          (ionChange)="changeOption('platforms', $event)">
-          <ng-container *ngFor="let platform of platforms">
-            <ion-select-option [value]="platform.id">{{ platform.name }}</ion-select-option>
-          </ng-container>
-        </ion-select>
-      </ion-item>
+      <app-input-select
+        label="Platforms"
+        [options]="platforms"
+        [value]="unsavedOptions.platforms"
+        (update)="changeOption('platforms', $event)">
+      </app-input-select>
+
+      <app-input-select
+        label="Categories"
+        [isCategory]="true"
+        [options]="categories"
+        [items]="[unsavedOptions.genres, unsavedOptions.themes]"
+        (categories)="changeCategory(false, $event)">
+      </app-input-select>
+
+      <app-input-select
+        label="Ignore"
+        message="Games from these categories will be removed from seach"
+        [isCategory]="true"
+        [options]="categories"
+        [items]="[unsavedOptions.ignore.genres, unsavedOptions.ignore.themes]"
+        (categories)="changeCategory(true, $event)">
+      </app-input-select>
     </div>
 
     <div class="u-margin-top--auto u-padding--md u-width--100">
