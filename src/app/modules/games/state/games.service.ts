@@ -5,6 +5,7 @@ import { ToastService } from 'src/app/core/services/toast/toast.service';
 import { GamesListStore } from './games-list.store';
 import { Game, GameFullInfo } from './games.interface';
 import { GamesStore } from './games.store';
+import { SearchPreferences } from './search.store';
 
 @Injectable({
   providedIn: 'root',
@@ -146,21 +147,59 @@ export class GamesService {
     );
   }
 
-  searchByTerm(term: string, param?: string, offset?: number) {
+  searchByTerm(term: string, param?: string, offset?: number, filters?: SearchPreferences) {
     let paramToSearch;
-    let initialOffset = null;
+    let initialOffset = '';
+    let sort = '';
 
-    if (param && param !== 'name') {
-      paramToSearch = `${param}.name`;
+    const where = [];
+
+    if (!filters) {
+      if (!param) {
+        paramToSearch = 'name';
+      } else if (param !== 'name' && param !== 'keywords') {
+        paramToSearch = `${param}.name`;
+      } else {
+        paramToSearch = param;
+      }
     } else {
-      paramToSearch = 'name';
+      const keys = Object.keys(filters);
+
+      paramToSearch = filters.parameter;
+
+      if (filters.sortBy !== 'none') {
+        sort = ` sort ${filters.sortBy} ${filters.sortOrder};`;
+      }
+
+      const autoCheck = ['platforms', 'themes', 'genres', 'game_modes', 'player_perspectives'];
+
+      keys.forEach((key) => {
+        if (autoCheck.includes(key) && filters[key]?.length > 0) {
+          where.push(`${key} = [${filters[key].join(',')}]`);
+        }
+      });
+
+      if (filters.ignore?.genres?.length > 0) {
+        where.push(`genres != [${filters.ignore.genres.join(',')}]`);
+      }
+
+      if (filters.ignore?.themes?.length > 0) {
+        where.push(`themes != [${filters.ignore.themes.join(',')}]`);
+      }
     }
 
     if (offset && offset > 2) {
       initialOffset = ` offset ${offset};`;
     }
 
-    const query = `where ${paramToSearch} ~ *"${term}"*; fields ${this.gameListFields}; limit 20;${initialOffset}`;
+    const formattedTerm = `${paramToSearch} ~ *"${term}"*`;
+    const formattedWhere = where.length > 0 ? where.join(' & ') : '';
+
+    const query = `where ${
+      formattedWhere.length < 1 ? formattedTerm : `(${formattedTerm} & ${formattedWhere})`
+    }; fields ${this.gameListFields}; limit 20;${initialOffset}${sort}`;
+
+    console.log(query);
 
     return this.http.post<Game[]>('/api/game', query).pipe(
       catchError((err) => {

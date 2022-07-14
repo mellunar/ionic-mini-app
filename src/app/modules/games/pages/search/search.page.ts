@@ -112,6 +112,9 @@ export class GamesSearchPage implements OnInit, OnDestroy {
           if (res.length >= this.gamesService.searchItemsLimit && this.infiniteScrollDisabled) {
             this.infiniteScrollDisabled = false;
           }
+        }),
+        finalize(() => {
+          this.loading = false;
         })
       )
       .subscribe();
@@ -124,15 +127,22 @@ export class GamesSearchPage implements OnInit, OnDestroy {
   updateSearchPreferences(preferences: SearchPreferences) {
     this.searchOptions = preferences;
     this.searchStore.setSearchPreferences(preferences);
+
+    const val = this.form.value.search;
+
+    if (val !== '') {
+      this.clearResults();
+      this.form.get('search').setValue(val);
+    }
   }
 
   private searchGames(val) {
     const offset = this.results.length + 1;
 
     if (this.paramSearch) {
-      return this.gamesService.searchByTerm(val, this.paramSearch, offset);
+      return this.gamesService.searchByTerm(val, this.paramSearch, offset, this.searchOptions);
     } else {
-      return this.gamesService.searchByTerm(val, 'name', offset);
+      return this.gamesService.searchByTerm(val, 'name', offset, this.searchOptions);
     }
   }
 }
