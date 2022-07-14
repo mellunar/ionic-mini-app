@@ -1,7 +1,7 @@
 <app-modal class="e-tags-modal" headerTitle="Platforms">
   <ion-list *ngIf="platforms">
     <ion-item class="c-ion-item" *ngFor="let platform of platforms" (click)="dismiss()">
-      <app-platform-icon [platform]="platform"></app-platform-icon> {{ platform.name }}
+      <app-platform-icon [platform]="platform"></app-platform-icon> {{ platform.name | tag }}
     </ion-item>
   </ion-list>
 </app-modal>

@@ -1,14 +1,59 @@
 {
   "data": [
     {
+      "id": 41,
+      "name": "4X (explore, expand, exploit, and exterminate)",
+      "endpoint": "themes"
+    },
+    {
       "id": 1,
       "name": "Action",
       "endpoint": "themes"
     },
     {
-      "id": 2,
-      "name": "Point-and-click",
+      "id": 31,
+      "name": "Adventure",
       "endpoint": "genres"
+    },
+    {
+      "id": 33,
+      "name": "Arcade",
+      "endpoint": "genres"
+    },
+    {
+      "id": 28,
+      "name": "Business",
+      "endpoint": "themes"
+    },
+    {
+      "id": 35,
+      "name": "Card & Board Game",
+      "endpoint": "genres"
+    },
+    {
+      "id": 27,
+      "name": "Comedy",
+      "endpoint": "themes"
+    },
+    {
+      "id": 31,
+      "name": "Drama",
+      "endpoint": "themes"
+    },
+    {
+      "id": 34,
+      "name": "Educational",
+      "endpoint": "themes"
+    },
+    {
+      "id": 42,
+      "name": "Erotic",
+      "endpoint": "themes"
+    },
+    {
+      "id": 17,
+      "name": "Fantasy",
+      "endpoint": "themes"
     },
     {
       "id": 4,
@@ -16,8 +61,33 @@
       "endpoint": "genres"
     },
     {
-      "id": 5,
-      "name": "Shooter",
+      "id": 25,
+      "name": "Hack and slash/Beat 'em up",
+      "endpoint": "genres"
+    },
+    {
+      "id": 22,
+      "name": "Historical",
+      "endpoint": "themes"
+    },
+    {
+      "id": 19,
+      "name": "Horror",
+      "endpoint": "themes"
+    },
+    {
+      "id": 32,
+      "name": "Indie",
+      "endpoint": "genres"
+    },
+    {
+      "id": 35,
+      "name": "Kids",
+      "endpoint": "themes"
+    },
+    {
+      "id": 36,
+      "name": "MOBA",
       "endpoint": "genres"
     },
     {
@@ -26,13 +96,48 @@
       "endpoint": "genres"
     },
     {
+      "id": 43,
+      "name": "Mystery",
+      "endpoint": "themes"
+    },
+    {
+      "id": 32,
+      "name": "Non-fiction",
+      "endpoint": "themes"
+    },
+    {
+      "id": 38,
+      "name": "Open world",
+      "endpoint": "themes"
+    },
+    {
+      "id": 40,
+      "name": "Party",
+      "endpoint": "themes"
+    },
+    {
+      "id": 30,
+      "name": "Pinball",
+      "endpoint": "genres"
+    },
+    {
       "id": 8,
       "name": "Platform",
       "endpoint": "genres"
     },
     {
+      "id": 2,
+      "name": "Point-and-click",
+      "endpoint": "genres"
+    },
+    {
       "id": 9,
       "name": "Puzzle",
+      "endpoint": "genres"
+    },
+    {
+      "id": 26,
+      "name": "Quiz/Trivia",
       "endpoint": "genres"
     },
     {
@@ -51,6 +156,26 @@
       "endpoint": "genres"
     },
     {
+      "id": 44,
+      "name": "Romance",
+      "endpoint": "themes"
+    },
+    {
+      "id": 33,
+      "name": "Sandbox",
+      "endpoint": "themes"
+    },
+    {
+      "id": 18,
+      "name": "Science fiction",
+      "endpoint": "themes"
+    },
+    {
+      "id": 5,
+      "name": "Shooter",
+      "endpoint": "genres"
+    },
+    {
       "id": 13,
       "name": "Simulator",
       "endpoint": "genres"
@@ -61,48 +186,18 @@
       "endpoint": "genres"
     },
     {
+      "id": 23,
+      "name": "Stealth",
+      "endpoint": "themes"
+    },
+    {
       "id": 15,
       "name": "Strategy",
       "endpoint": "genres"
     },
     {
-      "id": 16,
-      "name": "Turn-based strategy (TBS)",
-      "endpoint": "genres"
-    },
-    {
-      "id": 17,
-      "name": "Fantasy",
-      "endpoint": "themes"
-    },
-    {
-      "id": 18,
-      "name": "Science fiction",
-      "endpoint": "themes"
-    },
-    {
-      "id": 19,
-      "name": "Horror",
-      "endpoint": "themes"
-    },
-    {
-      "id": 20,
-      "name": "Thriller",
-      "endpoint": "themes"
-    },
-    {
       "id": 21,
       "name": "Survival",
-      "endpoint": "themes"
-    },
-    {
-      "id": 22,
-      "name": "Historical",
-      "endpoint": "themes"
-    },
-    {
-      "id": 23,
-      "name": "Stealth",
       "endpoint": "themes"
     },
     {
@@ -111,59 +206,14 @@
       "endpoint": "genres"
     },
     {
-      "id": 25,
-      "name": "Hack and slash/Beat 'em up",
-      "endpoint": "genres"
-    },
-    {
-      "id": 26,
-      "name": "Quiz/Trivia",
-      "endpoint": "genres"
-    },
-    {
-      "id": 27,
-      "name": "Comedy",
+      "id": 20,
+      "name": "Thriller",
       "endpoint": "themes"
     },
     {
-      "id": 28,
-      "name": "Business",
-      "endpoint": "themes"
-    },
-    {
-      "id": 30,
-      "name": "Pinball",
+      "id": 16,
+      "name": "Turn-based strategy (TBS)",
       "endpoint": "genres"
-    },
-    {
-      "id": 31,
-      "name": "Adventure",
-      "endpoint": "genres"
-    },
-    {
-      "id": 31,
-      "name": "Drama",
-      "endpoint": "themes"
-    },
-    {
-      "id": 32,
-      "name": "Indie",
-      "endpoint": "genres"
-    },
-    {
-      "id": 32,
-      "name": "Non-fiction",
-      "endpoint": "themes"
-    },
-    {
-      "id": 33,
-      "name": "Arcade",
-      "endpoint": "genres"
-    },
-    {
-      "id": 33,
-      "name": "Sandbox",
-      "endpoint": "themes"
     },
     {
       "id": 34,
@@ -171,58 +221,8 @@
       "endpoint": "genres"
     },
     {
-      "id": 34,
-      "name": "Educational",
-      "endpoint": "themes"
-    },
-    {
-      "id": 35,
-      "name": "Card & Board Game",
-      "endpoint": "genres"
-    },
-    {
-      "id": 35,
-      "name": "Kids",
-      "endpoint": "themes"
-    },
-    {
-      "id": 36,
-      "name": "MOBA",
-      "endpoint": "genres"
-    },
-    {
-      "id": 38,
-      "name": "Open world",
-      "endpoint": "themes"
-    },
-    {
       "id": 39,
       "name": "Warfare",
-      "endpoint": "themes"
-    },
-    {
-      "id": 40,
-      "name": "Party",
-      "endpoint": "themes"
-    },
-    {
-      "id": 41,
-      "name": "4X (explore, expand, exploit, and exterminate)",
-      "endpoint": "themes"
-    },
-    {
-      "id": 42,
-      "name": "Erotic",
-      "endpoint": "themes"
-    },
-    {
-      "id": 43,
-      "name": "Mystery",
-      "endpoint": "themes"
-    },
-    {
-      "id": 44,
-      "name": "Romance",
       "endpoint": "themes"
     }
   ]

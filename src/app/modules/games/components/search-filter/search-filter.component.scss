@@ -20,4 +20,17 @@
     height: 100%;
     overflow-y: auto;
   }
+
+  &__label {
+    font-size: 17px;
+    margin-bottom: var(--size-xs);
+
+    &-disabled {
+      opacity: 0.3;
+    }
+  }
+
+  ion-radio {
+    --color-checked: var(--color-success);
+  }
 }

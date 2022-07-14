@@ -4,7 +4,7 @@
       <app-release-icon [date]="date"></app-release-icon>
       <div class="e-release-dates-modal__info">
         {{ date.date | unixTimestamp }}
-        <span class="l-title--small">{{ date.platform.name }}</span>
+        <span class="l-title--small">{{ date.platform.name | tag }}</span>
       </div>
     </ion-item>
   </ion-list></app-modal

@@ -1,48 +1,48 @@
 {
   "data": [
     {
-      "id": 3,
-      "name": "Linux"
+      "id": 34,
+      "name": "Android"
     },
     {
-      "id": 6,
-      "name": "Windows"
+      "id": 170,
+      "name": "Google Stadia"
+    },
+    {
+      "id": 3,
+      "name": "Linux"
     },
     {
       "id": 14,
       "name": "MAC"
     },
     {
-      "id": 34,
-      "name": "Android"
-    },
-    {
-      "id": 39,
-      "name": "iOS"
+      "id": 130,
+      "name": "Nintendo Switch"
     },
     {
       "id": 48,
       "name": "PlayStation 4"
     },
     {
-      "id": 49,
-      "name": "Xbox One"
-    },
-    {
-      "id": 130,
-      "name": "Nintendo Switch"
-    },
-    {
       "id": 167,
       "name": "PlayStation 5"
+    },
+    {
+      "id": 6,
+      "name": "Windows"
+    },
+    {
+      "id": 49,
+      "name": "Xbox One"
     },
     {
       "id": 169,
       "name": "Xbox Series X|S"
     },
     {
-      "id": 170,
-      "name": "Google Stadia"
+      "id": 39,
+      "name": "iOS"
     }
   ]
 }

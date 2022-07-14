@@ -22,15 +22,25 @@ export class SearchFilterComponent implements OnInit, OnChanges {
   perspectives: FilterOptions[];
   platforms: FilterOptions[];
 
-  categoriesAlert = {
-    header: 'Categories',
-    cssClass: 'c-ion-alert',
-  };
+  parameters: FilterOptions[] = [
+    { id: 'name', name: 'Name' },
+    { id: 'keywords', name: 'Keyword' },
+  ];
 
-  platformsAlert = {
-    header: 'Platforms',
-    cssClass: 'c-ion-alert',
-  };
+  sortingOrder: FilterOptions[] = [
+    { id: 'asc', name: 'Ascending' },
+    { id: 'desc', name: 'Descending' },
+  ];
+
+  sortingParameters: FilterOptions[] = [
+    { id: 'none', name: 'None' },
+    { id: 'name', name: 'Name' },
+    { id: 'aggregated_rating', name: 'Media ratings' },
+    { id: 'rating', name: 'User ratings' },
+    { id: 'total_rating', name: 'Total ratings' },
+    { id: 'hypes', name: 'Hypes' },
+    { id: 'first_release_date', name: 'First release date' },
+  ];
 
   constructor(private igdbService: IgdbService) {}
 
@@ -51,11 +61,19 @@ export class SearchFilterComponent implements OnInit, OnChanges {
     this.close.emit();
   }
 
-  changeOption(key: string, values) {
+  changeOption(key: string, event, detail?: boolean) {
     this.unsavedOptions = {
       ...this.unsavedOptions,
-      [key]: values,
+      [key]: detail ? event.detail.value : event,
     };
+
+    if (key === 'sortBy' && event === 'none') {
+      this.changeOption('sortOrder', 'none');
+    }
+
+    if (key === 'sortBy' && event !== 'none') {
+      this.changeOption('sortOrder', 'asc');
+    }
   }
 
   changeCategory(exclude: boolean, values) {

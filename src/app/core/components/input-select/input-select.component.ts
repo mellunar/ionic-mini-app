@@ -14,7 +14,7 @@ export class InputSelectComponent implements OnInit, OnChanges {
   @Input() message: string;
   @Input() multiple = true;
   @Input() subHeader: string;
-  @Input() value: number[];
+  @Input() value: number[] | string;
 
   @Input() items: number[][];
 

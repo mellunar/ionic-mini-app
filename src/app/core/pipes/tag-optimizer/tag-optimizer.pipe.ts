@@ -26,7 +26,11 @@ export class TagOptimizerPipe implements PipeTransform {
     }
 
     if (value === '4X (explore, expand, exploit, and exterminate)') {
-      return 'Do anything';
+      return '4X (Do anything)';
+    }
+
+    if (value === 'PC (Microsoft Windows)') {
+      return 'Windows';
     }
 
     return value;

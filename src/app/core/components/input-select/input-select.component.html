@@ -4,7 +4,7 @@
     class="c-ion-select"
     placeholder="Select"
     mode="ios"
-    [multiple]="true"
+    [multiple]="multiple"
     [value]="isCategory ? concatenedItems : value"
     [interfaceOptions]="alertInterface"
     (ionChange)="changeOption($event)">

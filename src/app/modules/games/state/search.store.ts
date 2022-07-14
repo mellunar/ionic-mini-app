@@ -2,11 +2,13 @@ import { Injectable } from '@angular/core';
 import { createStore, withProps } from '@ngneat/elf';
 import { persistState, localStorageStrategy } from '@ngneat/elf-persist-state';
 
+type SortBy = 'name' | 'total_rating' | 'aggregated_rating' | 'rating' | 'hypes' | 'first_release_date' | 'none';
+
 export interface SearchPreferences {
   sortOrder: 'asc' | 'desc' | 'none';
-  sortBy: 'name' | 'total_rating' | 'hypes' | 'none';
+  sortBy: SortBy;
   rating: number[];
-  parameter: string;
+  parameter: 'name' | 'keywords';
   platforms: number[];
   ignore: {
     themes: number[];
@@ -14,8 +16,8 @@ export interface SearchPreferences {
   };
   themes: number[];
   genres: number[];
-  modes: number[];
-  perspectives: number[];
+  game_modes: number[];
+  player_perspectives: number[];
 }
 
 const searchStore = createStore(
@@ -32,8 +34,8 @@ const searchStore = createStore(
     },
     themes: null,
     genres: null,
-    modes: null,
-    perspectives: null,
+    game_modes: null,
+    player_perspectives: null,
   })
 );
 

@@ -12,33 +12,56 @@
 
   <ng-container *ngIf="unsavedOptions">
     <div class="u-padding--md u-width--100">
+      <p class="e-search-filter__label">Search for games by</p>
+      <ion-radio-group
+        class="c-ion-list"
+        mode="ios"
+        [value]="unsavedOptions.parameter"
+        (ionChange)="changeOption('parameter', $event, true)">
+        <ng-container *ngFor="let parameter of parameters">
+          <ion-item class="c-ion-item c-ion-item--900">
+            <ion-label>{{ parameter.name }}</ion-label>
+            <ion-radio [value]="parameter.id"></ion-radio>
+          </ion-item>
+        </ng-container>
+      </ion-radio-group>
+
+      <div class="u-margin-bottom--md"></div>
+
+      <app-input-select
+        label="Sort by"
+        [multiple]="false"
+        [options]="sortingParameters"
+        [value]="unsavedOptions.sortBy"
+        (update)="changeOption('sortBy', $event)">
+      </app-input-select>
+
+      <div class="u-margin-top--sm"></div>
+      <p class="e-search-filter__label" [class.e-search-filter__label-disabled]="unsavedOptions.sortBy === 'none'">
+        Sort order
+      </p>
       <ion-radio-group
         class="c-ion-list"
         mode="ios"
         [value]="unsavedOptions.sortOrder"
-        (ionChange)="changeOption('sortOrder', $event)">
-        <ion-item class="c-ion-item c-ion-item--900">
-          <ion-radio value="asc"></ion-radio>
-          <ion-label>Ascending</ion-label>
-        </ion-item>
-
-        <ion-item class="c-ion-item c-ion-item--900">
-          <ion-radio value="desc"></ion-radio>
-          <ion-label>Descending</ion-label>
-        </ion-item>
-
-        <ion-item class="c-ion-item c-ion-item--900">
-          <ion-radio value="none"></ion-radio>
-          <ion-label>None</ion-label>
-        </ion-item>
+        (ionChange)="changeOption('sortOrder', $event, true)">
+        <ng-container *ngFor="let order of sortingOrder">
+          <ion-item class="c-ion-item c-ion-item--900">
+            <ion-label>{{ order.name }}</ion-label>
+            <ion-radio [disabled]="unsavedOptions.sortBy === 'none'" [value]="order.id"></ion-radio>
+          </ion-item>
+        </ng-container>
       </ion-radio-group>
 
+      <div class="u-margin-top--md"></div>
       <app-input-select
         label="Platforms"
         [options]="platforms"
         [value]="unsavedOptions.platforms"
         (update)="changeOption('platforms', $event)">
       </app-input-select>
+
+      <hr class="l-break u-margin-x--none" />
 
       <app-input-select
         label="Categories"
@@ -48,9 +71,29 @@
         (categories)="changeCategory(false, $event)">
       </app-input-select>
 
+      <hr class="l-break u-margin-x--none" />
+
+      <app-input-select
+        label="Game modes"
+        [options]="modes"
+        [value]="unsavedOptions.game_modes"
+        (update)="changeOption('game_modes', $event)">
+      </app-input-select>
+
+      <hr class="l-break u-margin-x--none" />
+
+      <app-input-select
+        label="Perspectives"
+        [options]="perspectives"
+        [value]="unsavedOptions.player_perspectives"
+        (update)="changeOption('player_perspectives', $event)">
+      </app-input-select>
+
+      <hr class="l-break u-margin-x--none" />
+
       <app-input-select
         label="Ignore"
-        message="Games from these categories will be removed from seach"
+        message="Games from selected categories will be removed from search"
         [isCategory]="true"
         [options]="categories"
         [items]="[unsavedOptions.ignore.genres, unsavedOptions.ignore.themes]"
