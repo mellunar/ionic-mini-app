@@ -21,6 +21,10 @@
     overflow-y: auto;
   }
 
+  ion-radio {
+    --color-checked: var(--color-success);
+  }
+
   &__label {
     font-size: 17px;
     margin-bottom: var(--size-xs);
@@ -30,7 +34,14 @@
     }
   }
 
-  ion-radio {
-    --color-checked: var(--color-success);
+  &__drawer {
+    margin-top: var(--size-sm);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 300ms ease;
+
+    &-opened {
+      max-height: 100%;
+    }
   }
 }

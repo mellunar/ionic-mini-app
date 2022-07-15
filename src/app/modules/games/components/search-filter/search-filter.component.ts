@@ -42,6 +42,12 @@ export class SearchFilterComponent implements OnInit, OnChanges {
     { id: 'first_release_date', name: 'First release date' },
   ];
 
+  ratingParameters: FilterOptions[] = [
+    { id: 'aggregated_rating', name: 'Media ratings' },
+    { id: 'rating', name: 'User ratings' },
+    { id: 'total_rating', name: 'Total ratings' },
+  ];
+
   constructor(private igdbService: IgdbService) {}
 
   ngOnInit() {
@@ -61,11 +67,8 @@ export class SearchFilterComponent implements OnInit, OnChanges {
     this.close.emit();
   }
 
-  changeOption(key: string, event, detail?: boolean) {
-    this.unsavedOptions = {
-      ...this.unsavedOptions,
-      [key]: detail ? event.detail.value : event,
-    };
+  changeOption(key: string, event, detail?: string) {
+    this.unsavedOptions[key] = detail ? event.detail[detail] : event;
 
     if (key === 'sortBy' && event === 'none') {
       this.changeOption('sortOrder', 'none');
@@ -73,6 +76,14 @@ export class SearchFilterComponent implements OnInit, OnChanges {
 
     if (key === 'sortBy' && event !== 'none') {
       this.changeOption('sortOrder', 'asc');
+    }
+
+    if (key === 'showUnrated' && !event.detail.checked) {
+      this.changeOption('ratingBy', 'aggregated_rating');
+    }
+
+    if (key === 'showUnrated' && event.detail.checked) {
+      this.changeOption('ratingBy', null);
     }
   }
 
@@ -91,6 +102,18 @@ export class SearchFilterComponent implements OnInit, OnChanges {
         themes,
       };
     }
+  }
+
+  changeRange(event) {
+    // to avoid ionChange loop
+    if (
+      this.unsavedOptions.rating.lower === event.detail.value.lower &&
+      this.unsavedOptions.rating.upper === event.detail.value.upper
+    ) {
+      return;
+    }
+
+    this.changeOption('rating', event.detail.value);
   }
 
   updatePreferences() {

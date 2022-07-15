@@ -27,6 +27,15 @@
   }
 }
 
+.c-ion-checkbox {
+  --background: var(--color-bg-900);
+  --background-checked: var(--color-success);
+  --border-color: var(--color-bg-700);
+  --border-color-checked: var(--color-success);
+  --checkmark-color: var(--color-bg-900);
+  --checkmark-width: 2px;
+}
+
 .c-ion-list {
   &--900 {
     margin: 0 var(--size-md) var(--size-md);
@@ -35,39 +44,10 @@
   }
 }
 
-.c-ion-item {
-  --background: var(--color-bg-800);
-  --border-color: var(--color-bg-700);
-  --padding-start: 0;
-  --inner-padding-end: 0;
-
-  &--alt {
-    --padding-start: var(--size-md);
-    --inner-padding-end: var(--size-md);
-    --background: var(--color-bg-900);
-    --border-color: transparent;
-
-    &-icon {
-      margin-left: auto;
-      font-size: 20px;
-      color: #505156;
-    }
-  }
-
-  &--900 {
-    --background: var(--color-bg-900);
-    --border-color: var(--color-bg-800);
-  }
-
-  &:last-of-type {
-    --border-color: transparent;
-  }
-
-  ion-select::part(icon) {
-    margin-right: 2px;
-    color: var(--color-text);
-    opacity: 0.5;
-  }
+.c-ion-range {
+  margin: 0 20px;
+  --bar-background: var(--color-bg-800);
+  --bar-background-active: var(--color-success);
 }
 
 .c-ion-searchbar {

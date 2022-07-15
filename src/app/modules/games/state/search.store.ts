@@ -7,7 +7,10 @@ type SortBy = 'name' | 'total_rating' | 'aggregated_rating' | 'rating' | 'hypes'
 export interface SearchPreferences {
   sortOrder: 'asc' | 'desc' | 'none';
   sortBy: SortBy;
-  rating: number[];
+  showUnrated: boolean;
+  rating: { lower: number; upper: number };
+  ratingBy: 'none' | 'total_rating' | 'aggregated_rating' | 'rating';
+  ratingDisplay: 'total_rating' | 'aggregated_rating' | 'rating';
   parameter: 'name' | 'keywords';
   platforms: number[];
   ignore: {
@@ -25,7 +28,10 @@ const searchStore = createStore(
   withProps<SearchPreferences>({
     sortOrder: 'none',
     sortBy: 'none',
-    rating: [0, 100],
+    showUnrated: true,
+    rating: { lower: 0, upper: 100 },
+    ratingBy: null,
+    ratingDisplay: 'aggregated_rating',
     parameter: 'name',
     platforms: null,
     ignore: {

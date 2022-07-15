@@ -38,22 +38,27 @@
         (update)="changeOption('sortBy', $event)">
       </app-input-select>
 
-      <div class="u-margin-top--sm"></div>
-      <p class="e-search-filter__label" [class.e-search-filter__label-disabled]="unsavedOptions.sortBy === 'none'">
-        Sort order
-      </p>
-      <ion-radio-group
-        class="c-ion-list"
-        mode="ios"
-        [value]="unsavedOptions.sortOrder"
-        (ionChange)="changeOption('sortOrder', $event, true)">
-        <ng-container *ngFor="let order of sortingOrder">
-          <ion-item class="c-ion-item c-ion-item--900">
-            <ion-label>{{ order.name }}</ion-label>
-            <ion-radio [disabled]="unsavedOptions.sortBy === 'none'" [value]="order.id"></ion-radio>
-          </ion-item>
-        </ng-container>
-      </ion-radio-group>
+      <div
+        class="e-search-filter__drawer"
+        [class.e-search-filter__drawer-opened]="unsavedOptions.sortBy !== 'none'">
+        <p
+          class="e-search-filter__label"
+          [class.e-search-filter__label-disabled]="unsavedOptions.sortBy === 'none'">
+          Sort order
+        </p>
+        <ion-radio-group
+          class="c-ion-list"
+          mode="ios"
+          [value]="unsavedOptions.sortOrder"
+          (ionChange)="changeOption('sortOrder', $event, 'value')">
+          <ng-container *ngFor="let order of sortingOrder">
+            <ion-item class="c-ion-item c-ion-item--900">
+              <ion-label>{{ order.name }}</ion-label>
+              <ion-radio [disabled]="unsavedOptions.sortBy === 'none'" [value]="order.id"></ion-radio>
+            </ion-item>
+          </ng-container>
+        </ion-radio-group>
+      </div>
 
       <div class="u-margin-top--md"></div>
       <app-input-select
@@ -94,6 +99,16 @@
       <hr class="l-break u-margin-x--none" />
 
       <app-input-select
+        label="Display ratings by"
+        [multiple]="false"
+        [options]="ratingParameters"
+        [value]="unsavedOptions.ratingDisplay"
+        (update)="changeOption('ratingDisplay', $event)">
+      </app-input-select>
+
+      <hr class="l-break u-margin-x--none" />
+
+      <app-input-select
         label="Ignore"
         message="Games from selected categories will be removed from search"
         [isCategory]="true"
@@ -101,6 +116,37 @@
         [items]="[unsavedOptions.ignore.genres, unsavedOptions.ignore.themes]"
         (categories)="changeCategory(true, $event)">
       </app-input-select>
+
+      <div class="u-margin-top--md">
+        <ion-item class="c-ion-item c-ion-item--900" mode="ios">
+          <ion-label>Show unrated games</ion-label>
+          <ion-checkbox
+            class="c-ion-checkbox"
+            [checked]="unsavedOptions.showUnrated"
+            (ionChange)="changeOption('showUnrated', $event, 'checked')"></ion-checkbox>
+        </ion-item>
+        <div class="e-search-filter__drawer" [class.e-search-filter__drawer-opened]="!unsavedOptions.showUnrated">
+          <hr class="l-break u-margin-x--none" />
+          <app-input-select
+            label="Which kind of rating range"
+            [disabled]="unsavedOptions.showUnrated"
+            [multiple]="false"
+            [options]="ratingParameters"
+            [value]="unsavedOptions.ratingBy"
+            (update)="changeOption('ratingBy', $event)">
+          </app-input-select>
+          <hr class="l-break u-margin-x--none" />
+          <ion-item class="c-ion-item c-ion-item--900" mode="ios">
+            <ion-range
+              class="c-ion-range"
+              [debounce]="100"
+              [dualKnobs]="true"
+              [value]="unsavedOptions.rating"
+              (ionChange)="changeRange($event)"></ion-range>
+          </ion-item>
+          <p>{{ unsavedOptions.rating.lower }} ~ {{ unsavedOptions.rating.upper }}</p>
+        </div>
+      </div>
     </div>
 
     <div class="u-margin-top--auto u-padding--md u-width--100">

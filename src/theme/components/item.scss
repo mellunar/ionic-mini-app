@@ -1,0 +1,32 @@
+.c-ion-item {
+  --background: var(--color-bg-800);
+  --border-color: var(--color-bg-700);
+  --padding-start: 0;
+  --inner-padding-end: 0;
+
+  --highlight-color-focused: var(--color-text);
+  --highlight-color-invalid: var(--color-danger);
+  --highlight-color-valid: var(--color-success);
+
+  &--alt {
+    --padding-start: var(--size-md);
+    --inner-padding-end: var(--size-md);
+    --background: var(--color-bg-900);
+    --border-color: transparent;
+  }
+
+  &--900 {
+    --background: var(--color-bg-900);
+    --border-color: var(--color-bg-800);
+  }
+
+  &:last-of-type {
+    --border-color: transparent;
+  }
+
+  ion-select::part(icon) {
+    margin-right: 2px;
+    color: var(--color-text);
+    opacity: 0.5;
+  }
+}

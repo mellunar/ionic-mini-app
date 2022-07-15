@@ -152,7 +152,7 @@ export class GamesService {
     let initialOffset = '';
     let sort = '';
 
-    const where = [];
+    const whereParams = [];
 
     if (!filters) {
       if (!param) {
@@ -163,7 +163,7 @@ export class GamesService {
         paramToSearch = param;
       }
     } else {
-      const keys = Object.keys(filters);
+      const keys = ['platforms', 'themes', 'genres', 'game_modes', 'player_perspectives'];
 
       paramToSearch = filters.parameter;
 
@@ -171,20 +171,22 @@ export class GamesService {
         sort = ` sort ${filters.sortBy} ${filters.sortOrder};`;
       }
 
-      const autoCheck = ['platforms', 'themes', 'genres', 'game_modes', 'player_perspectives'];
-
       keys.forEach((key) => {
-        if (autoCheck.includes(key) && filters[key]?.length > 0) {
-          where.push(`${key} = [${filters[key].join(',')}]`);
+        if (filters[key]?.length > 0) {
+          whereParams.push(`${key} = [${filters[key].join(',')}]`);
         }
       });
 
+      // rating range
+      whereParams.push('rating >= 0');
+      whereParams.push('rating <= 100');
+
       if (filters.ignore?.genres?.length > 0) {
-        where.push(`genres != [${filters.ignore.genres.join(',')}]`);
+        whereParams.push(`genres != [${filters.ignore.genres.join(',')}]`);
       }
 
       if (filters.ignore?.themes?.length > 0) {
-        where.push(`themes != [${filters.ignore.themes.join(',')}]`);
+        whereParams.push(`themes != [${filters.ignore.themes.join(',')}]`);
       }
     }
 
@@ -193,13 +195,11 @@ export class GamesService {
     }
 
     const formattedTerm = `${paramToSearch} ~ *"${term}"*`;
-    const formattedWhere = where.length > 0 ? where.join(' & ') : '';
+    const where = whereParams.length > 0 ? whereParams.join(' & ') : '';
 
-    const query = `where ${
-      formattedWhere.length < 1 ? formattedTerm : `(${formattedTerm} & ${formattedWhere})`
-    }; fields ${this.gameListFields}; limit 20;${initialOffset}${sort}`;
-
-    console.log(query);
+    const query = `where ${where.length < 1 ? formattedTerm : `(${formattedTerm} & ${where})`}; fields ${
+      this.gameListFields
+    }; limit 20;${initialOffset}${sort}`;
 
     return this.http.post<Game[]>('/api/game', query).pipe(
       catchError((err) => {
