@@ -15,3 +15,5 @@ export type IGDBImage =
   | 'micro' // 35 x 35
   | '720p'
   | '1080p';
+
+export type Rating = 'total_rating' | 'aggregated_rating' | 'rating';

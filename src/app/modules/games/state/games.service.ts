@@ -177,17 +177,18 @@ export class GamesService {
         }
       });
 
-      // rating range
-      whereParams.push('rating >= 0');
-      whereParams.push('rating <= 100');
-
-      if (filters.ignore?.genres?.length > 0) {
-        whereParams.push(`genres != [${filters.ignore.genres.join(',')}]`);
+      if (!filters.showUnrated) {
+        whereParams.push(`${filters.ratingBy} >= ${filters.rating.lower}`);
+        whereParams.push(`${filters.ratingBy} <= ${filters.rating.upper}`);
       }
 
-      if (filters.ignore?.themes?.length > 0) {
-        whereParams.push(`themes != [${filters.ignore.themes.join(',')}]`);
-      }
+      const ignoreKeys = ['genres', 'themes', 'status'];
+
+      ignoreKeys.forEach((key) => {
+        if (filters?.ignore[key]?.length > 0) {
+          whereParams.push(`genres != [${filters.ignore[key].join(',')}]`);
+        }
+      });
     }
 
     if (offset && offset > 2) {

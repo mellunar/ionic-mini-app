@@ -20,7 +20,7 @@ export class GamesSearchPage implements OnInit, OnDestroy {
   loading = false;
   results: Game[] = [];
   showFilter = false;
-  searchOptions: SearchPreferences;
+  searchPreferences: SearchPreferences;
   infiniteScrollDisabled = true;
 
   searchSubscription$: Subscription;
@@ -57,7 +57,7 @@ export class GamesSearchPage implements OnInit, OnDestroy {
 
   ionViewWillEnter() {
     this.uiService.setTitle('Search');
-    this.searchOptions = this.searchStore.getSearchPreferences();
+    this.searchPreferences = this.searchStore.getSearchPreferences();
   }
 
   ionViewWillLeave() {
@@ -125,7 +125,7 @@ export class GamesSearchPage implements OnInit, OnDestroy {
   }
 
   updateSearchPreferences(preferences: SearchPreferences) {
-    this.searchOptions = preferences;
+    this.searchPreferences = preferences;
     this.searchStore.setSearchPreferences(preferences);
 
     const val = this.form.value.search;
@@ -140,9 +140,9 @@ export class GamesSearchPage implements OnInit, OnDestroy {
     const offset = this.results.length + 1;
 
     if (this.paramSearch) {
-      return this.gamesService.searchByTerm(val, this.paramSearch, offset, this.searchOptions);
+      return this.gamesService.searchByTerm(val, this.paramSearch, offset, this.searchPreferences);
     } else {
-      return this.gamesService.searchByTerm(val, 'name', offset, this.searchOptions);
+      return this.gamesService.searchByTerm(val, 'name', offset, this.searchPreferences);
     }
   }
 }

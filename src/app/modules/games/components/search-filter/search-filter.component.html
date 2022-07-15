@@ -2,8 +2,13 @@
   <ion-header class="c-header" slot="fixed" mode="ios">
     <ion-toolbar>
       <ion-title>Filter search</ion-title>
+      <ion-buttons slot="start">
+        <ion-button class="c-header__button" title="Reset" (click)="resetPreferences()">
+          <app-icon name="refresh-outline"></app-icon>
+        </ion-button>
+      </ion-buttons>
       <ion-buttons slot="end">
-        <ion-button class="c-header__button u-color--danger" (click)="closeFilter()">
+        <ion-button class="c-header__button u-color--danger" title="Close" (click)="closeFilter()">
           <app-icon name="close"></app-icon>
         </ion-button>
       </ion-buttons>
@@ -30,6 +35,7 @@
       <div class="u-margin-bottom--md"></div>
       -->
 
+      <!-- sort by -->
       <app-input-select
         label="Sort by"
         [multiple]="false"
@@ -60,6 +66,7 @@
         </ion-radio-group>
       </div>
 
+      <!-- platforms -->
       <div class="u-margin-top--md"></div>
       <app-input-select
         label="Platforms"
@@ -68,8 +75,8 @@
         (update)="changeOption('platforms', $event)">
       </app-input-select>
 
+      <!-- categories -->
       <hr class="l-break u-margin-x--none" />
-
       <app-input-select
         label="Categories"
         [isCategory]="true"
@@ -78,8 +85,8 @@
         (categories)="changeCategory(false, $event)">
       </app-input-select>
 
+      <!-- game modes -->
       <hr class="l-break u-margin-x--none" />
-
       <app-input-select
         label="Game modes"
         [options]="modes"
@@ -87,8 +94,8 @@
         (update)="changeOption('game_modes', $event)">
       </app-input-select>
 
+      <!-- perspectives -->
       <hr class="l-break u-margin-x--none" />
-
       <app-input-select
         label="Perspectives"
         [options]="perspectives"
@@ -96,8 +103,17 @@
         (update)="changeOption('player_perspectives', $event)">
       </app-input-select>
 
+      <!-- status -->
       <hr class="l-break u-margin-x--none" />
+      <app-input-select
+        label="Status"
+        [options]="status"
+        [value]="unsavedOptions.status"
+        (update)="changeOption('status', $event)">
+      </app-input-select>
 
+      <!-- display ratings by -->
+      <hr class="l-break u-margin-x--none" />
       <app-input-select
         label="Display ratings by"
         [multiple]="false"
@@ -106,10 +122,10 @@
         (update)="changeOption('ratingDisplay', $event)">
       </app-input-select>
 
+      <!-- ignore categories -->
       <hr class="l-break u-margin-x--none" />
-
       <app-input-select
-        label="Ignore"
+        label="Categories to ignore"
         message="Games from selected categories will be removed from search"
         [isCategory]="true"
         [options]="categories"
@@ -117,6 +133,16 @@
         (categories)="changeCategory(true, $event)">
       </app-input-select>
 
+      <!-- ignore status -->
+      <hr class="l-break u-margin-x--none" />
+      <app-input-select
+        label="Status to ignore"
+        [options]="status"
+        [value]="unsavedOptions.ignore.status"
+        (update)="ignoreOption('status', $event)">
+      </app-input-select>
+
+      <!-- ratings and range -->
       <div class="u-margin-top--md">
         <ion-item class="c-ion-item c-ion-item--900" mode="ios">
           <ion-label>Show unrated games</ion-label>
@@ -128,13 +154,14 @@
         <div class="e-search-filter__drawer" [class.e-search-filter__drawer-opened]="!unsavedOptions.showUnrated">
           <hr class="l-break u-margin-x--none" />
           <app-input-select
-            label="Which kind of rating range"
+            label="Rating range by"
             [disabled]="unsavedOptions.showUnrated"
             [multiple]="false"
             [options]="ratingParameters"
             [value]="unsavedOptions.ratingBy"
             (update)="changeOption('ratingBy', $event)">
           </app-input-select>
+
           <hr class="l-break u-margin-x--none" />
           <ion-item class="c-ion-item c-ion-item--900" mode="ios">
             <ion-range
@@ -144,7 +171,9 @@
               [value]="unsavedOptions.rating"
               (ionChange)="changeRange($event)"></ion-range>
           </ion-item>
-          <p>{{ unsavedOptions.rating.lower }} ~ {{ unsavedOptions.rating.upper }}</p>
+          <p class="u-width--100 u-text-align--center">
+            {{ unsavedOptions.rating.lower }} ~ {{ unsavedOptions.rating.upper }}
+          </p>
         </div>
       </div>
     </div>

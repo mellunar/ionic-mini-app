@@ -26,7 +26,11 @@
     </app-tags>
 
     <div class="c-game-item__misc">
-      <app-rating [game]="game" [showModal]="enableOutput" (openRatings)="openRatingsModal($event)"></app-rating>
+      <app-rating
+        [display]="ratingDisplay"
+        [game]="game"
+        [showModal]="enableOutput"
+        (openRatings)="openRatingsModal($event)"></app-rating>
 
       <ng-container *ngIf="game.platforms?.length > 0">
         <button class="c-label" (click)="openPlatformsModal()">

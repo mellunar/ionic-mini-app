@@ -88,7 +88,6 @@ export class InputSelectComponent implements OnInit, OnChanges {
         });
       }
 
-      console.log(updated);
       this.categories.emit(updated);
     }
   }

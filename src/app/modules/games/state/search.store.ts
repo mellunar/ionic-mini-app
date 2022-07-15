@@ -16,34 +16,37 @@ export interface SearchPreferences {
   ignore: {
     themes: number[];
     genres: number[];
+    status: number[];
   };
   themes: number[];
   genres: number[];
   game_modes: number[];
   player_perspectives: number[];
+  status: number[]; // status
 }
 
-const searchStore = createStore(
-  { name: 'search-preferences' },
-  withProps<SearchPreferences>({
-    sortOrder: 'none',
-    sortBy: 'none',
-    showUnrated: true,
-    rating: { lower: 0, upper: 100 },
-    ratingBy: null,
-    ratingDisplay: 'aggregated_rating',
-    parameter: 'name',
-    platforms: null,
-    ignore: {
-      themes: null,
-      genres: null,
-    },
+const initialState: SearchPreferences = {
+  sortOrder: 'none',
+  sortBy: 'none',
+  showUnrated: true,
+  rating: { lower: 0, upper: 100 },
+  ratingBy: null,
+  ratingDisplay: 'aggregated_rating',
+  parameter: 'name',
+  platforms: null,
+  ignore: {
     themes: null,
     genres: null,
-    game_modes: null,
-    player_perspectives: null,
-  })
-);
+    status: null,
+  },
+  themes: null,
+  genres: null,
+  game_modes: null,
+  player_perspectives: null,
+  status: null,
+};
+
+const searchStore = createStore({ name: 'search-preferences' }, withProps<SearchPreferences>(initialState));
 
 export const persist = persistState(searchStore, {
   key: 'search-preferences',
@@ -54,6 +57,14 @@ export const persist = persistState(searchStore, {
 export class SearchStore {
   getSearchPreferences() {
     return searchStore.getValue();
+  }
+
+  getSearchRatingPreference() {
+    return searchStore.getValue().ratingDisplay;
+  }
+
+  resetSearchPreferences() {
+    this.setSearchPreferences(initialState);
   }
 
   setSearchPreferences(preferences: SearchPreferences) {

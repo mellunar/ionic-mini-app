@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Game, GenericInfo, Ratings } from 'src/app/modules/games/state/games.interface';
+import { Rating } from '../../services/igdb/igdb.interface';
 
 @Component({
   selector: 'app-game-list-item',
@@ -10,6 +11,7 @@ export class GameListItemComponent implements OnInit {
   @Input() game: Game;
   @Input() titleSize: 'normal' | 'small' = 'small';
   @Input() enableOutput = false;
+  @Input() ratingDisplay: Rating = 'aggregated_rating';
 
   @Output() openCategories = new EventEmitter<GenericInfo[]>();
   @Output() openDates = new EventEmitter<any>();

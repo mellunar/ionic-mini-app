@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { IgdbService } from 'src/app/core/services/igdb/igdb.service';
 import { FilterOptions } from 'src/app/core/services/ui/ui.interface';
-import { SearchPreferences } from '../../state/search.store';
+import { SearchPreferences, SearchStore } from '../../state/search.store';
 
 @Component({
   selector: 'app-search-filter',
@@ -21,6 +21,7 @@ export class SearchFilterComponent implements OnInit, OnChanges {
   modes: FilterOptions[];
   perspectives: FilterOptions[];
   platforms: FilterOptions[];
+  status: FilterOptions[];
 
   parameters: FilterOptions[] = [
     { id: 'name', name: 'Name' },
@@ -48,13 +49,14 @@ export class SearchFilterComponent implements OnInit, OnChanges {
     { id: 'total_rating', name: 'Total ratings' },
   ];
 
-  constructor(private igdbService: IgdbService) {}
+  constructor(private igdbService: IgdbService, private searchStore: SearchStore) {}
 
   ngOnInit() {
     this.categories = this.igdbService.getCategoriesOptions();
     this.modes = this.igdbService.getModesOptions();
     this.perspectives = this.igdbService.getPerspectivesOptions();
     this.platforms = this.igdbService.getPlatformsOptions();
+    this.status = this.igdbService.getStatusOptions();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -68,7 +70,10 @@ export class SearchFilterComponent implements OnInit, OnChanges {
   }
 
   changeOption(key: string, event, detail?: string) {
-    this.unsavedOptions[key] = detail ? event.detail[detail] : event;
+    this.unsavedOptions = {
+      ...this.unsavedOptions,
+      [key]: detail ? event.detail[detail] : event,
+    };
 
     if (key === 'sortBy' && event === 'none') {
       this.changeOption('sortOrder', 'none');
@@ -91,10 +96,7 @@ export class SearchFilterComponent implements OnInit, OnChanges {
     const { genres, themes } = values;
 
     if (exclude) {
-      this.unsavedOptions = {
-        ...this.unsavedOptions,
-        ignore: { genres, themes },
-      };
+      this.changeOption('ignore', { ...this.unsavedOptions.ignore, genres, themes });
     } else {
       this.unsavedOptions = {
         ...this.unsavedOptions,
@@ -114,6 +116,15 @@ export class SearchFilterComponent implements OnInit, OnChanges {
     }
 
     this.changeOption('rating', event.detail.value);
+  }
+
+  ignoreOption(key: string, value) {
+    this.changeOption('ignore', { ...this.unsavedOptions.ignore, [key]: value });
+  }
+
+  resetPreferences() {
+    this.searchStore.resetSearchPreferences();
+    this.unsavedOptions = this.searchStore.getSearchPreferences();
   }
 
   updatePreferences() {

@@ -1,0 +1,36 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Released"
+    },
+    {
+      "id": 2,
+      "name": "Alpha"
+    },
+    {
+      "id": 3,
+      "name": "Beta"
+    },
+    {
+      "id": 4,
+      "name": "Early access"
+    },
+    {
+      "id": 5,
+      "name": "Offline"
+    },
+    {
+      "id": 6,
+      "name": "Canceled"
+    },
+    {
+      "id": 7,
+      "name": "Rumored"
+    },
+    {
+      "id": 8,
+      "name": "Delisted"
+    }
+  ]
+}
