@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { AlertOptions } from '@ionic/angular';
+import { IgdbService } from '../../services/igdb/igdb.service';
 import { FilterOptions } from '../../services/ui/ui.interface';
 
 @Component({
@@ -8,6 +9,8 @@ import { FilterOptions } from '../../services/ui/ui.interface';
   styleUrls: ['./input-select.component.scss'],
 })
 export class InputSelectComponent implements OnInit, OnChanges {
+  @Input() disabled: boolean;
+  @Input() display: string;
   @Input() isCategory = false;
   @Input() label: string;
   @Input() options: FilterOptions[];
@@ -27,7 +30,7 @@ export class InputSelectComponent implements OnInit, OnChanges {
     cssClass: 'c-ion-alert',
   };
 
-  constructor() {}
+  constructor(private igdbService: IgdbService) {}
 
   ngOnInit() {
     if (this.label) {
@@ -50,7 +53,10 @@ export class InputSelectComponent implements OnInit, OnChanges {
 
     const arr = changes.items?.currentValue;
     if (arr?.length > 0) {
-      this.concatenedItems = [].concat(...arr);
+      const genres = this.convertIdToName(arr[0], 'genres');
+      const themes = this.convertIdToName(arr[1], 'themes');
+
+      this.concatenedItems = [].concat(genres, themes);
     } else {
       this.concatenedItems = [];
     }
@@ -74,15 +80,31 @@ export class InputSelectComponent implements OnInit, OnChanges {
 
       if (value?.length > 0) {
         value.forEach((item) => {
-          const index = this.options.findIndex((i) => i.id === item);
+          const index = this.options.findIndex((i) => i.name === item);
 
           if (index > -1) {
-            updated[this.options[index].endpoint].push(item);
+            updated[this.options[index].endpoint].push(this.options[index].id);
           }
         });
       }
 
+      console.log(updated);
       this.categories.emit(updated);
     }
+  }
+
+  convertIdToName(arr: number[], endpoint: string) {
+    const filtered = this.options.filter((item) => item.endpoint === endpoint);
+    if (arr?.length > 0) {
+      return arr.map((id) => {
+        const index = filtered.findIndex((item) => item.id === id);
+
+        if (index > -1) {
+          return filtered[index].name;
+        }
+      });
+    }
+
+    return [];
   }
 }

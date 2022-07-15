@@ -4,12 +4,17 @@
     class="c-ion-select"
     placeholder="Select"
     mode="ios"
+    [disabled]="disabled"
     [multiple]="multiple"
     [value]="isCategory ? concatenedItems : value"
     [interfaceOptions]="alertInterface"
     (ionChange)="changeOption($event)">
     <ng-container *ngFor="let option of options">
-      <ion-select-option [value]="option.id">{{ option.name }}</ion-select-option>
+      <ion-select-option
+        [class.u-display--none]="display === 'none'"
+        [value]="isCategory ? option.name : option.id"
+        >{{ option.name }}</ion-select-option
+      >
     </ng-container>
   </ion-select>
 </ion-item>
