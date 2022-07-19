@@ -1,12 +1,7 @@
-<ng-container *ngIf="messages.length > 0">
-  <button
-    *ngFor="let message of messages; let i = index"
-    class="e-toast u-bg--{{ message.type }}"
-    (click)="closeMessage(i)">
-    <app-icon *ngIf="message.icon" class="e-toast__icon" [name]="message.icon" [src]="message.icon"></app-icon>
-    <span class="e-toast__text">{{ message.message }}</span>
-    <span class="e-toast__button">
-      <app-icon class="e-toast__button-icon" name="close"></app-icon>
-    </span>
-  </button>
-</ng-container>
+<button class="e-toast u-bg--{{ type }}" (click)="closeMessage()">
+  <app-icon *ngIf="icon" class="e-toast__icon" [name]="icon" [src]="icon"></app-icon>
+  <span class="e-toast__text">{{ message }}</span>
+  <span class="e-toast__button">
+    <app-icon class="e-toast__button-icon" name="close"></app-icon>
+  </span>
+</button>

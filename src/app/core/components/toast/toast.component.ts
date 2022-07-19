@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-import { ToastService } from '../../services/toast/toast.service';
-import { ToastMessage } from './toast.interface';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ToastType } from './toast.interface';
 
 @Component({
   selector: 'app-toast',
@@ -8,26 +7,16 @@ import { ToastMessage } from './toast.interface';
   styleUrls: ['./toast.component.scss'],
 })
 export class ToastComponent {
-  messages: ToastMessage[] = [];
+  @Input() message: string;
+  @Input() type: ToastType;
+  @Input() icon: string;
+  @Input() index: number;
 
-  constructor(private toastService: ToastService) {
-    this.toastService.message.subscribe((res) => {
-      if (this.messages.length > 4) {
-        this.messages.shift();
-      }
+  @Output() close = new EventEmitter();
 
-      this.messages.push(res);
+  constructor() {}
 
-      setTimeout(() => {
-        const index = this.messages.indexOf(res);
-        if (index > -1) {
-          this.closeMessage(index);
-        }
-      }, 10000);
-    });
-  }
-
-  closeMessage(index: number) {
-    this.messages.splice(index, 1);
+  closeMessage() {
+    this.close.emit();
   }
 }

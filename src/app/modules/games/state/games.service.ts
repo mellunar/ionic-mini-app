@@ -111,7 +111,7 @@ export class GamesService {
 
       return of([this.gamesStore.getGameById(id)]);
     } else if (canRequest && this.gamesStore.getGameById(id)) {
-      this.toastService.info('Updating game data', 'cloud-download');
+      this.toastService.setAsyncToast('Updating game data', 'neutral', 'cloud-download');
     }
 
     const query = `where id = (${id}); fields ${this.formGameFields()}; exclude ${this.excludeFields};`;
@@ -125,6 +125,7 @@ export class GamesService {
 
         game[0].local_update = Date.now();
         this.gamesStore.addGame(game);
+        this.toastService.removeAsyncToast();
       }),
       catchError((err) => {
         this.toastService.error(err.message);

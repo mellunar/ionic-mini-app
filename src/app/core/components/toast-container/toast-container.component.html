@@ -1,0 +1,17 @@
+<ng-container *ngIf="asyncToast$ | async as message">
+  <app-toast
+    [message]="message.message"
+    [type]="message.type"
+    [icon]="message.icon"
+    (close)="closeMessage(999)"></app-toast>
+</ng-container>
+
+<ng-container *ngIf="messages.length > 0">
+  <ng-container *ngFor="let message of messages; let i = index">
+    <app-toast
+      [message]="message.message"
+      [type]="message.type"
+      [icon]="message.icon"
+      (close)="closeMessage(i)"></app-toast>
+  </ng-container>
+</ng-container>
