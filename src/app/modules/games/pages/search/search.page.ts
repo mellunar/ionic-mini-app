@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { debounceTime, filter, finalize, Subscription, switchMap, tap } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { debounceTime, filter, finalize, Observable, Subscription, switchMap, tap } from 'rxjs';
+import { FilterOptions } from 'src/app/core/services/ui/ui.interface';
 import { UIService } from 'src/app/core/services/ui/ui.service';
 import { Game } from '../../state/games.interface';
 import { GamesService } from '../../state/games.service';
@@ -23,6 +24,7 @@ export class GamesSearchPage implements OnInit, OnDestroy {
   searchPreferences: SearchPreferences;
   infiniteScrollDisabled = true;
 
+  searchHistory$: Observable<FilterOptions[]>;
   searchSubscription$: Subscription;
   paramSubscription$: Subscription;
 
@@ -32,11 +34,14 @@ export class GamesSearchPage implements OnInit, OnDestroy {
     private gamesService: GamesService,
     private uiService: UIService,
     private activatedRoute: ActivatedRoute,
+    private router: Router,
     private searchStore: SearchStore
   ) {}
 
   ngOnInit() {
     this.searchSubscriber();
+
+    this.searchHistory$ = this.searchStore.history$;
 
     this.paramSubscription$ = this.activatedRoute.queryParams.subscribe((params) => {
       const keys = Object.keys(params);
@@ -69,6 +74,11 @@ export class GamesSearchPage implements OnInit, OnDestroy {
     this.form.get('search').setValue('');
     this.uiService.setTitle('Search');
     this.infiniteScrollDisabled = true;
+
+    if (this.paramSearch) {
+      this.paramSearch = null;
+      this.router.navigate([], { relativeTo: this.activatedRoute, queryParams: {} });
+    }
   }
 
   nextPage(e) {
@@ -93,6 +103,14 @@ export class GamesSearchPage implements OnInit, OnDestroy {
       .subscribe();
   }
 
+  removeFromHistory(id) {
+    this.searchStore.removeFromHistory(id);
+  }
+
+  searchFromHistory(term) {
+    this.form.get('search').setValue(term);
+  }
+
   searchSubscriber() {
     this.searchSubscription$ = this.form
       .get('search')
@@ -103,6 +121,10 @@ export class GamesSearchPage implements OnInit, OnDestroy {
           this.loading = true;
         }),
         switchMap((val: string) => {
+          if (!this.paramSearch) {
+            this.searchStore.addToHistory(val);
+          }
+
           return this.searchGames(val);
         }),
         tap((res) => {

@@ -35,15 +35,33 @@
   </ng-container>
 
   <ng-template #searchResults>
-    <div class="c-games-list" *ngIf="results?.length > 0">
+    <div class="c-games-list" *ngIf="results?.length > 0; else noResults">
       <ng-container *ngFor="let game of results">
         <app-game-list-item [game]="game" [ratingDisplay]="searchPreferences.ratingDisplay"></app-game-list-item>
       </ng-container>
+
+      <ion-infinite-scroll threshold="0px" [disabled]="infiniteScrollDisabled" (ionInfinite)="nextPage($event)">
+        <ion-infinite-scroll-content loadingSpinner="crescent" loadingText="Loading more data...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
     </div>
 
-    <ion-infinite-scroll threshold="0px" [disabled]="infiniteScrollDisabled" (ionInfinite)="nextPage($event)">
-      <ion-infinite-scroll-content loadingSpinner="crescent" loadingText="Loading more data...">
-      </ion-infinite-scroll-content>
-    </ion-infinite-scroll>
+    <ng-template #noResults>
+      <div class="u-padding-x--md" *ngIf="searchHistory$ | async as history">
+        <ng-container *ngFor="let item of history">
+          <ion-item
+            class="c-ion-item c-ion-item--900"
+            button
+            [detail]="false"
+            (click)="searchFromHistory(item.name)">
+            <app-icon class="u-margin-right--sm" src="/assets/icons/clock-history.svg"></app-icon>
+            <ion-label>{{item.name}}</ion-label>
+            <ion-button class="c-ion-button--inline" fill="clear" slot="end" (click)="removeFromHistory(item.id)">
+              <app-icon name="close" title="Remove"></app-icon>
+            </ion-button>
+          </ion-item>
+        </ng-container>
+      </div>
+    </ng-template>
   </ng-template>
 </ion-content>

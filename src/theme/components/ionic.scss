@@ -27,6 +27,14 @@
   }
 }
 
+.c-ion-button {
+  &--inline {
+    font-size: 20px;
+    color: var(--color-text);
+    --padding-end: 0;
+  }
+}
+
 .c-ion-checkbox {
   --background: var(--color-bg-900);
   --background-checked: var(--color-success);

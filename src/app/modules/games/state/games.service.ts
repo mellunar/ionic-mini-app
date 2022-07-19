@@ -154,18 +154,20 @@ export class GamesService {
 
     const whereParams = [];
 
-    if (!filters) {
-      if (!param) {
-        paramToSearch = 'name';
-      } else if (param !== 'name' && param !== 'keywords') {
-        paramToSearch = `${param}.name`;
-      } else {
-        paramToSearch = param;
-      }
+    if (!param) {
+      paramToSearch = 'name';
+    } else if (param !== 'name' && param !== 'keywords') {
+      paramToSearch = `${param}.name`;
     } else {
+      paramToSearch = param;
+    }
+
+    if (filters) {
       const keys = ['platforms', 'themes', 'genres', 'game_modes', 'player_perspectives'];
 
-      paramToSearch = filters.parameter;
+      if (!param) {
+        paramToSearch = filters.parameter;
+      }
 
       if (filters.sortBy !== 'none') {
         sort = ` sort ${filters.sortBy} ${filters.sortOrder};`;
