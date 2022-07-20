@@ -10,7 +10,7 @@ import {
   withEntities,
 } from '@ngneat/elf-entities';
 import { persistState, localStorageStrategy } from '@ngneat/elf-persist-state';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { FilterOptions } from 'src/app/core/services/ui/ui.interface';
 
 type SortBy = 'name' | 'total_rating' | 'aggregated_rating' | 'rating' | 'hypes' | 'first_release_date' | 'none';
@@ -70,7 +70,10 @@ export const persist = persistState(searchStore, {
 
 @Injectable({ providedIn: 'root' })
 export class SearchStore {
-  history$ = searchStore.pipe(selectAllEntities());
+  history$ = searchStore.pipe(
+    selectAllEntities(),
+    map((entities) => entities.reverse())
+  );
 
   addToHistory(term: string) {
     const hasEntity = this.getHistory().some((item) => item.name === term);

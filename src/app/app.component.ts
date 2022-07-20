@@ -10,5 +10,13 @@ export class AppComponent {
     this.appInit();
   }
 
-  appInit() {}
+  appInit() {
+    this.mobileViewPort();
+    window.addEventListener('resize', this.mobileViewPort.bind(this));
+  }
+
+  mobileViewPort() {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  }
 }
