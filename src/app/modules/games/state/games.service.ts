@@ -185,11 +185,11 @@ export class GamesService {
         whereParams.push(`${filters.ratingBy} <= ${filters.rating.upper}`);
       }
 
-      const ignoreKeys = ['genres', 'themes', 'status'];
+      const ignoreKeys = ['genres', 'themes'];
 
       ignoreKeys.forEach((key) => {
         if (filters?.ignore[key]?.length > 0) {
-          whereParams.push(`genres != [${filters.ignore[key].join(',')}]`);
+          whereParams.push(`${key} != [${filters.ignore[key].join(',')}]`);
         }
       });
     }

@@ -27,7 +27,6 @@ export interface SearchPreferences {
   ignore: {
     themes: number[];
     genres: number[];
-    status: number[];
   };
   themes: number[];
   genres: number[];
@@ -48,7 +47,6 @@ const initialState: SearchPreferences = {
   ignore: {
     themes: null,
     genres: null,
-    status: null,
   },
   themes: null,
   genres: null,
@@ -132,6 +130,6 @@ export class SearchStore {
   }
 
   setSearchPreferences(preferences: SearchPreferences) {
-    searchStore.update((state) => ({ ...state, preferences }));
+    searchStore.update((state) => ({ ...state, ...preferences }));
   }
 }

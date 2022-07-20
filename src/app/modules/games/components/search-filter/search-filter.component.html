@@ -103,7 +103,8 @@
         (update)="changeOption('player_perspectives', $event)">
       </app-input-select>
 
-      <!-- status -->
+      <!-- status 
+      <!--
       <hr class="l-break u-margin-x--none" />
       <app-input-select
         label="Status"
@@ -111,6 +112,7 @@
         [value]="unsavedOptions.status"
         (update)="changeOption('status', $event)">
       </app-input-select>
+      -->
 
       <!-- display ratings by -->
       <hr class="l-break u-margin-x--none" />
@@ -131,15 +133,6 @@
         [options]="categories"
         [items]="[unsavedOptions.ignore.genres, unsavedOptions.ignore.themes]"
         (categories)="changeCategory(true, $event)">
-      </app-input-select>
-
-      <!-- ignore status -->
-      <hr class="l-break u-margin-x--none" />
-      <app-input-select
-        label="Status to ignore"
-        [options]="status"
-        [value]="unsavedOptions.ignore.status"
-        (update)="ignoreOption('status', $event)">
       </app-input-select>
 
       <!-- ratings and range -->
