@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { finalize, tap } from 'rxjs';
 import { Game } from '../../state/games.interface';
 import { GamesService } from '../../state/games.service';
-import { GamesListStore } from '../../state/games-list.store';
+import { GamesListStore, GamesStoreRefs } from '../../state/games-list.store';
 import { UIService } from 'src/app/core/services/ui/ui.service';
 
 @Component({
@@ -12,8 +12,16 @@ import { UIService } from 'src/app/core/services/ui/ui.service';
 })
 export class GamesPage implements OnInit {
   isOpen = false;
-  games$: Observable<Game[]>;
-  count = 0;
+
+  loading = false;
+  infiniteScrollDisabled = false;
+  segment: GamesStoreRefs = 'recent';
+
+  games = {
+    recent: [],
+    future: [],
+    hyped: [],
+  };
 
   constructor(
     private gamesService: GamesService,
@@ -22,13 +30,37 @@ export class GamesPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.games$ = this.gamesListStore.games$;
+    this.getGames();
   }
 
   ionViewWillEnter() {
     this.uiService.setTitle('Games');
   }
 
+  getGames(event?) {
+    this.loading = true;
+
+    const offset = this.games[this.segment].length + 1;
+
+    this.gamesService
+      .getGamesByStatus(offset, this.segment)
+      .pipe(
+        tap((games: Game[]) => {
+          if (games.length === 0) {
+            this.infiniteScrollDisabled = true;
+            return;
+          }
+          this.games[this.segment].push(...games);
+        }),
+        finalize(() => {
+          this.loading = false;
+          if (event) event.target.complete();
+        })
+      )
+      .subscribe();
+  }
+
+  /*
   getGames() {
     this.gamesService
       .getGames([
@@ -37,6 +69,12 @@ export class GamesPage implements OnInit {
       ])
       .pipe()
       .subscribe();
+  }
+  */
+
+  segmentChange(event) {
+    this.segment = event.detail.value;
+    this.getGames();
   }
 
   toggle() {
