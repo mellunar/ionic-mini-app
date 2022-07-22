@@ -1,2 +1,5 @@
 .e-games-page {
+  &__menu::part(backdrop) {
+    opacity: 0.35 !important;
+  }
 }

@@ -22,6 +22,7 @@ import { RelatedGamesModal } from './modals/related-games-modal/related-games-mo
 import { DetailsFooterComponent } from './components/details-footer/details-footer.component';
 import { AgeRatingIconComponent } from './components/age-rating-icon/age-rating-icon.component';
 import { SearchFilterComponent } from './components/search-filter/search-filter.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
   imports: [
@@ -50,6 +51,7 @@ import { SearchFilterComponent } from './components/search-filter/search-filter.
     DetailsFooterComponent,
     AgeRatingIconComponent,
     SearchFilterComponent,
+    SidebarComponent,
   ],
 })
 export class GamesModule {}

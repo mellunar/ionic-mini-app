@@ -1,0 +1,19 @@
+<ion-header class="c-header" slot="fixed" mode="ios">
+  <ion-toolbar>
+    <ion-title>Categories</ion-title>
+    <ion-buttons slot="end">
+      <ion-button class="c-header__button u-color--danger" title="Close" (click)="close()">
+        <app-icon name="close"></app-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list class="c-ion-list--900">
+    <ng-container *ngFor="let category of categories">
+      <ion-item class="c-ion-item c-ion-item--900" button [detail]="true" (click)="searchCategory(category)">
+        {{ category.name | tag }}
+      </ion-item>
+    </ng-container>
+  </ion-list>
+</ion-content>

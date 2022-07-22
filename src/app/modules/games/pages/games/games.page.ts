@@ -4,6 +4,7 @@ import { Game } from '../../state/games.interface';
 import { GamesService } from '../../state/games.service';
 import { GamesListStore, GamesListStoreRefs } from '../../state/games-list.store';
 import { UIService } from 'src/app/core/services/ui/ui.service';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-games',
@@ -24,7 +25,8 @@ export class GamesPage implements OnInit {
   constructor(
     private gamesService: GamesService,
     private gamesListStore: GamesListStore,
-    private uiService: UIService
+    private uiService: UIService,
+    private menuController: MenuController
   ) {}
 
   ngOnInit() {
@@ -60,6 +62,10 @@ export class GamesPage implements OnInit {
         })
       )
       .subscribe();
+  }
+
+  openSidebar() {
+    this.menuController.open('games-menu');
   }
 
   segmentChange(event) {

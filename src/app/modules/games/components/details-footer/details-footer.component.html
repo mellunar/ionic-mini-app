@@ -4,7 +4,7 @@
   <ion-list class="c-ion-list--900">
     <ng-container *ngIf="category === 0 || category === 3 || category === 8 || category === 9 || category === 11">
       <ng-container *ngIf="similar?.length > 0">
-        <ion-item class="c-ion-item c-ion-item--900" [detail]="true" (click)="openSimilarGamesModal()">
+        <ion-item class="c-ion-item c-ion-item--900" [detail]="true" button (click)="openSimilarGamesModal()">
           <div class="c-avatar">
             <app-icon name="layers"></app-icon>
           </div>
@@ -14,7 +14,7 @@
     </ng-container>
 
     <ng-container *ngIf="websites?.length > 0">
-      <ion-item class="c-ion-item c-ion-item--900" [detail]="true" (click)="openWebsitesModal()">
+      <ion-item class="c-ion-item c-ion-item--900" [detail]="true" button (click)="openWebsitesModal()">
         <div class="c-avatar">
           <app-icon name="globe-outline"></app-icon>
         </div>

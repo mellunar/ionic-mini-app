@@ -1,15 +1,24 @@
 <ion-header class="c-header" slot="fixed" mode="ios">
   <ion-toolbar>
     <ion-title>Games</ion-title>
+    <ion-buttons slot="start">
+      <ion-button class="c-header__button" title="Categories" (click)="openSidebar()">
+        <app-icon name="menu"></app-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-buttons slot="end">
-      <ion-button class="c-header__button" routerLink="/tabs/games/search">
+      <ion-button class="c-header__button" title="Search" routerLink="/tabs/games/search">
         <app-icon name="search"></app-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-menu class="e-games-page__menu" side="start" menuId="games-menu" contentId="games-page">
+  <app-sidebar></app-sidebar>
+</ion-menu>
+
+<ion-content [fullscreen]="true" id="games-page">
   <div class="u-padding--md">
     <ion-segment mode="ios" [value]="segment" (ionChange)="segmentChange($event)">
       <ion-segment-button class="c-ion-segment-button" value="recent">
