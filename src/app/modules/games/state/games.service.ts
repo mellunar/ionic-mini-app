@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { addDays, isAfter } from 'date-fns';
 import { catchError, of, tap } from 'rxjs';
 import { ToastService } from 'src/app/core/services/toast/toast.service';
-import { GamesListStore } from './games-list.store';
+import { GamesListStore, GamesListStoreRefs } from './games-list.store';
 import { Game, GameFullInfo } from './games.interface';
 import { GamesStore } from './games.store';
 import { SearchPreferences } from './search.store';
@@ -134,15 +135,62 @@ export class GamesService {
     );
   }
 
-  getGames(id?: number[]) {
-    const query = `where id = (${id.join(',')}); fields ${this.gameListFields}; limit 50;`;
+  getGamesByStatus(offset: number, ref: GamesListStoreRefs) {
+    const lastRequest = this.gamesListStore.getListRequestDate(ref);
+    if (lastRequest && isAfter(Date.now(), addDays(lastRequest, 1))) {
+      this.gamesListStore.cleanList(ref);
+    }
+
+    const listCount = this.gamesListStore.getGamesCountByRef(ref);
+    if (listCount >= offset + 19 || listCount >= 100) {
+      return this.gamesListStore.getGamesByRef(ref, offset);
+    }
+
+    let where = '';
+    let initialOffset = '';
+    let sort = '';
+    const now = Math.floor(Date.now() / 1000);
+
+    if (offset > 2) {
+      initialOffset = ` offset ${offset};`;
+    }
+
+    if (ref === 'recent') {
+      where = `where (first_release_date < ${now})`;
+      sort = ' sort first_release_date desc;';
+    }
+
+    if (ref === 'future') {
+      where = `where (first_release_date > ${now})`;
+      sort = ' sort first_release_date asc;';
+    }
+
+    if (ref === 'hyped') {
+      where = `where (first_release_date > ${now} & hypes > 0)`;
+      sort = ' sort hypes desc;';
+    }
+
+    const query = `${where}; fields ${this.gameListFields}; limit 20;${sort}${initialOffset}`;
 
     return this.http.post<Game[]>('/api/game', query).pipe(
       tap((games) => {
-        this.gamesListStore.addGames(games);
+        if (games.length) {
+          this.gamesListStore.addGamesByRef(games, ref);
+        }
+
+        if (games.length && listCount === 0) {
+          // timeout recomended by elf documentation
+          setTimeout(() => {
+            this.gamesListStore.setListRequestDate(ref, Date.now());
+          }, 1000);
+        }
       }),
       catchError((err) => {
-        this.toastService.error(err.message);
+        if (err.status === 400) {
+          this.toastService.error('Invalid search parameters');
+        } else {
+          this.toastService.error(err.message);
+        }
         throw err;
       })
     );
@@ -164,6 +212,7 @@ export class GamesService {
     }
 
     if (filters) {
+      // status was kept out for now due to the () operator instead of []
       const keys = ['platforms', 'themes', 'genres', 'game_modes', 'player_perspectives'];
 
       if (!param) {

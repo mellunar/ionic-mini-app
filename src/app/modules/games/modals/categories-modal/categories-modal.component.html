@@ -1,6 +1,11 @@
 <app-modal class="e-tags-modal" headerTitle="Categories">
   <ion-list *ngIf="tags">
-    <ion-item class="c-ion-item" *ngFor="let tag of tags; let i = index" (click)="searchCategory(i)">
+    <ion-item
+      class="c-ion-item"
+      button
+      [detail]="true"
+      *ngFor="let tag of tags; let i = index"
+      (click)="searchCategory(i)">
       {{ tag.name | tag }}
     </ion-item>
   </ion-list>

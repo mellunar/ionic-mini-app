@@ -32,7 +32,7 @@ export interface SearchPreferences {
   genres: number[];
   game_modes: number[];
   player_perspectives: number[];
-  status: number[]; // status
+  status: number | number[]; // status
 }
 
 const initialState: SearchPreferences = {

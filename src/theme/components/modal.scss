@@ -20,10 +20,6 @@ ion-modal::part(content) {
 }
 
 .c-ion-modal {
-  :root {
-    --full-vh: calc(var(--vh, 1vh) * 100);
-  }
-
   &::part(content) {
     --border-radius: 0;
     margin-top: 0;
@@ -33,13 +29,13 @@ ion-modal::part(content) {
 
   &--full {
     --ion-background-color: var(--color-bg-900) !important;
-    --height: --full-vh;
-    --max-height: --full-vh;
+    --height: 100vh;
+    --max-height: 100vh;
 
     &::part(content) {
       --width: 100vw;
-      --height: --full-vh;
-      --max-height: --full-vh;
+      --height: 100vh;
+      --max-height: 100vh;
       min-height: stretch;
     }
   }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { finalize, tap } from 'rxjs';
 import { Game } from '../../state/games.interface';
 import { GamesService } from '../../state/games.service';
-import { GamesListStore } from '../../state/games-list.store';
+import { GamesListStore, GamesListStoreRefs } from '../../state/games-list.store';
 import { UIService } from 'src/app/core/services/ui/ui.service';
 
 @Component({
@@ -11,9 +11,15 @@ import { UIService } from 'src/app/core/services/ui/ui.service';
   styleUrls: ['./games.page.scss'],
 })
 export class GamesPage implements OnInit {
-  isOpen = false;
-  games$: Observable<Game[]>;
-  count = 0;
+  loading = false;
+  infiniteScrollDisabled = false;
+  segment: GamesListStoreRefs = 'recent';
+
+  games = {
+    recent: [],
+    future: [],
+    hyped: [],
+  };
 
   constructor(
     private gamesService: GamesService,
@@ -22,24 +28,42 @@ export class GamesPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.games$ = this.gamesListStore.games$;
+    this.getGames();
   }
 
   ionViewWillEnter() {
     this.uiService.setTitle('Games');
   }
 
-  getGames() {
+  getGames(event?) {
+    this.loading = true;
+
+    if (this.gamesListStore.getGamesCountByRef(this.segment) < 100) {
+      this.infiniteScrollDisabled = false;
+    }
+
+    const offset = this.games[this.segment].length + 1;
+
     this.gamesService
-      .getGames([
-        14362, 19560, 11582, 25566, 27053, 141503, 1185, 72870, 1877, 96437, 112874, 140839, 1905, 7100, 110248,
-        22917, 134588, 28540, 1186, 110586, 3070, 3225,
-      ])
-      .pipe()
+      .getGamesByStatus(offset, this.segment)
+      .pipe(
+        tap((games: Game[]) => {
+          if (games.length < 1) {
+            this.infiniteScrollDisabled = true;
+          } else {
+            this.games[this.segment].push(...games);
+          }
+        }),
+        finalize(() => {
+          this.loading = false;
+          if (event) event.target.complete();
+        })
+      )
       .subscribe();
   }
 
-  toggle() {
-    this.isOpen = !this.isOpen;
+  segmentChange(event) {
+    this.segment = event.detail.value;
+    this.getGames();
   }
 }

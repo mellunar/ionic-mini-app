@@ -1,5 +1,6 @@
 <ion-header class="c-header" slot="fixed" mode="ios">
   <ion-toolbar>
+    <ion-title>Games</ion-title>
     <ion-buttons slot="end">
       <ion-button class="c-header__button" routerLink="/tabs/games/search">
         <app-icon name="search"></app-icon>
@@ -9,12 +10,31 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <p>Start editing to see some magic happen :)</p>
-  <button class="c-button" (click)="getGames()">get games</button>
+  <div class="u-padding--md">
+    <ion-segment mode="ios" [value]="segment" (ionChange)="segmentChange($event)">
+      <ion-segment-button class="c-ion-segment-button" value="recent">
+        <ion-label>New releases</ion-label>
+      </ion-segment-button>
+      <ion-segment-button class="c-ion-segment-button" value="future">
+        <ion-label>Coming soon</ion-label>
+      </ion-segment-button>
+      <ion-segment-button class="c-ion-segment-button" value="hyped">
+        <ion-label>Most hyped</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
 
-  <div class="c-games-list" *ngIf="games$ | async as games">
-    <ng-container *ngFor="let game of games">
+  <div class="c-games-list" *ngIf="games[segment].length > 0; else loadingState">
+    <ng-container *ngFor="let game of games[segment]">
       <app-game-list-item [game]="game" titleSize="small"></app-game-list-item>
     </ng-container>
+    <ion-infinite-scroll threshold="3px" [disabled]="infiniteScrollDisabled" (ionInfinite)="getGames($event)">
+      <ion-infinite-scroll-content loadingSpinner="crescent" loadingText="Loading more data...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
   </div>
+
+  <ng-template #loadingState>
+    <app-game-list-item-loading></app-game-list-item-loading>
+  </ng-template>
 </ion-content>
