@@ -1,18 +1,30 @@
 import { Injectable } from '@angular/core';
-import { createState, Store } from '@ngneat/elf';
-import { upsertEntities, selectAllEntities, withEntities, entitiesPropsFactory } from '@ngneat/elf-entities';
+import { createState, Store, withProps } from '@ngneat/elf';
+import {
+  upsertEntities,
+  entitiesPropsFactory,
+  getAllEntities,
+  getEntitiesCount,
+  deleteAllEntities,
+} from '@ngneat/elf-entities';
 import { localStorageStrategy, persistState } from '@ngneat/elf-persist-state';
-import { map } from 'rxjs';
+import { of } from 'rxjs';
 import { Game } from './games.interface';
 
-export type GamesStoreRefs = 'recent' | 'future' | 'hyped';
+export type GamesListStoreRefs = 'recent' | 'future' | 'hyped';
+
+interface ListsUpdated {
+  recent?: number;
+  future?: number;
+  hyped?: number;
+}
 
 const { recentEntitiesRef, withRecentEntities } = entitiesPropsFactory('recent');
 const { futureEntitiesRef, withFutureEntities } = entitiesPropsFactory('future');
 const { hypedEntitiesRef, withHypedEntities } = entitiesPropsFactory('hyped');
 
 const { state, config } = createState(
-  withEntities<Game>(),
+  withProps<ListsUpdated>(null),
   withRecentEntities<Game>(),
   withFutureEntities<Game>(),
   withHypedEntities<Game>()
@@ -27,36 +39,43 @@ export const persist = persistState(gamesListStore, {
 
 @Injectable({ providedIn: 'root' })
 export class GamesListStore {
-  games$ = gamesListStore.pipe(selectAllEntities());
-
-  addGames(games: Game[]) {
-    gamesListStore.update(upsertEntities(games));
+  addGamesByRef(games: Game[], ref: GamesListStoreRefs) {
+    gamesListStore.update(upsertEntities(games, { ref: this.getRef(ref) }));
   }
 
-  addGamesByRef(games: Game[], reference: GamesStoreRefs) {
-    let ref;
+  getGamesCountByRef(ref: GamesListStoreRefs) {
+    return gamesListStore.query(getEntitiesCount({ ref: this.getRef(ref) }));
+  }
 
-    if (reference === 'recent') {
-      ref = recentEntitiesRef;
-    } else if (reference === 'future') {
-      ref = futureEntitiesRef;
-    } else if (reference === 'hyped') {
-      ref = hypedEntitiesRef;
+  getGamesByRef(ref: GamesListStoreRefs, offset: number) {
+    // paginated query
+    const page = gamesListStore
+      .query(getAllEntities({ ref: this.getRef(ref) }))
+      .slice(offset - 1, offset + 20 - 1);
+
+    return of(page);
+  }
+
+  getRef(ref: GamesListStoreRefs) {
+    switch (ref) {
+      case 'recent':
+        return recentEntitiesRef;
+      case 'future':
+        return futureEntitiesRef;
+      case 'hyped':
+        return hypedEntitiesRef;
     }
-
-    gamesListStore.update(upsertEntities(games, { ref }));
   }
 
-  getGamesByRef(ref: GamesStoreRefs) {
-    // elf documentation does not provide a better way to access store entities by ref
-    // each entity key is an array of objects that have their id as key,
-    // so Object.values is needed to return the proper value
+  cleanList(ref: GamesListStoreRefs) {
+    gamesListStore.update(deleteAllEntities({ ref: this.getRef(ref) }), (store) => ({ ...store, [ref]: null }));
+  }
 
-    return gamesListStore.pipe(
-      map((store) => {
-        const items = Object.values(store[`${ref}Entities`]);
-        return items;
-      })
-    );
+  getListRequestDate(ref: GamesListStoreRefs) {
+    return gamesListStore.getValue()[ref];
+  }
+
+  setListRequestDate(ref: GamesListStoreRefs, timestamp: number) {
+    gamesListStore.update((store) => ({ ...store, [ref]: timestamp }));
   }
 }

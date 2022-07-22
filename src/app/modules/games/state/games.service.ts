@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { addDays, isAfter } from 'date-fns';
 import { catchError, of, tap } from 'rxjs';
 import { ToastService } from 'src/app/core/services/toast/toast.service';
-import { GamesListStore, GamesStoreRefs } from './games-list.store';
+import { GamesListStore, GamesListStoreRefs } from './games-list.store';
 import { Game, GameFullInfo } from './games.interface';
 import { GamesStore } from './games.store';
 import { SearchPreferences } from './search.store';
@@ -134,49 +135,15 @@ export class GamesService {
     );
   }
 
-  getGames(id?: number[]) {
-    const query = `where id = (${id.join(',')}); fields ${this.gameListFields}; limit 50;`;
-
-    return this.http.post<Game[]>('/api/game', query).pipe(
-      tap((games) => {
-        this.gamesListStore.addGames(games);
-      }),
-      catchError((err) => {
-        this.toastService.error(err.message);
-        throw err;
-      })
-    );
-  }
-
-  getNewReleasesList(offset: number) {
-    if (offset >= 100) {
-      return this.gamesListStore.getGamesByRef('recent');
+  getGamesByStatus(offset: number, ref: GamesListStoreRefs) {
+    const lastRequest = this.gamesListStore.getListRequestDate(ref);
+    if (lastRequest && isAfter(Date.now(), addDays(lastRequest, 1))) {
+      this.gamesListStore.cleanList(ref);
     }
 
-    let initialOffset = '';
-    const now = Math.floor(Date.now() / 1000);
-
-    if (offset > 2) {
-      initialOffset = ` offset ${offset};`;
-    }
-
-    const query = `where (first_release_date < ${now}); fields ${this.gameListFields}; limit 20; sort first_release_date desc;${initialOffset}`;
-
-    return this.http.post<Game[]>('/api/game', query).pipe(
-      catchError((err) => {
-        if (err.status === 400) {
-          this.toastService.error('Invalid search parameters');
-        } else {
-          this.toastService.error(err.message);
-        }
-        throw err;
-      })
-    );
-  }
-
-  getGamesByStatus(offset: number, status: GamesStoreRefs) {
-    if (offset >= 100) {
-      return this.gamesListStore.getGamesByRef(status);
+    const listCount = this.gamesListStore.getGamesCountByRef(ref);
+    if (listCount >= offset + 19 || listCount >= 100) {
+      return this.gamesListStore.getGamesByRef(ref, offset);
     }
 
     let where = '';
@@ -188,17 +155,17 @@ export class GamesService {
       initialOffset = ` offset ${offset};`;
     }
 
-    if (status === 'recent') {
+    if (ref === 'recent') {
       where = `where (first_release_date < ${now})`;
       sort = ' sort first_release_date desc;';
     }
 
-    if (status === 'future') {
+    if (ref === 'future') {
       where = `where (first_release_date > ${now})`;
       sort = ' sort first_release_date asc;';
     }
 
-    if (status === 'hyped') {
+    if (ref === 'hyped') {
       where = `where (first_release_date > ${now} & hypes > 0)`;
       sort = ' sort hypes desc;';
     }
@@ -206,6 +173,18 @@ export class GamesService {
     const query = `${where}; fields ${this.gameListFields}; limit 20;${sort}${initialOffset}`;
 
     return this.http.post<Game[]>('/api/game', query).pipe(
+      tap((games) => {
+        if (games.length) {
+          this.gamesListStore.addGamesByRef(games, ref);
+        }
+
+        if (games.length && listCount === 0) {
+          // timeout recomended by elf documentation
+          setTimeout(() => {
+            this.gamesListStore.setListRequestDate(ref, Date.now());
+          }, 1000);
+        }
+      }),
       catchError((err) => {
         if (err.status === 400) {
           this.toastService.error('Invalid search parameters');

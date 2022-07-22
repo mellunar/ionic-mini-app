@@ -2,6 +2,7 @@
   <ion-list *ngIf="tags">
     <ion-item
       class="c-ion-item"
+      button
       [detail]="true"
       *ngFor="let tag of tags; let i = index"
       (click)="searchCategory(i)">
