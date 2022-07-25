@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ModalController, PopoverController } from '@ionic/angular';
-import { Observable, Subscription, tap } from 'rxjs';
+import { finalize, Observable, Subscription, tap } from 'rxjs';
 import { PopoverComponent } from 'src/app/core/components/popover/popover.component';
 import { WebsitesModal } from 'src/app/core/modals/websites-modal/websites-modal.component';
 import { UIService } from 'src/app/core/services/ui/ui.service';
@@ -31,6 +31,8 @@ import { GamesStore } from '../../state/games.store';
   styleUrls: ['./game-details.page.scss'],
 })
 export class GameDetailsPage implements OnInit, OnDestroy {
+  loading = false;
+
   game$: Observable<GameFullInfo>;
   paramSubscription$: Subscription;
 
@@ -51,17 +53,21 @@ export class GameDetailsPage implements OnInit, OnDestroy {
 
       const id = Number(params.id);
 
-      this.game$ = this.gamesStore.getGameEntity(id);
+      this.gamesStore.setActiveGame(id);
 
       this.getGame(id);
     });
+
+    this.game$ = this.gamesStore.activeGame$;
   }
 
   ngOnDestroy() {
     this.paramSubscription$.unsubscribe();
+    this.gamesStore.resetActiveGame();
   }
 
   getGame(id: number) {
+    this.loading = true;
     this.gamesService
       .getGame(id)
       .pipe(
@@ -69,6 +75,9 @@ export class GameDetailsPage implements OnInit, OnDestroy {
           if (game.length) {
             this.uiService.setTitle(game[0].name);
           }
+        }),
+        finalize(() => {
+          this.loading = false;
         })
       )
       .subscribe();

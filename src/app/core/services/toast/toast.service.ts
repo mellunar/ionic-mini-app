@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { ToastMessage, ToastType } from '../../components/toast/toast.interface';
-import { UIStore } from '../ui/ui.store';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ToastService {
   message = new Subject<ToastMessage>();
+  asyncToast$ = new Subject<ToastMessage>();
 
-  constructor(private uiStore: UIStore) {}
+  constructor() {}
 
   info(message: string, icon?: string) {
     this.createToast(message, 'neutral', icon);
@@ -32,16 +32,14 @@ export class ToastService {
   }
 
   setAsyncToast(message: string, type: ToastType, icon: string) {
-    const toast = {
+    this.asyncToast$.next({
       message,
       type,
       icon,
-    };
-
-    this.uiStore.updateStore('asyncToast', toast);
+    });
   }
 
   removeAsyncToast() {
-    this.uiStore.updateStore('asyncToast', null);
+    this.asyncToast$.next(null);
   }
 }

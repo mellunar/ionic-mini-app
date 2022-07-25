@@ -14,7 +14,7 @@ export class ToastContainerComponent {
   asyncToast$: Observable<ToastMessage>;
 
   constructor(private toastService: ToastService, private uiStore: UIStore) {
-    this.asyncToast$ = this.uiStore.asyncToast$;
+    this.asyncToast$ = this.toastService.asyncToast$;
 
     this.toastService.message.subscribe((res) => {
       if (this.messages.length > 4) {

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { NavController } from '@ionic/angular';
 import { addDays, isAfter } from 'date-fns';
 import { catchError, of, tap } from 'rxjs';
 import { ToastService } from 'src/app/core/services/toast/toast.service';
@@ -88,7 +89,8 @@ export class GamesService {
     private http: HttpClient,
     private toastService: ToastService,
     private gamesStore: GamesStore,
-    private gamesListStore: GamesListStore
+    private gamesListStore: GamesListStore,
+    private navController: NavController
   ) {}
 
   formGameFields() {
@@ -120,7 +122,8 @@ export class GamesService {
     return this.http.post<GameFullInfo[]>('/api/game', query).pipe(
       tap((game) => {
         if (!game.length) {
-          // redirect to 404
+          this.navController.back();
+          this.toastService.error('Game not found');
           return;
         }
 

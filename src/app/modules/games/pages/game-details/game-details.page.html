@@ -16,7 +16,7 @@
 <ion-content>
   <article class="e-game-details">
     <!-- game content -->
-    <ng-container *ngIf="game$ | async as game; else loading">
+    <ng-container *ngIf="game$ | async as game; else loadingState">
       <!-- header -->
       <header>
         <app-header-background
@@ -204,11 +204,13 @@
     </ng-container>
 
     <!-- loading state -->
-    <ng-template #loading>
-      <ion-skeleton-text class="e-game-details__header-loading" animated></ion-skeleton-text>
-      <app-game-list-item-loading></app-game-list-item-loading>
-      <ion-skeleton-text class="e-game-details__text-loading u-width--80" animated></ion-skeleton-text>
-      <ion-skeleton-text class="e-game-details__text-loading u-width--50" animated></ion-skeleton-text>
+    <ng-template #loadingState>
+      <ng-container *ngIf="loading">
+        <ion-skeleton-text class="e-game-details__header-loading" animated></ion-skeleton-text>
+        <app-game-list-item-loading></app-game-list-item-loading>
+        <ion-skeleton-text class="e-game-details__text-loading u-width--80" animated></ion-skeleton-text>
+        <ion-skeleton-text class="e-game-details__text-loading u-width--50" animated></ion-skeleton-text>
+      </ng-container>
     </ng-template>
   </article>
 </ion-content>

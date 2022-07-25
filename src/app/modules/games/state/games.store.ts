@@ -1,11 +1,20 @@
 import { Injectable } from '@angular/core';
 import { createState, Store } from '@ngneat/elf';
-import { upsertEntities, selectAllEntities, withEntities, getEntity, selectEntity } from '@ngneat/elf-entities';
+import {
+  upsertEntities,
+  selectAllEntities,
+  withEntities,
+  getEntity,
+  withActiveId,
+  selectActiveEntity,
+  setActiveId,
+  resetActiveId,
+} from '@ngneat/elf-entities';
 import { localStorageStrategy, persistState } from '@ngneat/elf-persist-state';
 import { addDays, isBefore } from 'date-fns';
 import { GameFullInfo } from './games.interface';
 
-const { state, config } = createState(withEntities<GameFullInfo>());
+const { state, config } = createState(withEntities<GameFullInfo>(), withActiveId());
 
 const store = new Store({ name: 'games', state, config });
 
@@ -17,6 +26,7 @@ export const persist = persistState(store, {
 @Injectable({ providedIn: 'root' })
 export class GamesStore {
   games$ = store.pipe(selectAllEntities());
+  activeGame$ = store.pipe(selectActiveEntity());
 
   addGame(games: GameFullInfo[]) {
     store.update(upsertEntities(games));
@@ -40,7 +50,11 @@ export class GamesStore {
     return store.query(getEntity(id));
   }
 
-  getGameEntity(id: number) {
-    return store.pipe(selectEntity(id));
+  setActiveGame(id: number) {
+    store.update(setActiveId(id));
+  }
+
+  resetActiveGame() {
+    store.update(resetActiveId());
   }
 }
