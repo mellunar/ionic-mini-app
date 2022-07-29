@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
+import { UIService } from './core/services/ui/ui.service';
 
 @Component({
   selector: 'app-root',
@@ -6,17 +8,19 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {
+  constructor(private uiService: UIService, private router: Router) {
     this.appInit();
   }
 
   appInit() {
-    this.mobileViewPort();
-    window.addEventListener('resize', this.mobileViewPort.bind(this));
+    this.routerSubscriber();
   }
 
-  mobileViewPort() {
-    let vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  routerSubscriber() {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.uiService.setCurrentRoute(event.url);
+      }
+    });
   }
 }

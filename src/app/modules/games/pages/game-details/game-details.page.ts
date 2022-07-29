@@ -17,13 +17,13 @@ import {
   GameFullInfo,
   GenericInfo,
   Image,
-  Platform,
   Ratings,
   ReleaseDate,
   Website,
 } from '../../state/games.interface';
 import { GamesService } from '../../state/games.service';
 import { GamesStore } from '../../state/games.store';
+import { Platform } from 'src/app/modules/platforms/state/platforms.interface';
 
 @Component({
   selector: 'app-game-details',
@@ -62,8 +62,10 @@ export class GameDetailsPage implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.paramSubscription$.unsubscribe();
-    this.gamesStore.resetActiveGame();
+    if (!this.uiService.currentRoute.match(/(games\/[0-9]*)/)) {
+      this.paramSubscription$.unsubscribe();
+      this.gamesStore.resetActiveGame();
+    }
   }
 
   getGame(id: number) {

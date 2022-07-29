@@ -12,7 +12,7 @@ const routes: Routes = [
     path: 'landing',
     loadChildren: () => import('./modules/auth/auth.module').then((m) => m.AuthModule),
   },
-  { path: '**', redirectTo: 'landing' },
+  { path: '**', redirectTo: 'tabs/home' },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })],

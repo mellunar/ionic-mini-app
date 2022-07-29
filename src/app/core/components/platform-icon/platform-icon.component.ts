@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Platform } from 'src/app/modules/games/state/games.interface';
+import { Platform } from 'src/app/modules/platforms/state/platforms.interface';
 
 @Component({
   selector: 'app-platform-icon',

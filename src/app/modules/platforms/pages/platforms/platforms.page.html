@@ -1,16 +1,20 @@
-<ion-header [translucent]="true">
+<ion-header class="c-header" slot="fixed" mode="ios">
   <ion-toolbar>
-    <ion-title> Tab 3 </ion-title>
+    <ion-title>Platforms</ion-title>
+    <ion-buttons slot="start">
+      <ion-button class="c-header__button" title="Categories">
+        <app-icon name="menu"></app-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button class="c-header__button" title="Search" routerLink="/tabs/platforms/search">
+        <app-icon name="search"></app-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
   <div id="container">
     <strong>Tab 3 page</strong>
     <p>

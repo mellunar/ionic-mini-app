@@ -1,4 +1,7 @@
 // all objects inside types must be called with a *
+
+import { Platform } from '../../platforms/state/platforms.interface';
+
 // 1 ESRB / 2 PEGI / 3 CERO / 4 USK / 5 GRAC / 6 BR / 7 ACB (AU)
 export interface AgeRatings {
   category: number;
@@ -65,21 +68,6 @@ export interface InvolvedCompany {
   porting?: boolean;
   publisher?: boolean;
   supporting?: boolean;
-}
-
-export interface Platform {
-  abbreviation: string;
-  alternative_name: string;
-  category: number;
-  generation?: number;
-  id: number;
-  name: string;
-  platform_family?: GenericInfo;
-  platform_logo: Partial<Image>;
-  slug: string;
-  summary: string;
-  websites: Website[];
-  local_update?: number; // local update for fetching each 24 hours
 }
 
 export interface Ratings {

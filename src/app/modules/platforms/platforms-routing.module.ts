@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PlatformDetailsPage } from './pages/platform-details/platform-details.page';
 import { PlatformsPage } from './pages/platforms/platforms.page';
+import { SearchPage } from './pages/search/search.page';
 
 const routes: Routes = [
   {
@@ -9,7 +10,11 @@ const routes: Routes = [
     component: PlatformsPage,
   },
   {
-    path: 'platform-details',
+    path: 'search',
+    component: SearchPage,
+  },
+  {
+    path: ':id',
     component: PlatformDetailsPage,
   },
 ];

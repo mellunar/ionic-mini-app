@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { Platform } from '../../state/games.interface';
+import { Platform } from 'src/app/modules/platforms/state/platforms.interface';
 
 @Component({
   selector: 'app-platforms-modal',
