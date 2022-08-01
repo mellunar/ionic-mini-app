@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { createState, Store } from '@ngneat/elf';
+import { createStore } from '@ngneat/elf';
 import {
   upsertEntities,
   selectAllEntities,
@@ -14,9 +14,7 @@ import { localStorageStrategy, persistState } from '@ngneat/elf-persist-state';
 import { addDays, isBefore } from 'date-fns';
 import { GameFullInfo } from './games.interface';
 
-const { state, config } = createState(withEntities<GameFullInfo>(), withActiveId());
-
-const store = new Store({ name: 'games', state, config });
+const store = createStore({ name: 'games' }, withEntities<GameFullInfo>(), withActiveId());
 
 export const persist = persistState(store, {
   key: 'games',

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { createState, Store, withProps } from '@ngneat/elf';
+import { createStore, withProps } from '@ngneat/elf';
 import {
   upsertEntities,
   entitiesPropsFactory,
@@ -23,16 +23,15 @@ const { recentEntitiesRef, withRecentEntities } = entitiesPropsFactory('recent')
 const { futureEntitiesRef, withFutureEntities } = entitiesPropsFactory('future');
 const { hypedEntitiesRef, withHypedEntities } = entitiesPropsFactory('hyped');
 
-const { state, config } = createState(
+const store = createStore(
+  { name: 'games-list' },
   withProps<ListsUpdated>(null),
   withRecentEntities<Game>(),
   withFutureEntities<Game>(),
   withHypedEntities<Game>()
 );
 
-const gamesListStore = new Store({ name: 'games-list', state, config });
-
-export const persist = persistState(gamesListStore, {
+export const persist = persistState(store, {
   key: 'games-list',
   storage: localStorageStrategy,
 });
@@ -40,18 +39,16 @@ export const persist = persistState(gamesListStore, {
 @Injectable({ providedIn: 'root' })
 export class GamesListStore {
   addGamesByRef(games: Game[], ref: GamesListStoreRefs) {
-    gamesListStore.update(upsertEntities(games, { ref: this.getRef(ref) }));
+    store.update(upsertEntities(games, { ref: this.getRef(ref) }));
   }
 
   getGamesCountByRef(ref: GamesListStoreRefs) {
-    return gamesListStore.query(getEntitiesCount({ ref: this.getRef(ref) }));
+    return store.query(getEntitiesCount({ ref: this.getRef(ref) }));
   }
 
   getGamesByRef(ref: GamesListStoreRefs, offset: number) {
     // paginated query
-    const page = gamesListStore
-      .query(getAllEntities({ ref: this.getRef(ref) }))
-      .slice(offset - 1, offset + 20 - 1);
+    const page = store.query(getAllEntities({ ref: this.getRef(ref) })).slice(offset - 1, offset + 20 - 1);
 
     return of(page);
   }
@@ -68,14 +65,14 @@ export class GamesListStore {
   }
 
   cleanList(ref: GamesListStoreRefs) {
-    gamesListStore.update(deleteAllEntities({ ref: this.getRef(ref) }), (store) => ({ ...store, [ref]: null }));
+    store.update(deleteAllEntities({ ref: this.getRef(ref) }), (state) => ({ ...state, [ref]: null }));
   }
 
   getListRequestDate(ref: GamesListStoreRefs) {
-    return gamesListStore.getValue()[ref];
+    return store.getValue()[ref];
   }
 
   setListRequestDate(ref: GamesListStoreRefs, timestamp: number) {
-    gamesListStore.update((store) => ({ ...store, [ref]: timestamp }));
+    store.update((state) => ({ ...state, [ref]: timestamp }));
   }
 }
