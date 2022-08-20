@@ -21,12 +21,15 @@
 
 <ion-content [fullscreen]="true">
   <form [formGroup]="form">
-    <ion-searchbar
-      class="c-ion-searchbar"
-      formControlName="search"
-      clearIcon="close"
-      mode="ios"
-      (ionClear)="clearResults()"></ion-searchbar>
+    <div class="e-search-page__search">
+      <app-icon class="e-search-page__search-icon" name="search-outline"></app-icon>
+      <input type="text" formControlName="search" placeholder="Search" #searchInput />
+      <ng-container *ngIf="searchInput.value !== ''">
+        <button class="e-search-page__search-button" (click)="clearResults()">
+          <app-icon name="close"></app-icon>
+        </button>
+      </ng-container>
+    </div>
   </form>
 
   <ng-container *ngIf="loading; else searchResults">
