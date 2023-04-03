@@ -31,7 +31,7 @@ export class CategoriesModal implements OnInit {
       type = 'themes';
     }
 
-    this.router.navigate(['/tabs/games/search'], { queryParams: { [type]: item.name } });
+    this.router.navigate(['/games/search'], { queryParams: { [type]: item.name } });
     this.dismiss();
   }
 }

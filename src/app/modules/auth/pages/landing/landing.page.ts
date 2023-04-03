@@ -30,7 +30,7 @@ export class LandingPage implements OnInit {
     const token = this.authStore.token();
 
     if (token) {
-      this.router.navigate(['/tabs/home']);
+      this.router.navigate(['/']);
     }
 
     if (!token || isAfter(Date.now(), token?.expires_in)) {
@@ -43,7 +43,7 @@ export class LandingPage implements OnInit {
             this.authStore.updateToken(res);
 
             this.hasToken = true;
-            this.router.navigate(['/tabs/home']);
+            this.router.navigate(['/']);
           }),
           catchError((err) => {
             this.toastService.error(err.message);

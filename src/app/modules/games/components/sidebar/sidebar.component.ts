@@ -23,7 +23,7 @@ export class SidebarComponent implements OnInit {
   }
 
   searchCategory(category: FilterOptions) {
-    this.router.navigate(['/tabs/games/search'], { queryParams: { [category.endpoint]: category.name } });
+    this.router.navigate(['/games/search'], { queryParams: { [category.endpoint]: category.name } });
     this.close();
   }
 }

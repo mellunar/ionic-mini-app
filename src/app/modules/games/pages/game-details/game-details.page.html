@@ -52,7 +52,7 @@
           <ng-container *ngSwitchDefault>Main game</ng-container>
         </h5>
         <ion-list class="c-ion-list--900">
-          <ion-item class="c-ion-item c-ion-item--900" routerLink="/tabs/games/{{game.parent_game.id}}">
+          <ion-item class="c-ion-item c-ion-item--900" routerLink="/games/{{game.parent_game.id}}">
             <div class="c-avatar">
               <app-icon src="/assets/icons/diagram-2-fill.svg"></app-icon>
             </div>
@@ -99,7 +99,7 @@
             <ion-item
               class="c-ion-item c-ion-item--900"
               [detail]="true"
-              routerLink="/tabs/games/search"
+              routerLink="/games/search"
               [queryParams]="{game_modes: mode.name}">
               <div class="c-avatar">
                 <app-icon *ngIf="mode.name === 'Single player'; else multi" name="person"></app-icon>
@@ -124,7 +124,7 @@
             <ion-item
               class="c-ion-item c-ion-item--900"
               [detail]="true"
-              routerLink="/tabs/games/search"
+              routerLink="/games/search"
               [queryParams]="{player_perspectives: perspective.name}">
               <div class="c-avatar">
                 <app-icon name="camera"></app-icon>
